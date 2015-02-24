@@ -26,8 +26,8 @@ public class MailServiceImpl implements MailService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    //@Autowired
-    //private MailSender mailSender;
+    @Autowired
+    private MailSender mailSender;
 
     @Override
     public void sendMail(final MailRequest mailrequest) {
@@ -36,7 +36,7 @@ public class MailServiceImpl implements MailService {
         message.setTo(mailrequest.getTo());
         message.setSubject(mailrequest.getSubject());
         message.setText(mailrequest.getBody());
-        //mailSender.send(message);
+        mailSender.send(message);
         this.logger.debug("End operation: sending mail, request:{} ", mailrequest);
     }
 }
