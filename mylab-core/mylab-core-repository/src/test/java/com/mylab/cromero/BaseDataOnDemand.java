@@ -1,4 +1,4 @@
-package com.mylab.cromero.repository;
+package com.mylab.cromero;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -13,44 +13,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
-import com.mylab.cromero.domain.Pizza;
-import com.mylab.cromero.repository.PizzaRepository;
+import com.mylab.cromero.domain.Base;
+import com.mylab.cromero.repository.BaseRepository;
 
 @Component
 @Configurable
-public class PizzaDataOnDemand {
+public class BaseDataOnDemand {
 
     private Random rnd = new SecureRandom();
 
-    private List<Pizza> data;
+    private List<Base> data;
 
     @Autowired
-    BaseDataOnDemand baseDataOnDemand;
+    BaseRepository baseRepository;
 
-    @Autowired
-    EspecialidadDataOnDemand especialidadDataOnDemand;
-
-    @Autowired
-    PizzaRepository pizzaRepository;
-
-    public Pizza getNewTransientPizza(int index) {
-        Pizza obj = new Pizza();
+    public Base getNewTransientBase(int index) {
+        Base obj = new Base();
         setName(obj, index);
-        setPrice(obj, index);
         return obj;
     }
 
-    public void setName(Pizza obj, int index) {
+    public void setName(Base obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
     }
 
-    public void setPrice(Pizza obj, int index) {
-        Float price = new Integer(index).floatValue();
-        obj.setPrice(price);
-    }
-
-    public Pizza getSpecificPizza(int index) {
+    public Base getSpecificBase(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -58,41 +46,41 @@ public class PizzaDataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        Pizza obj = data.get(index);
+        Base obj = data.get(index);
         Long id = obj.getId();
-        return pizzaRepository.findOne(id);
+        return baseRepository.findOne(id);
     }
 
-    public Pizza getRandomPizza() {
+    public Base getRandomBase() {
         init();
-        Pizza obj = data.get(rnd.nextInt(data.size()));
+        Base obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return pizzaRepository.findOne(id);
+        return baseRepository.findOne(id);
     }
 
-    public boolean modifyPizza(Pizza obj) {
+    public boolean modifyBase(Base obj) {
         return false;
     }
 
     public void init() {
         int from = 0;
         int to = 10;
-        data = pizzaRepository.findAll(
+        data = baseRepository.findAll(
                 new org.springframework.data.domain.PageRequest(from / to, to))
                 .getContent();
         if (data == null) {
             throw new IllegalStateException(
-                    "Find entries implementation for 'Pizza' illegally returned null");
+                    "Find entries implementation for 'Base' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
 
-        data = new ArrayList<Pizza>();
+        data = new ArrayList<Base>();
         for (int i = 0; i < 10; i++) {
-            Pizza obj = getNewTransientPizza(i);
+            Base obj = getNewTransientBase(i);
             try {
-                pizzaRepository.save(obj);
+                baseRepository.save(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e
@@ -108,7 +96,7 @@ public class PizzaDataOnDemand {
                 }
                 throw new IllegalStateException(msg.toString(), e);
             }
-            pizzaRepository.flush();
+            baseRepository.flush();
             data.add(obj);
         }
     }

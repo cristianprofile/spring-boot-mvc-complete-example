@@ -1,4 +1,4 @@
-package com.mylab.cromero.repository;
+package com.mylab.cromero;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -13,32 +13,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
-import com.mylab.cromero.domain.Base;
-import com.mylab.cromero.repository.BaseRepository;
+import com.mylab.cromero.domain.Especialidad;
+import com.mylab.cromero.repository.EspecialidadRepository;
 
-@Component
 @Configurable
-public class BaseDataOnDemand {
+@Component
+public class EspecialidadDataOnDemand {
 
     private Random rnd = new SecureRandom();
 
-    private List<Base> data;
+    private List<Especialidad> data;
 
     @Autowired
-    BaseRepository baseRepository;
+    EspecialidadRepository especialidadRepository;
 
-    public Base getNewTransientBase(int index) {
-        Base obj = new Base();
+    public Especialidad getNewTransientEspecialidad(int index) {
+        Especialidad obj = new Especialidad();
+        setActive(obj, index);
         setName(obj, index);
         return obj;
     }
 
-    public void setName(Base obj, int index) {
+    public void setActive(Especialidad obj, int index) {
+        Boolean active = Boolean.TRUE;
+        obj.setActive(active);
+    }
+
+    public void setName(Especialidad obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
     }
 
-    public Base getSpecificBase(int index) {
+    public Especialidad getSpecificEspecialidad(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -46,41 +52,41 @@ public class BaseDataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        Base obj = data.get(index);
+        Especialidad obj = data.get(index);
         Long id = obj.getId();
-        return baseRepository.findOne(id);
+        return especialidadRepository.findOne(id);
     }
 
-    public Base getRandomBase() {
+    public Especialidad getRandomEspecialidad() {
         init();
-        Base obj = data.get(rnd.nextInt(data.size()));
+        Especialidad obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return baseRepository.findOne(id);
+        return especialidadRepository.findOne(id);
     }
 
-    public boolean modifyBase(Base obj) {
+    public boolean modifyEspecialidad(Especialidad obj) {
         return false;
     }
 
     public void init() {
         int from = 0;
         int to = 10;
-        data = baseRepository.findAll(
+        data = especialidadRepository.findAll(
                 new org.springframework.data.domain.PageRequest(from / to, to))
                 .getContent();
         if (data == null) {
             throw new IllegalStateException(
-                    "Find entries implementation for 'Base' illegally returned null");
+                    "Find entries implementation for 'Especialidad' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
 
-        data = new ArrayList<Base>();
+        data = new ArrayList<Especialidad>();
         for (int i = 0; i < 10; i++) {
-            Base obj = getNewTransientBase(i);
+            Especialidad obj = getNewTransientEspecialidad(i);
             try {
-                baseRepository.save(obj);
+                especialidadRepository.save(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e
@@ -96,7 +102,7 @@ public class BaseDataOnDemand {
                 }
                 throw new IllegalStateException(msg.toString(), e);
             }
-            baseRepository.flush();
+            especialidadRepository.flush();
             data.add(obj);
         }
     }
