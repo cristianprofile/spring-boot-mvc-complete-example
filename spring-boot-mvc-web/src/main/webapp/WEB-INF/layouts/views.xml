@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="home" extends="HomeTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/views/home.jsp" />
+	</definition>
+	
+	<definition name="pizzas" extends="DefaultTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/views/pizzas.jsp" />
+	</definition>
+	
+	<definition name="addPizza" extends="DefaultTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/views/addPizza.jsp" />
+	</definition>
+	
+	
+	<definition name="users" extends="DefaultTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/views/users.jsp" />
+	</definition>
+	
+	<definition name="addUser" extends="DefaultTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/views/addUser.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="info" extends="DefaultTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/views/info.jsp" />
+	</definition>
+	
+	<definition name="login" extends="HomeTemplate">
+	    <put-attribute name="body"	value="/WEB-INF/views/login.jsp" />
+	</definition>
+
+	
+</tiles-definitions>

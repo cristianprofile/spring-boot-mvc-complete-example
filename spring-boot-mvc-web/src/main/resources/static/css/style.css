@@ -1,0 +1,126 @@
+/* Large Desktop */
+@media ( min-width : 1200px) {
+	body {
+		/* color: blue; */
+	}
+}
+/* Portrait Table to Landscape and Desktop. The book says: (max-width: 979px).
+               Tamaños estándar que soporta Bootstrap. Bootstrap reconoce estas medidas. */
+@media ( min-width : 768px) and (max-width: 1199px) {
+	body {
+		/* color: green; */
+	}
+}
+/* Landscape Phone to Portrait Tablet */
+@media ( max-width : 767px) {
+	body {
+		/* color: grey; */
+	}
+}
+/* Phone */
+@media ( max-width : 480px) {
+	body {
+		/* color: purple; */
+	}
+}
+
+#header {
+	/*text-align: center;
+	font-weight: bolder;
+	background-color: aqua;*/
+	
+	font-size: 21px;
+	line-height: 40px;
+}
+
+#footer {
+	text-align: center;
+	font-weight: bolder;
+}
+
+/*
+#menu {
+	background-color: #22a099;
+	height: 400px;
+}
+*/
+
+/*
+#menu ul {
+	padding: 1.2em;
+}
+
+
+#menu li {
+	list-style: none;
+	height: 2em;
+}
+
+#menu a {
+	color: white;
+}
+*/
+
+.error {
+	color: red;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
+.info {
+	color: green;
+	font-size: 1.1em;
+	font-weight: bold;
+	height: 1.1em;
+}
+
+/*
+.bread {
+	padding: 0 10px;
+}
+
+.center-header {
+	text-align: center;
+}
+
+#container2 {
+	width: 500px;
+	background-color: #fff;
+	margin: 30px auto;
+	padding: 30px;
+	border-radius: 5px;
+}
+
+.green {
+	font-weight: bold;
+	color: green;
+}
+
+.message {
+	margin-bottom: 10px;
+}
+
+label {
+	width: 70px;
+	display: inline-block;
+}
+
+input {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+form {
+	line-height: 160%;
+}
+
+.hide {
+	display: none;
+}
+
+.error {
+	color: red;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+*/

@@ -1,0 +1,10 @@
+﻿server:
+    port: 9090
+    contextPath: /pizza
+    session-timeout: 10
+management:
+    port: 9091
+    address: 127.0.0.1
+http:
+    mappers: 
+       jsonPrettyPrint: true
