@@ -1,4 +1,4 @@
-package com.mylab.cromero.repository;
+package com.mylab.cromero;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mylab.cromero.domain.Pizza;
+import com.mylab.cromero.repository.PizzaRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestRepositoryConfigIT.class)

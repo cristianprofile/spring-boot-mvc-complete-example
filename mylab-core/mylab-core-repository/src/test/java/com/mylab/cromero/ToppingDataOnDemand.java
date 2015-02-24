@@ -1,4 +1,4 @@
-package com.mylab.cromero.repository;
+package com.mylab.cromero;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -13,38 +13,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
-import com.mylab.cromero.domain.Especialidad;
-import com.mylab.cromero.repository.EspecialidadRepository;
+import com.mylab.cromero.domain.Topping;
+import com.mylab.cromero.repository.ToppingRepository;
 
-@Configurable
 @Component
-public class EspecialidadDataOnDemand {
+@Configurable
+public class ToppingDataOnDemand {
 
     private Random rnd = new SecureRandom();
 
-    private List<Especialidad> data;
+    private List<Topping> data;
 
     @Autowired
-    EspecialidadRepository especialidadRepository;
+    ToppingRepository toppingRepository;
 
-    public Especialidad getNewTransientEspecialidad(int index) {
-        Especialidad obj = new Especialidad();
-        setActive(obj, index);
+    public Topping getNewTransientTopping(int index) {
+        Topping obj = new Topping();
         setName(obj, index);
         return obj;
     }
 
-    public void setActive(Especialidad obj, int index) {
-        Boolean active = Boolean.TRUE;
-        obj.setActive(active);
-    }
-
-    public void setName(Especialidad obj, int index) {
+    public void setName(Topping obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
     }
 
-    public Especialidad getSpecificEspecialidad(int index) {
+    public Topping getSpecificTopping(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -52,41 +46,41 @@ public class EspecialidadDataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        Especialidad obj = data.get(index);
+        Topping obj = data.get(index);
         Long id = obj.getId();
-        return especialidadRepository.findOne(id);
+        return toppingRepository.findOne(id);
     }
 
-    public Especialidad getRandomEspecialidad() {
+    public Topping getRandomTopping() {
         init();
-        Especialidad obj = data.get(rnd.nextInt(data.size()));
+        Topping obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return especialidadRepository.findOne(id);
+        return toppingRepository.findOne(id);
     }
 
-    public boolean modifyEspecialidad(Especialidad obj) {
+    public boolean modifyTopping(Topping obj) {
         return false;
     }
 
     public void init() {
         int from = 0;
         int to = 10;
-        data = especialidadRepository.findAll(
+        data = toppingRepository.findAll(
                 new org.springframework.data.domain.PageRequest(from / to, to))
                 .getContent();
         if (data == null) {
             throw new IllegalStateException(
-                    "Find entries implementation for 'Especialidad' illegally returned null");
+                    "Find entries implementation for 'Topping' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
 
-        data = new ArrayList<Especialidad>();
+        data = new ArrayList<Topping>();
         for (int i = 0; i < 10; i++) {
-            Especialidad obj = getNewTransientEspecialidad(i);
+            Topping obj = getNewTransientTopping(i);
             try {
-                especialidadRepository.save(obj);
+                toppingRepository.save(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e
@@ -102,7 +96,7 @@ public class EspecialidadDataOnDemand {
                 }
                 throw new IllegalStateException(msg.toString(), e);
             }
-            especialidadRepository.flush();
+            toppingRepository.flush();
             data.add(obj);
         }
     }
