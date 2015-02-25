@@ -14,6 +14,7 @@ option.
 - I18n
 - Responsive Bootstrap css witn Tiles 3
 - Password encoding with Bcrypt  [BCRYPT password encoding](http://www.baeldung.com/spring-security-registration-password-encoding-bcrypt "BCRYPT password encoding") 
+- Unit Testing and Integration Testing with spring-boot-starter-test dependency (all dependecies are transitive like mockito junit etc...)
 
 
 ------------------------------------------------------------------------------------------------------
