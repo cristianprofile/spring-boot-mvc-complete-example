@@ -40,12 +40,14 @@ import com.mylab.cromero.repository.BaseRepository;
 //   WebApplicationContext should be loaded for the test. 
 //   It also provides an attribute for specifying the path to the root of 
 //   the web application.
+//   full example at http://spring.io/guides/tutorials/bookmarks/
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
+
 @Transactional
-public class RestTestIt {
+public class RestTestIT {
 
 	@Autowired
 	BaseRepository baseRepository;

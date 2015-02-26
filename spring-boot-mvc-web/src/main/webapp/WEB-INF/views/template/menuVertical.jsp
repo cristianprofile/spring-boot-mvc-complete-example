@@ -29,12 +29,6 @@
 				<a href="${addUser}"><spring:message code="menu.addUser"/></a>
 			</li>
 		</sec:authorize>
-		
-		<sec:authorize access="hasRole('ROLE_USER')">
-			<li class="nav-header">
-				OTRO MENU
-			</li>
-		</sec:authorize>
-		
+				
 	</ul>
 </div>

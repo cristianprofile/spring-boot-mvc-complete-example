@@ -16,6 +16,7 @@
   	<module>mylab-core-repository</module>
   	<module>mylab-core-service-api</module>
   	<module>mylab-core-service-impl</module>
+  	<module>mylab-core-service-security-impl</module>
   </modules>
   
   

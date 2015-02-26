@@ -14,6 +14,19 @@
 		<main.basedir>${basedir}/../..</main.basedir>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>com.mylab.cromero.core</groupId>
+			<artifactId>mylab-core-service-impl</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mylab.cromero.core</groupId>
+			<artifactId>mylab-core-service-security-impl</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -37,11 +50,6 @@
 			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.mylab.cromero.core</groupId>
-			<artifactId>mylab-core-service-impl</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
 
 		<!-- jstl -->
 		<dependency>
@@ -60,11 +68,24 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.neo4j</groupId>
 			<artifactId>neo4j-cypher-compiler-2.1</artifactId>
 			<version>2.1.5</version>
 		</dependency>
+		<!-- needed to auto config app with hsqlb spring boot default config -->
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

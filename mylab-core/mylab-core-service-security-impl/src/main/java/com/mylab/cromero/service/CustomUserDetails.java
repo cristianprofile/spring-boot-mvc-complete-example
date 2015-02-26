@@ -1,4 +1,4 @@
-package com.mylab.cromero.service.mapper;
+package com.mylab.cromero.service;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.mylab.cromero.dto.UserRequest;
 import com.mylab.cromero.dto.UserResponse;
 
 public class CustomUserDetails implements UserDetails {
@@ -39,7 +38,7 @@ public class CustomUserDetails implements UserDetails {
 		    return authorities;
 		
 	}
-
+ 
 	@Override
 	public String getPassword() {
 		return this.password;
@@ -52,34 +51,23 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return this.user.isAccountNonExpired();
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return this.user.isAccountNonLocked();
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return this.user.isCredentialsNonExpired();
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return this.user.isEnabled();
 	}
 
 	
-
-	
-
-
-
-
-
 }
