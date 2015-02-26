@@ -1,34 +1,19 @@
 package com.mylab.cromero.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mylab.cromero.domain.Base;
 import com.mylab.cromero.domain.User;
-import com.mylab.cromero.dto.BaseRequest;
-import com.mylab.cromero.dto.BaseResponse;
 import com.mylab.cromero.dto.UserRequest;
 import com.mylab.cromero.dto.UserResponse;
-import com.mylab.cromero.exception.BaseNotFoundException;
-import com.mylab.cromero.repository.BaseRepository;
 import com.mylab.cromero.repository.UserRepository;
-import com.mylab.cromero.service.BaseService;
 import com.mylab.cromero.service.mapper.MapperSerializer;
 
 /**
@@ -52,10 +37,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	
-	 @Autowired
-	 private PasswordEncoder passwordEncoder;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<UserResponse> findAllUsers() {
@@ -75,11 +58,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUser(final UserRequest userRequest) {
 		this.logger.debug("Begin operation: save request:{} ", userRequest);
-		User user = MapperSerializer.getUserRequestToUserMapperLambdaFunction().apply(userRequest);
+		User user = MapperSerializer.getUserRequestToUserMapperLambdaFunction()
+				.apply(userRequest);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 		this.logger.debug("End operation: save request:{} ", user);
 	}
 
-	
 }

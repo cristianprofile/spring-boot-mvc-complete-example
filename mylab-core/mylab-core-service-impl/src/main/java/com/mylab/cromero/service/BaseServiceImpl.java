@@ -24,7 +24,7 @@ import com.mylab.cromero.dto.BaseResponse;
 import com.mylab.cromero.exception.BaseNotFoundException;
 import com.mylab.cromero.repository.BaseRepository;
 import com.mylab.cromero.service.BaseService;
-import com.mylab.cromero.service.mapper.MapperSerializer;
+import com.mylab.cromero.service.mapper.LayerMapping;
 
 /**
  * <h1>Base Service Implement!</h1> Bussiness Service example using repository
@@ -68,9 +68,12 @@ public class BaseServiceImpl implements BaseService {
 		this.logger.debug("Begin operation: findAllBases ");
 
 		List<Base> findAll = baseRepository.findAll();
+		
+		this.logger.debug("findAllBases finded ");
+		
 		List<BaseResponse> listBases = findAll
 				.stream()
-				.map(MapperSerializer
+				.map(LayerMapping
 						.getBaseToBaseResponseMapperLambdaFunction())
 				.collect(Collectors.toList());
 
@@ -93,7 +96,7 @@ public class BaseServiceImpl implements BaseService {
 		this.logger.debug("Begin operation: searching base wit id :{} ", id);
 		Base base = baseRepository.findOne(id);
 		if (base != null) {
-			BaseResponse baseResponse = MapperSerializer.serializeObject(base);
+			BaseResponse baseResponse = LayerMapping.getBaseToBaseResponseMapperLambdaFunction().apply(base);
 			return baseResponse;
 		} else {
 			throw new BaseNotFoundException();
@@ -136,7 +139,7 @@ public class BaseServiceImpl implements BaseService {
 
 		List<BaseResponse> listBases = findAll
 				.stream()
-				.map(MapperSerializer
+				.map(LayerMapping
 						.getBaseToBaseResponseMapperLambdaFunction())
 				.collect(Collectors.toList());
 
@@ -155,7 +158,7 @@ public class BaseServiceImpl implements BaseService {
 		List<BaseResponse> listBases = page
 				.getContent()
 				.stream()
-				.map(MapperSerializer
+				.map(LayerMapping
 						.getBaseToBaseResponseMapperLambdaFunction())
 				.collect(Collectors.toList());
 
@@ -180,7 +183,7 @@ public class BaseServiceImpl implements BaseService {
 		List<BaseResponse> listBases = page
 				.getContent()
 				.stream()
-				.map(MapperSerializer
+				.map(LayerMapping
 						.getBaseToBaseResponseMapperLambdaFunction())
 				.collect(Collectors.toList());
 
@@ -195,7 +198,7 @@ public class BaseServiceImpl implements BaseService {
 		Optional<Base> base = baseRepository.findById(id);
 		Optional<BaseResponse> baseResponse = Optional.empty();
 		if (base.isPresent()) {
-			baseResponse = Optional.of(MapperSerializer.serializeObject(base.get()));
+			baseResponse = Optional.of(LayerMapping.getBaseToBaseResponseMapperLambdaFunction().apply((base.get())));
 		}
 		this.logger.debug("End operation: findById With optional return object value{} ",baseResponse);
 		return baseResponse;
