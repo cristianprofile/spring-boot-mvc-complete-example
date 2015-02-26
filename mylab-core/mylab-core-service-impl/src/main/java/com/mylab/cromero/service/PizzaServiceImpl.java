@@ -41,12 +41,8 @@ public class PizzaServiceImpl implements PizzaService {
 	public List<PizzaResponse> findAllPizzas() {
 		this.logger.debug("Begin operation: findAllPizzas ");
 		List<Pizza> findAll = pizzaRepository.findAll();
-		List<PizzaResponse> listBases = findAll
-				.stream()
-				.map(LayerMapping
-						.getPizzaToPizzaResponseMapperLambdaFunction())
-				.collect(Collectors.toList());
-
+		List<PizzaResponse> listBases = findAll.stream().map(LayerMapping.getPizzaToPizzaResponseMapperLambdaFunction())
+										.collect(Collectors.toList());
 		this.logger.debug("End operation: findAllPizzas {} ", listBases);
 		return listBases;
 	}

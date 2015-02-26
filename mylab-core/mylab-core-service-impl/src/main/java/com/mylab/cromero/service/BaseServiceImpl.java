@@ -3,7 +3,6 @@ package com.mylab.cromero.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -23,7 +22,6 @@ import com.mylab.cromero.dto.BaseRequest;
 import com.mylab.cromero.dto.BaseResponse;
 import com.mylab.cromero.exception.BaseNotFoundException;
 import com.mylab.cromero.repository.BaseRepository;
-import com.mylab.cromero.service.BaseService;
 import com.mylab.cromero.service.mapper.LayerMapping;
 
 /**
@@ -92,7 +90,6 @@ public class BaseServiceImpl implements BaseService {
 
 	@Override
 	public BaseResponse getBase(Long id) throws BaseNotFoundException {
-		// TODO Auto-generated method stub
 		this.logger.debug("Begin operation: searching base wit id :{} ", id);
 		Base base = baseRepository.findOne(id);
 		if (base != null) {

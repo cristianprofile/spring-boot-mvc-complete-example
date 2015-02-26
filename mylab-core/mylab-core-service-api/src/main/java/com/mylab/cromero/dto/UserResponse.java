@@ -1,6 +1,5 @@
 package com.mylab.cromero.dto;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
 * <h1>BaseResponse</h1>
