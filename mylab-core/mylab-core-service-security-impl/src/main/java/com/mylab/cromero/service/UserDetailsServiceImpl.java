@@ -3,7 +3,6 @@ package com.mylab.cromero.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +32,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		// TODO INCLUDE REPOSITORY SEARCH
 
 		this.logger.debug("Begin operation: searching username :{} ", username);
 
