@@ -8,3 +8,15 @@ management:
 http:
     mappers: 
        jsonPrettyPrint: true
+spring:
+      mail: 
+          host: localhost
+          port: 3600
+          
+logging:
+    level:
+        org.springframework.web: ERROR
+        org.hibernate: ERROR
+        level.org.hibernate: ERROR
+        com.mylab: DEBUG
+
