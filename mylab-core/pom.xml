@@ -25,34 +25,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
-			
-<!-- 			Find Bug plugin duplicates and clean code  -->
-			
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.codehaus.mojo</groupId> -->
-<!-- 				<artifactId>findbugs-maven-plugin</artifactId> -->
-<!-- 				<configuration> -->
-<!-- 					  <effort>Max</effort> -->
-<!-- 					  <threshold>Low</threshold>  -->
-<!--         		</configuration> -->
-<!-- 				<executions> -->
-<!-- 					Ensures that FindBugs inspects source code when project is compiled. -->
-<!-- 					<execution> -->
-<!-- 						<phase>verify</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>check</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
 		</plugins>
 	</build>
 </project>
