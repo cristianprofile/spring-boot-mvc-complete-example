@@ -37,6 +37,7 @@ recorded, so if you hit the metrics endpoint should see a sensible response.)
 - (get) http://localhost:9091/manage/mappings (list of your app HTTP endpoints)
 - (get) http://localhost:9091/manage/shutdown (list of your app HTTP endpoints)
 
+![Spring Actuator values](/images/Spring_Actuator_EndPoints.png?raw=true "Spring Actuator values")
 
 
 More info about Spring Actuator at: [Spring Actuator](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-actuator "Spring Actuator")
