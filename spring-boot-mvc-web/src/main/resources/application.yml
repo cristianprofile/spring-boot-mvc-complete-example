@@ -1,10 +1,14 @@
 ﻿server:
     port: 9090
     contextPath: /pizza
-    session-timeout: 10
+    session-timeout: 10000
 management:
     port: 9091
     address: 127.0.0.1
+    context-path: /manage
+    security: 
+            enabled: false
+            role: ADMIN
 http:
     mappers: 
        jsonPrettyPrint: true
@@ -19,4 +23,7 @@ logging:
         org.hibernate: ERROR
         level.org.hibernate: ERROR
         com.mylab: DEBUG
+
+endpoints:
+         shutdown.enabled: true
 

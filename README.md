@@ -29,12 +29,15 @@ If you want to access to Rest Service with Spring boot module "spring-boot-mvc" 
 
 When you run Spring boot app Spring actuator add features to monitore your services:
 
-- http://localhost:9091/metrics (Spring Boot Actuator includes a metrics service with 
+- (get) http://localhost:9091/manage/metrics (Spring Boot Actuator includes a metrics service with 
 “gauge” and “counter” support. A “gauge” records a single value; and a “counter” records a delta 
 (an increment or decrement). Metrics for all HTTP requests are automatically 
 recorded, so if you hit the metrics endpoint should see a sensible response.)
-- http://localhost:9091/health (you can check if your app is available)
-- http://localhost:9091/mappings (list of your app HTTP endpoints)
+- (get) http://localhost:9091/manage/health (you can check if your app is available)
+- (get) http://localhost:9091/manage/mappings (list of your app HTTP endpoints)
+- (get) http://localhost:9091/manage/shutdown (list of your app HTTP endpoints)
+
+
 
 More info about Spring Actuator at: [Spring Actuator](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-actuator "Spring Actuator")
 
