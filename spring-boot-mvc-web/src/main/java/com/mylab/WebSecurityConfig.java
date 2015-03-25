@@ -3,6 +3,7 @@ package com.mylab;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -37,19 +38,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/pizzas","/info","/addPizza").hasAnyRole("USER","ADMIN").and()
-		.authorizeRequests().antMatchers("/users","/addUser").hasRole("ADMIN").and()
-		.authorizeRequests().antMatchers("/static/**","/logout","/login").permitAll();
-		
-	    http.formLogin().loginPage("/login").failureUrl("/login?error").permitAll();
-		
-		http.logout().logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll();
-		
-		
-		http.sessionManagement().maximumSessions(1).expiredUrl("/?expired").maxSessionsPreventsLogin(true).and()
-        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
-//        .invalidSessionUrl("/?invalid");
+		 http
+		    .authorizeRequests()
+		        .antMatchers("/pizzas","/info","/addPizza").hasAnyRole("USER","ADMIN")
+		        .antMatchers("/users","/addUser").hasRole("ADMIN")
+		        .antMatchers("/static/**","/logout","/login").permitAll()
+		        .and()
+		    .formLogin()
+		        .loginPage("/login")
+		        .failureUrl("/login?error")
+		        .permitAll()
+		        .and()
+		    .logout()
+		        .logoutSuccessUrl("/?logout")
+		        .deleteCookies("remember-me")
+		        .permitAll();
 	}
+	
+	
+	
 
 	/**
 	 * Configure global security with Bccyptenoncder and custom userDetailService with Spring Security
