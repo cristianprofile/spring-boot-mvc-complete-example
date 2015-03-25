@@ -3,6 +3,7 @@ package com.mylab;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -50,6 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 //        .invalidSessionUrl("/?invalid");
 	}
+	
+	
+	
 
 	/**
 	 * Configure global security with Bccyptenoncder and custom userDetailService with Spring Security
