@@ -3,6 +3,7 @@ package com.mylab.cromero.service;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,9 +28,9 @@ public class CustomUserDetails implements UserDetails {
 	public CustomUserDetails(UserResponse user,List<String> roles, String password) {
 		this.user = user;
 		this.password=password;
-		for (String roleName : roles) {
-			authorities.add(new SimpleGrantedAuthority(roleName));
-		}
+		
+		authorities = roles.stream().map(roleName->new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
+		
 	}
 
 	@Override
