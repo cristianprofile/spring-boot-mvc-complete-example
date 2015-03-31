@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +15,8 @@ import com.mylab.cromero.dto.UserResponse;
 
 public class CustomUserDetails implements UserDetails {
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	/**
 	 * 
 	 */
@@ -28,9 +32,7 @@ public class CustomUserDetails implements UserDetails {
 	public CustomUserDetails(UserResponse user,List<String> roles, String password) {
 		this.user = user;
 		this.password=password;
-		
-		authorities = roles.stream().map(roleName->new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
-		
+		authorities = roles.parallelStream().map(roleName->new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
 	}
 
 	@Override
