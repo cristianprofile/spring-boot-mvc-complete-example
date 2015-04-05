@@ -16,7 +16,7 @@
 		<javax.mail.version>1.4</javax.mail.version>
 		<jaxb.api.version>2.2.11</jaxb.api.version>
 		<openpojo.version>0.5.0</openpojo.version>
-		<spring.io.version>1.1.1.RELEASE</spring.io.version>
+		<spring.io.version>1.1.2.RELEASE</spring.io.version>
 		<downloadSources>true</downloadSources>
 		<downloadJavadocs>true</downloadJavadocs>
 	</properties>
