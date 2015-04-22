@@ -1,14 +1,20 @@
 package com.mylab.cromero;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -55,6 +61,8 @@ public class BaseServiceImplTest {
 		listaBasesRepositorio.add(base2);
 		when(this.baseRepository.findByName("margarita")).thenReturn(
 				listaBasesRepositorio);
+		when(this.baseRepository.save(any(Base.class))).thenReturn(
+				base2);
 		BaseRequest base = new BaseRequest();
 		base.setName("margarita");
 		baseService.saveBase(base);
@@ -69,33 +77,35 @@ public class BaseServiceImplTest {
 	@Test
 	public void testFindAllSortedOk() {
 
+		
+	
+		
 		List<Base> listaBasesRepositorio = new ArrayList<Base>();
-		Base base2 = new Base();
-		base2.setId(33L);
-		base2.setName("atun");
-		listaBasesRepositorio.add(base2);
+		Base baseAtun = new Base();
+		baseAtun.setName("atun");
+		listaBasesRepositorio.add(baseAtun);
 
-		base2 = new Base();
-		base2.setId(33L);
-		base2.setName("margarita");
-		listaBasesRepositorio.add(base2);
+		Base baseMargarita = new Base();
+		baseMargarita.setName("margarita");
+		listaBasesRepositorio.add(baseMargarita);
 
-		base2 = new Base();
-		base2.setId(33L);
-		base2.setName("piña");
-		listaBasesRepositorio.add(base2);
+		Base basePinya = new Base();
+		basePinya.setName("piña");
+		listaBasesRepositorio.add(basePinya);
 
 		when(this.baseRepository.findAll(any(Sort.class))).thenReturn(
 				listaBasesRepositorio);
 
 		List<BaseResponse> findAllBasesSorted = baseService
 				.findAllBasesSorted();
+		
+		List<String> collectPizzas= findAllBasesSorted.stream().map(baseResponse -> {
+			return baseResponse.getName();
+		}).collect(Collectors.toList());
 
-		Assert.assertEquals(findAllBasesSorted.size(), 3);
-		Assert.assertTrue(findAllBasesSorted.get(0).getName().equals("atun"));
-		Assert.assertTrue(findAllBasesSorted.get(1).getName()
-				.equals("margarita"));
-		Assert.assertTrue(findAllBasesSorted.get(2).getName().equals("piña"));
+		assertThat(findAllBasesSorted, hasSize(3));
+		assertThat(collectPizzas,contains("atun", "margarita", "piña"));
+		
 		verify(this.baseRepository, times(1)).findAll(any(Sort.class));
 
 	}

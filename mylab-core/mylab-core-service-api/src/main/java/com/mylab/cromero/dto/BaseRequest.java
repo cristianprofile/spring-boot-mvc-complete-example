@@ -33,6 +33,7 @@ public class BaseRequest {
 		this.id = id;
 	}
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -44,6 +45,5 @@ public class BaseRequest {
 		return builder.toString();
 	}
 
-	
 
 }

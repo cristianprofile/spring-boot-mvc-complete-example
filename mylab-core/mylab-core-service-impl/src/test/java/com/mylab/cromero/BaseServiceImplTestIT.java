@@ -1,9 +1,19 @@
 package com.mylab.cromero;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,120 +50,108 @@ public class BaseServiceImplTestIT {
 		BaseRequest base = new BaseRequest();
 		base.setName("margarita");
 		baseService.saveBase(base);
-		Assert.assertEquals(baseService.findAllBases().size(), 1);
+		assertThat(baseService.findAllBases(), hasSize(1));
 		baseService.deleteBase(base);
-		Assert.assertEquals(baseService.findAllBases().size(), 0);
+		assertThat(baseService.findAllBases(), empty());
 	}
 
 	@Transactional
 	@Test
 	public void testFindAllSortedOk() {
 
-		BaseRequest base = new BaseRequest();
+		HashMap<String, String> pizzas = new HashMap<String, String>();
 
-		base.setName("margarita");
-		baseService.saveBase(base);
+		pizzas.put("atun", "atun");
+		pizzas.put("margarita", "margarita");
+		pizzas.put("pinya", "piña");
+		pizzas.put("codillo", "codillo");
 
-		base.setName("piña");
-		baseService.saveBase(base);
+		pizzas.forEach((key, value) -> {
+			BaseRequest base = new BaseRequest();
+			base.setName(value);
+			baseService.saveBase(base);
+		}
 
-		base.setName("atun");
-		baseService.saveBase(base);
-
-		base.setName("codillo");
-		baseService.saveBase(base);
+		);
 
 		List<BaseResponse> findAllBasesSorted = baseService
 				.findAllBasesSorted();
-		Assert.assertEquals(findAllBasesSorted.size(), 4);
-		Assert.assertTrue(findAllBasesSorted.get(0).getName().equals("atun"));
-		Assert.assertTrue(findAllBasesSorted.get(1).getName().equals("codillo"));
-		Assert.assertTrue(findAllBasesSorted.get(2).getName()
-				.equals("margarita"));
-		Assert.assertTrue(findAllBasesSorted.get(3).getName().equals("piña"));
 
-	}
+		assertThat(findAllBasesSorted, hasSize(4));
 
-	@Transactional
-	@Test
-	public void testFindAllBasesPaginationOk() {
+		// test if all values is in my collection and if order is correct
 
-		BaseRequest base = new BaseRequest();
+		List<String> collectRequest = mapOfString(findAllBasesSorted);
 
-		base.setName("margarita");
-		baseService.saveBase(base);
+		assertThat(collectRequest,contains(pizzas.get("atun"), pizzas.get("codillo"),
+						pizzas.get("margarita"), pizzas.get("pinya")));
 
-		base.setName("piña");
-		baseService.saveBase(base);
-
-		base.setName("atun");
-		baseService.saveBase(base);
-
-		base.setName("codillo");
-		baseService.saveBase(base);
-
-		List<BaseResponse> findAllBasesSorted = baseService
-				.findAllBasesPagination(0);
-		Assert.assertEquals(findAllBasesSorted.size(), 2);
-
-		findAllBasesSorted = baseService.findAllBasesPagination(1);
-		Assert.assertEquals(findAllBasesSorted.size(), 2);
-
-		findAllBasesSorted = baseService.findAllBasesPagination(2);
-		Assert.assertEquals(findAllBasesSorted.size(), 0);
 	}
 
 	@Transactional
 	@Test
 	public void testFindAllBasesPaginationAndSortOk() {
 
-		BaseRequest base = new BaseRequest();
+		HashMap<String, String> pizzas = new HashMap<String, String>();
 
-		base.setName("margarita");
-		baseService.saveBase(base);
+		pizzas.put("atun", "atun");
+		pizzas.put("margarita", "margarita");
+		pizzas.put("pinya", "piña");
+		pizzas.put("codillo", "codillo");
 
-		base.setName("piña");
-		baseService.saveBase(base);
+		pizzas.forEach((key, value) -> {
+			BaseRequest base = new BaseRequest();
+			base.setName(value);
+			baseService.saveBase(base);
+		}
 
-		base.setName("atun");
-		baseService.saveBase(base);
-
-		base.setName("codillo");
-		baseService.saveBase(base);
+		);
 
 		List<BaseResponse> findAllBasesSorted = baseService
 				.findAllBasesPaginationAndSorted(0);
-		Assert.assertEquals(findAllBasesSorted.size(), 2);
-		Assert.assertTrue(findAllBasesSorted.get(0).getName().equals("atun"));
+		
+		List<String> collectRequest = mapOfString(findAllBasesSorted);
+
+		
+		
+		assertThat(collectRequest, hasSize(2));
+		assertThat(collectRequest,contains(pizzas.get("atun"), pizzas.get("codillo")));
 
 		findAllBasesSorted = baseService.findAllBasesPaginationAndSorted(1);
-		Assert.assertEquals(findAllBasesSorted.size(), 2);
+		
+		collectRequest = mapOfString(findAllBasesSorted);
+		
+		
+		assertThat(collectRequest, hasSize(2));
+		assertThat(collectRequest,contains(pizzas.get("margarita"), pizzas.get("pinya")));
 
 		findAllBasesSorted = baseService.findAllBasesPaginationAndSorted(2);
-		Assert.assertEquals(findAllBasesSorted.size(), 0);
+		assertThat(findAllBasesSorted, hasSize(0));
 	}
+
+	
 
 	@Transactional
 	@Test
 	public void testFindAllOptional() {
-
 		BaseRequest base = new BaseRequest();
-
 		base.setName("margarita");
+		base.setId(130L);
 		baseService.saveBase(base);
-
-		base.setName("piña");
-		baseService.saveBase(base);
-
-		base.setName("atun");
-		baseService.saveBase(base);
-
-		base.setName("codillo");
-		baseService.saveBase(base);
-
 		Optional<BaseResponse> findById = baseService.findById(130L);
-		Assert.assertTrue(!findById.isPresent());
+		assertThat(findById.isPresent(), equalTo(false));
 
+	}
+	
+	
+	
+	
+	private List<String> mapOfString(List<BaseResponse> findAllBasesSorted) {
+		List<String> collectRequest = findAllBasesSorted.stream()
+				.map(baseResponse -> {
+					return baseResponse.getName();
+				}).collect(Collectors.toList());
+		return collectRequest;
 	}
 
 }
