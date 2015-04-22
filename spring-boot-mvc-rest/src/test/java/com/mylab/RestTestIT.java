@@ -1,7 +1,7 @@
 package com.mylab;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -92,8 +92,8 @@ public class RestTestIT {
 		mockMvc.perform(get("/base/")).andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
 				.andExpect(jsonPath("$", hasSize(2)))
-				.andExpect(jsonPath("$[0].name", is("margarita")))
-				.andExpect(jsonPath("$[1].name", is("masa pan")));
+				.andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
+				.andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
 
 	}
 
