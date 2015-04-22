@@ -84,7 +84,8 @@ public class BaseServiceImpl implements BaseService {
 		this.logger.debug("Begin operation: save request:{} ", base);
 		Base baseAlmacenar = new Base();
 		baseAlmacenar.setName(base.getName());
-		baseRepository.save(baseAlmacenar);
+		Base baseSave = baseRepository.save(baseAlmacenar);
+		base.setId(baseSave.getId());
 		this.logger.debug("End operation: save request:{} ", base);
 	}
 

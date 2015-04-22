@@ -55,6 +55,8 @@ public class BaseServiceImplTest {
 		listaBasesRepositorio.add(base2);
 		when(this.baseRepository.findByName("margarita")).thenReturn(
 				listaBasesRepositorio);
+		when(this.baseRepository.save(any(Base.class))).thenReturn(
+				base2);
 		BaseRequest base = new BaseRequest();
 		base.setName("margarita");
 		baseService.saveBase(base);
