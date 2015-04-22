@@ -1,8 +1,17 @@
 package com.mylab.cromero;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
+
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -16,9 +25,6 @@ import com.mylab.cromero.dto.BaseRequest;
 import com.mylab.cromero.dto.BaseResponse;
 import com.mylab.cromero.exception.BaseNotFoundException;
 import com.mylab.cromero.service.BaseService;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestServiceConfigIT.class)
@@ -53,105 +59,99 @@ public class BaseServiceImplTestIT {
 	@Test
 	public void testFindAllSortedOk() {
 
-		BaseRequest baseMargarita = new BaseRequest();
+		HashMap<String, String> pizzas = new HashMap<String, String>();
 
-		baseMargarita.setName("margarita");
-		baseService.saveBase(baseMargarita);
+		pizzas.put("atun", "atun");
+		pizzas.put("margarita", "margarita");
+		pizzas.put("pinya", "piña");
+		pizzas.put("codillo", "codillo");
 
-		BaseRequest basePinya = new BaseRequest();
-		basePinya.setName("piña");
-		baseService.saveBase(basePinya);
+		pizzas.forEach((key, value) -> {
+			BaseRequest base = new BaseRequest();
+			base.setName(value);
+			baseService.saveBase(base);
+		}
 
-		BaseRequest baseAtun = new BaseRequest();
-		baseAtun.setName("atun");
-		baseService.saveBase(baseAtun);
+		);
 
-		BaseRequest baseCodillo = new BaseRequest();
-		baseCodillo.setName("codillo");
-		baseService.saveBase(baseCodillo);
-
-		List<BaseResponse> findAllBasesSorted = baseService.findAllBasesSorted();
+		List<BaseResponse> findAllBasesSorted = baseService
+				.findAllBasesSorted();
 
 		assertThat(findAllBasesSorted, hasSize(4));
-		
+
 		// test if all values is in my collection and if order is correct
 
-		List<BaseRequest> collectRequest = findAllBasesSorted.stream().map(baseResponse -> {
-			BaseRequest baseRequest = new BaseRequest();
-			baseRequest.setName(baseResponse.getName());
-			baseRequest.setId(baseResponse.getId());
-			return baseRequest;
-		}).collect(Collectors.toList());
+		List<String> collectRequest = mapOfString(findAllBasesSorted);
 
-		assertThat(collectRequest,contains(baseAtun, baseCodillo, baseMargarita, basePinya));
+		assertThat(collectRequest,contains(pizzas.get("atun"), pizzas.get("codillo"),
+						pizzas.get("margarita"), pizzas.get("pinya")));
 
 	}
 
-	
-	
-	 @Transactional
-	 @Test
-	 public void testFindAllBasesPaginationAndSortOk() {
-	
-		BaseRequest baseMargarita = new BaseRequest();
+	@Transactional
+	@Test
+	public void testFindAllBasesPaginationAndSortOk() {
 
-		baseMargarita.setName("margarita");
-		baseService.saveBase(baseMargarita);
+		HashMap<String, String> pizzas = new HashMap<String, String>();
 
-		BaseRequest basePinya = new BaseRequest();
-		basePinya.setName("piña");
-		baseService.saveBase(basePinya);
+		pizzas.put("atun", "atun");
+		pizzas.put("margarita", "margarita");
+		pizzas.put("pinya", "piña");
+		pizzas.put("codillo", "codillo");
 
-		BaseRequest baseAtun = new BaseRequest();
-		baseAtun.setName("atun");
-		baseService.saveBase(baseAtun);
+		pizzas.forEach((key, value) -> {
+			BaseRequest base = new BaseRequest();
+			base.setName(value);
+			baseService.saveBase(base);
+		}
 
-		BaseRequest baseCodillo = new BaseRequest();
-		baseCodillo.setName("codillo");
-		baseService.saveBase(baseCodillo);
+		);
+
+		List<BaseResponse> findAllBasesSorted = baseService
+				.findAllBasesPaginationAndSorted(0);
+		
+		List<String> collectRequest = mapOfString(findAllBasesSorted);
+
+		
+		
+		assertThat(collectRequest, hasSize(2));
+		assertThat(collectRequest,contains(pizzas.get("atun"), pizzas.get("codillo")));
+
+		findAllBasesSorted = baseService.findAllBasesPaginationAndSorted(1);
+		
+		collectRequest = mapOfString(findAllBasesSorted);
+		
+		
+		assertThat(collectRequest, hasSize(2));
+		assertThat(collectRequest,contains(pizzas.get("margarita"), pizzas.get("pinya")));
+
+		findAllBasesSorted = baseService.findAllBasesPaginationAndSorted(2);
+		assertThat(findAllBasesSorted, hasSize(0));
+	}
+
 	
-		List<BaseResponse> findAllBasesSorted = baseService.findAllBasesPaginationAndSorted(0);
-		List<BaseRequest> collectRequest = findAllBasesSorted.stream().map(baseResponse -> {
-			BaseRequest baseRequest = new BaseRequest();
-			baseRequest.setName(baseResponse.getName());
-			baseRequest.setId(baseResponse.getId());
-			return baseRequest;
-		}).collect(Collectors.toList());
-	 
-	 assertThat(collectRequest, hasSize(2));
-	 
-	 assertThat(collectRequest,contains(baseAtun, baseCodillo));
+
+	@Transactional
+	@Test
+	public void testFindAllOptional() {
+		BaseRequest base = new BaseRequest();
+		base.setName("margarita");
+		base.setId(130L);
+		baseService.saveBase(base);
+		Optional<BaseResponse> findById = baseService.findById(130L);
+		assertThat(findById.isPresent(), equalTo(false));
+
+	}
 	
-	 findAllBasesSorted = baseService.findAllBasesPaginationAndSorted(1);
-	 assertThat(collectRequest, hasSize(2));
-	 assertThat(collectRequest,contains(baseMargarita, basePinya));
 	
-	 findAllBasesSorted = baseService.findAllBasesPaginationAndSorted(2);
-	 assertThat(collectRequest, hasSize(0));
-	 }
 	
-	 @Transactional
-	 @Test
-	 public void testFindAllOptional() {
 	
-	 BaseRequest base = new BaseRequest();
-	
-	 base.setName("margarita");
-	 baseService.saveBase(base);
-	
-	 base.setName("piña");
-	 baseService.saveBase(base);
-	
-	 base.setName("atun");
-	 baseService.saveBase(base);
-	
-	 base.setName("codillo");
-	 baseService.saveBase(base);
-	
-	 Optional<BaseResponse> findById = baseService.findById(130L);
-	 
-	 assertThat(findById.isPresent(),equalTo(true));
-	
-	 }
+	private List<String> mapOfString(List<BaseResponse> findAllBasesSorted) {
+		List<String> collectRequest = findAllBasesSorted.stream()
+				.map(baseResponse -> {
+					return baseResponse.getName();
+				}).collect(Collectors.toList());
+		return collectRequest;
+	}
 
 }
