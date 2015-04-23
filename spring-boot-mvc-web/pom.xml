@@ -85,6 +85,12 @@
 			<artifactId>hsqldb</artifactId>
 		</dependency>
 
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-remote-shell</artifactId>
@@ -98,13 +104,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<dependencies>
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>springloaded</artifactId>
-						<version>1.2.1.RELEASE</version>
-					</dependency>
-				</dependencies>
+				<!-- <dependencies> -->
+				<!-- <dependency> -->
+				<!-- <groupId>org.springframework</groupId> -->
+				<!-- <artifactId>springloaded</artifactId> -->
+				<!-- <version>1.2.1.RELEASE</version> -->
+				<!-- </dependency> -->
+				<!-- </dependencies> -->
 			</plugin>
 			<plugin>
 				<groupId>pl.project13.maven</groupId>

@@ -26,7 +26,6 @@ import com.mylab.cromero.domain.Base;
 
 
 @SpringBootApplication
-//@EnableGlobalMethodSecurity
 @EnableJpaRepositories
 @EntityScan(basePackageClasses=Base.class)
 public class Application extends WebMvcConfigurerAdapter {
