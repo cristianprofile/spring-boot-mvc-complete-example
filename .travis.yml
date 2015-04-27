@@ -2,4 +2,7 @@ language: java
 
 jdk:
   - oraclejdk8
-script: mvn -f mylab-core  clean install
+script:
+      - mvn -f mylab-parent-pom clean install      
+      - mvn -f mylab-core  clean install
+      - mvn -f spring-boot-mvc-rest  clean install
