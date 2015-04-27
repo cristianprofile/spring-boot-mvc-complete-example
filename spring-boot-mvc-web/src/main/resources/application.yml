@@ -1,6 +1,6 @@
 ﻿spring:
     profiles:
-        active: production22
+        active: production
         
 ---
 
@@ -58,7 +58,7 @@ spring:
           port: 3600
 
 server:
-        port: 9091
+        port: 9099
         contextPath: /pizza
         session-timeout: 10000
 management:
