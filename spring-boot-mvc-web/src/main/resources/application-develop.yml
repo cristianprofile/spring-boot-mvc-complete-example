@@ -1,0 +1,22 @@
+spring:
+    profiles: develop   
+    mail: 
+          host: localhost
+          port: 3600
+    
+    spring.datasource:
+          platform: hsqldb
+          mail: 
+          host: localhost
+          port: 3600
+server:
+        port: 9090
+        contextPath: /pizza
+        session-timeout: 10000
+management:
+        port: 9091
+        address: 127.0.0.1
+        context-path: /manage
+        security: 
+              enabled: true
+              role: ADMIN
