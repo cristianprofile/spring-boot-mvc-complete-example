@@ -1,34 +1,10 @@
 ﻿spring:
-    profiles:
-        active: production
-        
----
+        profiles:
+            active: prod
 
-spring:
-    profiles: development   
-    mail: 
-          host: localhost
-          port: 3600
-    
-    spring.datasource:
-          platform: hsqldb
-          mail: 
-          host: localhost
-          port: 3600
-server:
-        port: 9091
-        contextPath: /pizza
-        session-timeout: 10000
-management:
-        port: 9092
-        address: 127.0.0.1
-        context-path: /manage2
-        security: 
-              enabled: true
-              role: ADMIN
 http:
         mappers: 
-        jsonPrettyPrint: true
+            jsonPrettyPrint: true
         
 logging:
         level:
@@ -38,46 +14,4 @@ logging:
             com.mylab: DEBUG
             
 endpoints:
-         shutdown.enabled: true
-
----
-spring:
-    profiles: production
-    
-    spring.datasource:
-                jndi-name: java:jboss/datasources/pizzas
-    
-    mail: 
-          host: localhost
-          port: 3600
-    
-    datasource:
-          platform: hsqldb
-          mail: 
-          host: localhost
-          port: 3600
-
-server:
-        port: 9099
-        contextPath: /pizza
-        session-timeout: 10000
-management:
-        port: 9092
-        address: 127.0.0.1
-        context-path: /manage
-        security: 
-              enabled: true
-              role: ADMIN
-http:
-        mappers: 
-        jsonPrettyPrint: true
-        
-logging:
-        level:
-            org.springframework.web: ERROR
-            org.hibernate: ERROR
-            level.org.hibernate: ERROR
-            com.mylab: DEBUG
-            
-endpoints:
-         shutdown.enabled: true
+        shutdown.enabled: true
