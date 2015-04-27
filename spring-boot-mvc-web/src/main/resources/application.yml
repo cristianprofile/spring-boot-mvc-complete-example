@@ -1,28 +1,26 @@
 ﻿spring:
     profiles:
-        active: production
+        active: production22
         
 ---
 
 spring:
-    profiles: development
-    
+    profiles: development   
     mail: 
           host: localhost
           port: 3600
     
-    datasource:
+    spring.datasource:
           platform: hsqldb
           mail: 
           host: localhost
           port: 3600
-
 server:
-        port: 9090
+        port: 9091
         contextPath: /pizza
         session-timeout: 10000
 management:
-        port: 9091
+        port: 9092
         address: 127.0.0.1
         context-path: /manage2
         security: 
@@ -46,8 +44,7 @@ endpoints:
 spring:
     profiles: production
     
-    spring:
-          datasource:
+    spring.datasource:
                 jndi-name: java:jboss/datasources/pizzas
     
     mail: 
@@ -61,11 +58,11 @@ spring:
           port: 3600
 
 server:
-        port: 9090
+        port: 9091
         contextPath: /pizza
         session-timeout: 10000
 management:
-        port: 9091
+        port: 9092
         address: 127.0.0.1
         context-path: /manage
         security: 
