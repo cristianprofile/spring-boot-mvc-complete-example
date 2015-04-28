@@ -26,8 +26,8 @@ public class Application extends WebMvcConfigurerAdapter {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	 @Autowired
-	 private Environment env;
+	@Autowired
+	private Environment env;
 	
 	/**
      * Initializes pizzas example.
