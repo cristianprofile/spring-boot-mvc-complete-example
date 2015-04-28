@@ -1,7 +1,13 @@
  package com.mylab;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Locale;
 
+import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -10,9 +16,9 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
-//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -21,7 +27,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
-
 import com.mylab.cromero.domain.Base;
 
 
@@ -29,11 +34,38 @@ import com.mylab.cromero.domain.Base;
 @EnableJpaRepositories
 @EntityScan(basePackageClasses=Base.class)
 public class Application extends WebMvcConfigurerAdapter {
+	
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	 @Autowired
+	 private Environment env;
+	
+	/**
+     * Initializes pizzas example.
+     * <p/>
+     * Spring profiles can be configured with a program arguments --spring.profiles.active=prod
+     * <p/>
+     */
+    @PostConstruct
+    public void initApplication() throws IOException {
+        if (env.getActiveProfiles().length == 0) {
+        	logger.warn("No Spring profile configured, running with default configuration with profile develop");
+        } else {
+        	logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
+        }
+    }
+	
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
 
+          SpringApplication app = new SpringApplication(Application.class);
+          //do not show Spring boot banner when boot starts!!!!!
+          app.setShowBanner(false);
+          app.run(args);
+    }
+    
+   
     
     
     @Bean
