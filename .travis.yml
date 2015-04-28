@@ -6,4 +6,4 @@ script:
       - mvn -f mylab-parent-pom clean install      
       - mvn -f mylab-core  clean install
       - mvn -f spring-boot-mvc-rest  clean install
-      - mvn cobertura:cobertura coveralls:report -DrepoToken=LK5cUszS1GJtt9v0eqKXUY90ORmeNtSsa
+      - mvn -f mylab-core cobertura:cobertura coveralls:report -DrepoToken=LK5cUszS1GJtt9v0eqKXUY90ORmeNtSsa
