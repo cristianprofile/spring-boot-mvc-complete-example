@@ -6,6 +6,7 @@ management:
 http:
     mappers: 
        jsonPrettyPrint: true
+       
 spring:
       mail: 
           host: localhost
