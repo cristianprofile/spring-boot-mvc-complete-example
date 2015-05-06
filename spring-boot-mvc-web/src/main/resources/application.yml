@@ -1,7 +1,3 @@
-﻿spring:
-        profiles:
-            active: develop
-
 http:
         mappers: 
             jsonPrettyPrint: true

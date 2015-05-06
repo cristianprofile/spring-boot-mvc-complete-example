@@ -1,10 +1,9 @@
 spring:
-    profiles: prod   
+    profiles: prod
     mail: 
           host: localhost
           port: 3600
-    
-    spring.datasource:
+    datasource:
           platform: hsqldb
           mail: 
           host: localhost
