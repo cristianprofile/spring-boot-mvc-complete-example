@@ -10,6 +10,8 @@ spring:
       mail: 
           host: localhost
           port: 3600
+      main:
+           show_banner: false
           
 logging:
     level:
