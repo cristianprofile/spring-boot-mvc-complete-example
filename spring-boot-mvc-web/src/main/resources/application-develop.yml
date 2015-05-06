@@ -1,8 +1,5 @@
 spring:
     profiles: develop   
-    mail: 
-          host: localhost
-          port: 3600
     
     spring.datasource:
           platform: hsqldb
