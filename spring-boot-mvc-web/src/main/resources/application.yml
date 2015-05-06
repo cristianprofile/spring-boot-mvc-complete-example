@@ -11,7 +11,3 @@ logging:
             
 endpoints:
         shutdown.enabled: true
-spring:
-      mail: 
-          host: localhost
-          port: 3600
