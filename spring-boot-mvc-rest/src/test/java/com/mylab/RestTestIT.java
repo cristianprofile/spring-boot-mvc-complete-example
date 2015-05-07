@@ -23,12 +23,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.mylab.cromero.domain.Base;
 import com.mylab.cromero.repository.BaseRepository;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 //   The @SpringApplicationConfiguration annotation is similar to the @ContextConfiguration annotation in that it
@@ -104,5 +107,32 @@ public class RestTestIT {
 		String json = ow.writeValueAsString(o);
 		return json;
 	}
+	
+	
+	
+	@Test
+	public void getBasesAsync() throws Exception {
+		Base baseAlmacenar = new Base();
+		baseAlmacenar.setName("margarita");
+		baseRepository.save(baseAlmacenar);
+
+		baseAlmacenar = new Base();
+		baseAlmacenar.setName("masa pan");
+		baseRepository.save(baseAlmacenar);
+		
+		 MvcResult mvcResult = mockMvc.perform(get("/baseasinc/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+		            .andExpect(request().asyncStarted())
+		            .andReturn();
+		
+		 mvcResult.getAsyncResult();
+				
+		 mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().isOk())
+				.andExpect(content().contentType(contentType))
+				.andExpect(jsonPath("$", hasSize(2)))
+				.andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
+				.andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
+
+	}
+	
 
 }
