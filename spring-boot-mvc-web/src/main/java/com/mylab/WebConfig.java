@@ -1,26 +1,16 @@
  package com.mylab;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Locale;
 
-import javax.annotation.PostConstruct;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.ErrorPage;
-import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -30,15 +20,35 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
-import com.mylab.cromero.domain.Base;
-
-
+/**
+ * <h1>WebConfig!</h1> Pizza app web config.
+ * <p>
+ * <b>WebConfig</b> this class give contains @bean used to config Spring mvc with tiles config.
+ *
+ * @author Cristian Romero Matesanz
+ *
+ * 
+ */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 	
-
+	/**
+	 * 
+	 * @return registrationBean with Utf-8 encoding config 
+	 */
+	@Bean
+	public FilterRegistrationBean filterRegistrationBean() {
+		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+		characterEncodingFilter.setEncoding("UTF-8");
+		registrationBean.setFilter(characterEncodingFilter);
+		return registrationBean;
+	}
   
-    
+    /**
+     * 
+     * @return resolver with tiles config
+     */
     @Bean
 	public TilesViewResolver setupViewTilesResolver() {
 		TilesViewResolver resolver = new TilesViewResolver();
@@ -46,7 +56,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
-    
+    /**
+     * 
+     * @return tiles configure layers with every views of pizza app
+     */
 	@Bean
 	public TilesConfigurer setupTilesConfigurer() {
 		TilesConfigurer configurer = new TilesConfigurer();
@@ -58,7 +71,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	 /**
      * Configures the message source bean.
-     * @return
+     * @return message source associated to pizza app
      */
     @Bean
     public MessageSource messageSource() {
@@ -68,6 +81,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
+    /**
+     * local resolver with default value (US)
+     * @return local resolver
+     */
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
@@ -75,6 +92,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return slr;
     }
  
+    /**
+     * set custom param of pizzas app to change locale with value "lang"
+     * @return localchangeinterceptor of pizzas app
+     */
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
@@ -82,12 +103,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return lci;
     }
  
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor());
-    }
+   
 	
-    
+    /**
+     * Set custom error pages
+     * @return EmbeddedServletContainerCustomizer
+     */
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 	 
@@ -103,4 +124,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	        container.addErrorPages(error401Page, error403Page, error404Page, error405Page, error500Page,error400Page);
 	   });
 	}
+	
+	 /**
+     * Add interceptor to allow pizza app to change language
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
 } 
