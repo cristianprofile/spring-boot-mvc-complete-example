@@ -22,6 +22,12 @@ import com.mylab.cromero.dto.BaseResponse;
 import com.mylab.cromero.exception.BaseNotFoundException;
 import com.mylab.cromero.service.BaseService;
 
+/**
+ * Rest controller pizzas example.
+ * <p/>
+ * Simple example  rest service with spring mvc.
+ * <p/>
+ */
 @RestController
 @RequestMapping("/base")
 public class HelloWorldController {
