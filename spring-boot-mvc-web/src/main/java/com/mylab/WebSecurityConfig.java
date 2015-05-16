@@ -12,6 +12,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
+/**
+ * <h1>WebSecurityConfig!</h1> Spring security filter pizza app.
+ * <p>
+ * <b>WebSecurityConfig</b> Spring security filter to limit access to pizza app.
+ *
+ * @author Cristian Romero Matesanz
+ *
+ * 
+ */
+
 @Configuration
 @EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

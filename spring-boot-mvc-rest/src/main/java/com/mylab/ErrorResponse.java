@@ -1,5 +1,11 @@
 package com.mylab;
 
+/**
+ * Error Dto.
+ * <p/>
+ * Dto user to map error value and message in controller api layer.
+ * <p/>
+ */
 public class ErrorResponse {
 	
 	private String  message;

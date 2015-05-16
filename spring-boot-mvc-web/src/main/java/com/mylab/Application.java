@@ -17,6 +17,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.mylab.cromero.domain.Base;
 
+/**
+ * <h1>Main Application!</h1> Application main class of Spring boot app.
+ * <p>
+ * <b>Application</b> Main Application of Spring boot app with custom log of Spring profile run
+ *
+ * @author Cristian Romero Matesanz
+ * 
+ *
+ * 
+ */
 
 @SpringBootApplication
 @EnableJpaRepositories
@@ -32,7 +42,9 @@ public class Application extends WebMvcConfigurerAdapter {
 	/**
      * Initializes pizzas example.
      * <p/>
-     * Spring profiles can be configured with a program arguments Ex: -spring.profiles.active=prod
+     * Spring profiles can be run with maven profile (example mvn -Pdevelop spring-boot:run  ). 
+     * See pom.xml for more information (develop and prod profile).
+     * @see pom.xml
      * <p/>
      */
     @PostConstruct

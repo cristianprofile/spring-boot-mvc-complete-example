@@ -12,8 +12,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 
-@SpringBootApplication
+/**
+ * <h1>Main Application!</h1> Application main class of Spring boot app.
+ * <p>
+ * <b>Application</b> Main Application of Spring boot app with custom log of Springn profile run
+ *
+ * @author Cristian Romero Matesanz
+ *
+ * 
+ */
 
+@SpringBootApplication
 public class Application {
 
 	
@@ -25,7 +34,7 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	/**
      * Initializes pizzas example.
      * <p/>
-     * Spring profiles can be configured with a program arguments Ex: -spring.profiles.active=prod
+     * Spring profiles can be run with maven profile (example mvn -Pdevelop spring-boot:run  ). See pom.xml for more information (develop and prod profile).
      * <p/>
      */
     @PostConstruct
@@ -37,6 +46,7 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
         }
     }
 	
+    
 	
 	public static void main(String[] args) {
 		 SpringApplication app = new SpringApplication(Application.class);

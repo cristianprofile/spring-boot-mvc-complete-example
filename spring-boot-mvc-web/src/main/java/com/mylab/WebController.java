@@ -28,6 +28,14 @@ import com.mylab.cromero.service.UserService;
 import com.mylab.form.PizzaForm;
 import com.mylab.form.UserForm;
 
+/**
+ * <h1>WebController!</h1> Spring mvc controller layer.
+ * <p>
+ * <b>WebController</b> this class define every controllers of pizza app web layer
+ * 
+ * @author Cristian Romero Matesanz
+ *
+ */
 @Controller
 @RequestMapping("/")
 public class WebController {
