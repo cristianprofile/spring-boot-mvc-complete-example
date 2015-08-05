@@ -1,16 +1,18 @@
 package com.mylab;
 
-import java.io.IOException;
-import java.util.Arrays;
-
-import javax.annotation.PostConstruct;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * <h1>Main Application!</h1> Application main class of Spring boot app.
@@ -54,5 +56,13 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
          app.setShowBanner(false);
          app.run(args);
 	}
+
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return objectMapper;
+    }
 
 }
