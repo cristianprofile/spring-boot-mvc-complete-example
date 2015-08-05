@@ -1,16 +1,18 @@
 package com.mylab;
 
-import java.io.IOException;
-import java.util.Arrays;
-
-import javax.annotation.PostConstruct;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * <h1>Main Application!</h1> Application main class of Spring boot app.
@@ -27,10 +29,23 @@ public class Application {
 
 	
 private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private Environment env;
-	
+
+    /**
+     *
+     * @return objectMaperr with pretty print config
+     */
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return objectMapper;
+    }
+
+
+
 	/**
      * Initializes pizzas example.
      * <p/>
@@ -45,9 +60,8 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
         	logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
         }
     }
-	
-    
-	
+
+
 	public static void main(String[] args) {
 		 SpringApplication app = new SpringApplication(Application.class);
          //do not show Spring boot banner when boot starts!!!!!
