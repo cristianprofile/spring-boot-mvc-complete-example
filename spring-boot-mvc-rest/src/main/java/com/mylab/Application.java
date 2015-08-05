@@ -29,10 +29,23 @@ public class Application {
 
 	
 private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private Environment env;
-	
+
+    /**
+     *
+     * @return objectMaperr with pretty print config
+     */
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return objectMapper;
+    }
+
+
+
 	/**
      * Initializes pizzas example.
      * <p/>
@@ -47,22 +60,13 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
         	logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
         }
     }
-	
-    
-	
+
+
 	public static void main(String[] args) {
 		 SpringApplication app = new SpringApplication(Application.class);
          //do not show Spring boot banner when boot starts!!!!!
          app.setShowBanner(false);
          app.run(args);
 	}
-
-
-    @Bean
-    public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        return objectMapper;
-    }
 
 }
