@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 
 import javax.transaction.Transactional;
 
+import com.mylab.cromero.dto.BaseRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.mylab.cromero.domain.Base;
 import com.mylab.cromero.repository.BaseRepository;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -52,87 +54,84 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class RestTestIT {
 
-	@Autowired
-	BaseRepository baseRepository;
+    @Autowired
+    BaseRepository baseRepository;
 
-	private MockMvc mockMvc;
+    private MockMvc mockMvc;
 
-	private MediaType contentType = new MediaType(
-			MediaType.APPLICATION_JSON.getType(),
-			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+    private MediaType contentType = new MediaType(
+            MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
-	@Autowired
-	private WebApplicationContext webApplicationContext;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
 
+    @Before
+    public void setUp() {
+        this.mockMvc = webAppContextSetup(webApplicationContext).build();
+    }
 
-	@Before
-	public void setUp() {
-		this.mockMvc = webAppContextSetup(webApplicationContext).build();
-	}
+    @Test
+    public void createBases() throws Exception {
 
-	@Test
-	public void createBases() throws Exception {
-		
-		Base base = new Base();
-		base.setName("newbase");
-		String baseJson = json(base);
-		this.mockMvc.perform(post("/base").contentType(contentType)
-				.content(baseJson)).andExpect(status().isCreated());
-	}
-	
-	
-	@Test
-	public void getBases() throws Exception {
-		Base baseAlmacenar = new Base();
-		baseAlmacenar.setName("margarita");
-		baseRepository.save(baseAlmacenar);
+        final BaseRequest baseRequest = new BaseRequest();
+        baseRequest.setName("new base");
+        String baseJson = json(baseRequest);
+        this.mockMvc.perform(post("/base").contentType(contentType)
+                .content(baseJson)).andExpect(status().isCreated());
+    }
 
-		baseAlmacenar = new Base();
-		baseAlmacenar.setName("masa pan");
-		baseRepository.save(baseAlmacenar);
-		
-		mockMvc.perform(get("/base/")).andExpect(status().isOk())
-				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$", hasSize(2)))
-				.andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
-				.andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
 
-	}
+    @Test
+    public void getBases() throws Exception {
+        Base baseAlmacenar = new Base();
+        baseAlmacenar.setName("margarita");
+        baseRepository.save(baseAlmacenar);
 
-	
+        baseAlmacenar = new Base();
+        baseAlmacenar.setName("masa pan");
+        baseRepository.save(baseAlmacenar);
 
-	protected String json(Object o) throws IOException {
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		String json = ow.writeValueAsString(o);
-		return json;
-	}
-	
-	
-	
-	@Test
-	public void getBasesAsync() throws Exception {
-		Base baseAlmacenar = new Base();
-		baseAlmacenar.setName("margarita");
-		baseRepository.save(baseAlmacenar);
+        mockMvc.perform(get("/base/")).andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
+                .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
 
-		baseAlmacenar = new Base();
-		baseAlmacenar.setName("masa pan");
-		baseRepository.save(baseAlmacenar);
-		
-		 MvcResult mvcResult = mockMvc.perform(get("/baseasinc/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-		            .andExpect(request().asyncStarted())
-		            .andReturn();
-		
-		 mvcResult.getAsyncResult();
-				
-		 mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().isOk())
-				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$", hasSize(2)))
-				.andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
-				.andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
+    }
 
-	}
-	
+
+    protected String json(Object o) throws IOException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(o);
+        return json;
+    }
+
+
+    @Test
+    public void getBasesAsync() throws Exception {
+        Base baseAlmacenar = new Base();
+        baseAlmacenar.setName("margarita");
+        baseRepository.save(baseAlmacenar);
+
+        baseAlmacenar = new Base();
+        baseAlmacenar.setName("masa pan");
+        baseRepository.save(baseAlmacenar);
+
+        MvcResult mvcResult = mockMvc.perform(get("/baseasinc/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+
+        mvcResult.getAsyncResult();
+
+        mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
+                .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
+
+    }
+
 
 }
