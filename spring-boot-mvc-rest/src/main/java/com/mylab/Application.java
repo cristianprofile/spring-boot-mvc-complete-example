@@ -1,5 +1,6 @@
 package com.mylab;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
@@ -35,12 +36,14 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      *
-     * @return objectMaperr with pretty print config
+     * @return objectMaperr with pretty print config and not null/empty values include in serialization
      */
     @Bean
     public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        ObjectMapper objectMapper = new ObjectMapper()
+                .enable(SerializationFeature.INDENT_OUTPUT)
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         return objectMapper;
     }
 
@@ -68,5 +71,6 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
          app.setShowBanner(false);
          app.run(args);
 	}
+
 
 }
