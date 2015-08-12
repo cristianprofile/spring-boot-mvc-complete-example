@@ -12,6 +12,7 @@
 	<description>Spring Boot Data JPA web example</description>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
+		<org.webjars.jquery.version>2.1.4</org.webjars.jquery.version>
 	</properties>
 	<dependencies>
 
@@ -96,6 +97,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-remote-shell</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${org.webjars.jquery.version}</version>
 		</dependency>
 
 

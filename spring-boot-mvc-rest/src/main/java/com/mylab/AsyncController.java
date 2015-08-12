@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mylab.cromero.dto.BaseResponse;
 import com.mylab.cromero.service.BaseService;
 
+
 /**
  * Rest async controller pizzas example.
  * <p/>
  * Simple example for a callable async rest service.
  * <p/>
  */
+
 @RestController
 @RequestMapping("/baseasinc")
 public class AsyncController {

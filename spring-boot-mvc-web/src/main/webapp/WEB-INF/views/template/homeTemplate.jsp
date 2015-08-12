@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
-		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/webjars/jquery-2.1.4.min.js"></script>
 	</head>
 <body>
 		<div class="container">
