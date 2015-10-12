@@ -1,12 +1,11 @@
 package com.mylab.cromero.repository;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.mylab.cromero.repository.domain.Base;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mylab.cromero.domain.Base;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Access to base domain entities
@@ -22,7 +21,7 @@ public interface BaseRepository extends JpaRepository<Base, Long> {
      */
     List<Base> findByName(String name);
     
-    Optional<Base> findById(Long id );
+    Optional<Base> findById(Long id);
     
    
     

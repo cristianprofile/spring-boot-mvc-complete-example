@@ -1,6 +1,6 @@
 package com.mylab.cromero.service;
 
-import com.mylab.cromero.dto.MailRequest;
+import com.mylab.cromero.repository.dto.MailRequest;
 
 /**
 * <h1>MailService</h1>

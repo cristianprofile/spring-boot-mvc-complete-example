@@ -1,11 +1,10 @@
 package com.mylab.cromero.repository;
 
-import java.util.List;
-
+import com.mylab.cromero.repository.domain.Pizza;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mylab.cromero.domain.Pizza;
+import java.util.List;
 
 @Repository
 public interface PizzaRepository extends JpaRepository<Pizza, Long> {

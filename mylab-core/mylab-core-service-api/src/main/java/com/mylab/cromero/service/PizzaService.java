@@ -2,8 +2,8 @@ package com.mylab.cromero.service;
 
 import java.util.List;
 
-import com.mylab.cromero.dto.PizzaRequest;
-import com.mylab.cromero.dto.PizzaResponse;
+import com.mylab.cromero.repository.dto.PizzaResponse;
+import com.mylab.cromero.repository.dto.PizzaRequest;
 
 /**
 * <h1>BaseService</h1>

@@ -1,11 +1,10 @@
 package com.mylab.cromero.repository;
 
-import java.util.Optional;
-
+import com.mylab.cromero.repository.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mylab.cromero.domain.User;
+import java.util.Optional;
 
 /**
  * Access to base domain entities
