@@ -2,11 +2,11 @@ package com.mylab.cromero.service.mapper;
 
 import java.util.function.Function;
 
-import com.mylab.cromero.cromero.domain.Pizza;
-import com.mylab.cromero.cromero.dto.BaseResponse;
-import com.mylab.cromero.cromero.dto.PizzaRequest;
-import com.mylab.cromero.cromero.domain.Base;
-import com.mylab.cromero.cromero.dto.PizzaResponse;
+import com.mylab.cromero.repository.domain.Pizza;
+import com.mylab.cromero.repository.dto.BaseResponse;
+import com.mylab.cromero.repository.dto.PizzaResponse;
+import com.mylab.cromero.repository.dto.PizzaRequest;
+import com.mylab.cromero.repository.domain.Base;
 
 public class LayerMapping {
 

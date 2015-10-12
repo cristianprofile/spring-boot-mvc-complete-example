@@ -1,6 +1,6 @@
 package com.mylab.cromero.service;
 
-import com.mylab.cromero.cromero.ConfigurationRepository;
+import com.mylab.cromero.repository.config.ConfigurationRepository;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

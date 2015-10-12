@@ -1,9 +1,9 @@
 package com.mylab.cromero.service.security;
 
-import com.mylab.cromero.cromero.domain.User;
-import com.mylab.cromero.cromero.dto.UserRequest;
-import com.mylab.cromero.cromero.dto.UserResponse;
-import com.mylab.cromero.cromero.repository.UserRepository;
+import com.mylab.cromero.repository.UserRepository;
+import com.mylab.cromero.repository.dto.UserRequest;
+import com.mylab.cromero.repository.domain.User;
+import com.mylab.cromero.repository.dto.UserResponse;
 import com.mylab.cromero.service.UserService;
 import com.mylab.cromero.service.mapper.MapperSerializer;
 import org.slf4j.Logger;

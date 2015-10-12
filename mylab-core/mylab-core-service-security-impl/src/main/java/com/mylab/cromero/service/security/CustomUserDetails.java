@@ -1,6 +1,6 @@
 package com.mylab.cromero.service.security;
 
-import com.mylab.cromero.cromero.dto.UserResponse;
+import com.mylab.cromero.repository.dto.UserResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
