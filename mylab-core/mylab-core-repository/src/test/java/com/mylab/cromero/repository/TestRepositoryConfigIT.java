@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @EnableAutoConfiguration
+@ComponentScan("com.mylab.cromero.repository")
 @Import({ConfigurationRepository.class})
 //use to test our class with Spring boot  autoconfig
 public class TestRepositoryConfigIT {
