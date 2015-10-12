@@ -7,8 +7,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
-import com.mylab.cromero.dto.MailRequest;
-import com.mylab.cromero.service.MailService;
+import com.mylab.cromero.cromero.dto.MailRequest;
 
 
 /**
