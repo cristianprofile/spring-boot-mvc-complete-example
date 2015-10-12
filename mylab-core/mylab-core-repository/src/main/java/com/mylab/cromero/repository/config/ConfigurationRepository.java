@@ -13,12 +13,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 
 @Configuration
-@ComponentScan("com.mylab.cromero.repository")
 @EnableJpaRepositories(basePackages = "com.mylab.cromero.repository")
 @EntityScan(basePackageClasses=Base.class)
-
-
-
 public class ConfigurationRepository {
 
 }
