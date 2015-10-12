@@ -2,8 +2,8 @@ package com.mylab.cromero.service;
 
 import java.util.List;
 
-import com.mylab.cromero.dto.UserRequest;
-import com.mylab.cromero.dto.UserResponse;
+import com.mylab.cromero.repository.dto.UserRequest;
+import com.mylab.cromero.repository.dto.UserResponse;
 
 /**
 * <h1>UserService</h1>

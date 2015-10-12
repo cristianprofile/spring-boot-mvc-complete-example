@@ -2,9 +2,9 @@ package com.mylab.cromero.service.mapper;
 
 import java.util.function.Function;
 
-import com.mylab.cromero.domain.User;
-import com.mylab.cromero.dto.UserRequest;
-import com.mylab.cromero.dto.UserResponse;
+import com.mylab.cromero.repository.domain.User;
+import com.mylab.cromero.repository.dto.UserRequest;
+import com.mylab.cromero.repository.dto.UserResponse;
 
 public class MapperSerializer {
 

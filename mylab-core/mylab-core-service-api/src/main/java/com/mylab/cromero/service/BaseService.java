@@ -3,9 +3,9 @@ package com.mylab.cromero.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.mylab.cromero.dto.BaseRequest;
-import com.mylab.cromero.dto.BaseResponse;
-import com.mylab.cromero.exception.BaseNotFoundException;
+import com.mylab.cromero.repository.dto.BaseResponse;
+import com.mylab.cromero.repository.dto.BaseRequest;
+import com.mylab.cromero.repository.exception.BaseNotFoundException;
 
 /**
 * <h1>BaseService</h1>
