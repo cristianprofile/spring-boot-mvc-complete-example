@@ -78,24 +78,6 @@ public class RestTestFullIT {
 
     }
 
-    @Test
-    public void getBases4() throws Exception {
-        //TODO TEST WITH REPOSITORY ACCESS BLOCK TEST EXECUTION
-        logger.debug("PORT:" + port);
-
-        Base baseAlmacenar = new Base();
-
-        baseAlmacenar = new Base();
-        baseAlmacenar.setName("masa pan");
-        baseRepository.save(baseAlmacenar);
-
-        BaseResponse[] bases = restTemplate.getForObject(
-                "http://localhost:" + port + "/base", BaseResponse[].class);
-
-        assertEquals(1, bases.length);
-        assertEquals("masa pan", bases[0].getName());
-
-    }
 
 
 }
