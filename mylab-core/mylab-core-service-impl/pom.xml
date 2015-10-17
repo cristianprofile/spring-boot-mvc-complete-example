@@ -1,93 +1,93 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.mylab.cromero.core</groupId>
-		<artifactId>mylab-core</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
-	</parent>
-	<artifactId>mylab-core-service-impl</artifactId>
-	<name>service-impl</name>
-	<description>service implementation</description>
-	<dependencies>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.mylab.cromero.core</groupId>
+        <artifactId>mylab-core</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
+    </parent>
+    <artifactId>mylab-core-service-impl</artifactId>
+    <name>service-impl</name>
+    <description>service implementation</description>
+    <dependencies>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jvnet.jaxb2.maven2</groupId>
-			<artifactId>maven-jaxb2-plugin</artifactId>
-			<version>0.9.0</version>
-		</dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2.maven2</groupId>
+            <artifactId>maven-jaxb2-plugin</artifactId>
+            <version>0.9.0</version>
+        </dependency>
 
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>jsr250-api</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.subethamail</groupId>
-			<artifactId>subethasmtp</artifactId>
-			<version>3.1.7</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.subethamail</groupId>
+            <artifactId>subethasmtp</artifactId>
+            <version>3.1.7</version>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>com.mylab.cromero.core</groupId>
-			<artifactId>mylab-core-repository</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.mylab.cromero.core</groupId>
-			<artifactId>mylab-core-service-api</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
+        <dependency>
+            <groupId>com.mylab.cromero.core</groupId>
+            <artifactId>mylab-core-repository</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mylab.cromero.core</groupId>
+            <artifactId>mylab-core-service-api</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.eluder.coveralls</groupId>
-				<artifactId>coveralls-maven-plugin</artifactId>
-				<version>3.1.0</version>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

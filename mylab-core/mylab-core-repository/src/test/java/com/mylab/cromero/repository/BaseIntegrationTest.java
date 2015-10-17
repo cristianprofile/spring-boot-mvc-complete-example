@@ -1,6 +1,5 @@
 package com.mylab.cromero.repository;
 
-import com.mylab.cromero.repository.config.ConfigurationRepository;
 import com.mylab.cromero.repository.domain.Base;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,15 +22,14 @@ import java.util.List;
 @Transactional
 public class BaseIntegrationTest {
 
+    @Autowired
+    BaseDataOnDemand dod;
+    @Autowired
+    BaseRepository baseRepository;
+
     @Test
     public void testMarkerMethod() {
     }
-
-    @Autowired
-    BaseDataOnDemand dod;
-
-    @Autowired
-    BaseRepository baseRepository;
 
     @Test
     public void testCount() {
@@ -86,8 +84,9 @@ public class BaseIntegrationTest {
                 "Data on demand for 'Base' failed to initialize correctly",
                 dod.getRandomBase());
         long count = baseRepository.count();
-        if (count > 20)
+        if (count > 20) {
             count = 20;
+        }
         int firstResult = 0;
         int maxResults = (int) count;
         List<Base> result = baseRepository.findAll(
@@ -159,7 +158,7 @@ public class BaseIntegrationTest {
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e
-                    .getConstraintViolations().iterator(); iter.hasNext();) {
+                    .getConstraintViolations().iterator(); iter.hasNext(); ) {
                 final ConstraintViolation<?> cv = iter.next();
                 msg.append("[").append(cv.getRootBean().getClass().getName())
                         .append(".").append(cv.getPropertyPath()).append(": ")

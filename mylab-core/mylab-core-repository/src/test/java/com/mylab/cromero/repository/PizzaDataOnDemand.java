@@ -17,18 +17,14 @@ import java.util.Random;
 @Configurable
 public class PizzaDataOnDemand {
 
-    private Random rnd = new SecureRandom();
-
-    private List<Pizza> data;
-
     @Autowired
     BaseDataOnDemand baseDataOnDemand;
-
     @Autowired
     EspecialidadDataOnDemand especialidadDataOnDemand;
-
     @Autowired
     PizzaRepository pizzaRepository;
+    private Random rnd = new SecureRandom();
+    private List<Pizza> data;
 
     public Pizza getNewTransientPizza(int index) {
         Pizza obj = new Pizza();
@@ -93,7 +89,7 @@ public class PizzaDataOnDemand {
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e
-                        .getConstraintViolations().iterator(); iter.hasNext();) {
+                        .getConstraintViolations().iterator(); iter.hasNext(); ) {
                     final ConstraintViolation<?> cv = iter.next();
                     msg.append("[")
                             .append(cv.getRootBean().getClass().getName())

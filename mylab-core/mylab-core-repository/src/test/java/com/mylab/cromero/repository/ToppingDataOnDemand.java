@@ -17,12 +17,10 @@ import java.util.Random;
 @Configurable
 public class ToppingDataOnDemand {
 
-    private Random rnd = new SecureRandom();
-
-    private List<Topping> data;
-
     @Autowired
     ToppingRepository toppingRepository;
+    private Random rnd = new SecureRandom();
+    private List<Topping> data;
 
     public Topping getNewTransientTopping(int index) {
         Topping obj = new Topping();
@@ -81,7 +79,7 @@ public class ToppingDataOnDemand {
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e
-                        .getConstraintViolations().iterator(); iter.hasNext();) {
+                        .getConstraintViolations().iterator(); iter.hasNext(); ) {
                     final ConstraintViolation<?> cv = iter.next();
                     msg.append("[")
                             .append(cv.getRootBean().getClass().getName())

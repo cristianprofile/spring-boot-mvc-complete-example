@@ -1,16 +1,14 @@
 package com.mylab.cromero.repository.dto;
 
 /**
-* <h1>MailRequest</h1>
-* BaseRequest dto request 
-* <p>
-* <b>MailRequest</b> MailRequest data transfer object 
-* for sevice layer
-*
-* @author  Cristian Romero Matesanz
-*
-* 
-*/
+ * <h1>MailRequest</h1>
+ * BaseRequest dto request
+ * <p>
+ * <b>MailRequest</b> MailRequest data transfer object
+ * for sevice layer
+ *
+ * @author Cristian Romero Matesanz
+ */
 public class MailRequest {
 
     private String to;

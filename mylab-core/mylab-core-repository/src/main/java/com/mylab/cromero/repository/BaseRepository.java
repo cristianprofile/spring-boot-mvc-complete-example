@@ -9,21 +9,20 @@ import java.util.Optional;
 
 /**
  * Access to base domain entities
- * @author cristian romero
  *
+ * @author cristian romero
  */
 @Repository
 public interface BaseRepository extends JpaRepository<Base, Long> {
     /**
      * Find base entity by its name
+     *
      * @param name value of base entity name
      * @return base entity
      */
     List<Base> findByName(String name);
-    
+
     Optional<Base> findById(Long id);
-    
-   
-    
+
 
 }

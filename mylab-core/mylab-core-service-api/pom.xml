@@ -1,37 +1,37 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.mylab.cromero.core</groupId>
-		<artifactId>mylab-core</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
-	</parent>
-	<artifactId>mylab-core-service-api</artifactId>
-	<name>mylab-core-service-api</name>
-	<description>service api</description>
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.mylab.cromero.core</groupId>
+        <artifactId>mylab-core</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
+    </parent>
+    <artifactId>mylab-core-service-api</artifactId>
+    <name>mylab-core-service-api</name>
+    <description>service api</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.openpojo</groupId>
-			<artifactId>openpojo</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.openpojo</groupId>
-			<artifactId>openpojo</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.openpojo</groupId>
+            <artifactId>openpojo</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.openpojo</groupId>
+            <artifactId>openpojo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+    </dependencies>
 </project>

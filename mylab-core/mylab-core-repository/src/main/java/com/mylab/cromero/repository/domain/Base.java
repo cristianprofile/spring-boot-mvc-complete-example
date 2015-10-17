@@ -1,7 +1,7 @@
 package com.mylab.cromero.repository.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,9 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Base {
