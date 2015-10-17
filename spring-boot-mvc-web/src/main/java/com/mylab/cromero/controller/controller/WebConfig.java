@@ -63,8 +63,8 @@
      @Bean
      public TilesConfigurer setupTilesConfigurer() {
          TilesConfigurer configurer = new TilesConfigurer();
-         configurer.setDefinitions(new String[] {"/WEB-INF/layouts/layouts.xml",
-                                                 "/WEB-INF/layouts/views.xml"});
+         configurer.setDefinitions("/WEB-INF/layouts/layouts.xml",
+                 "/WEB-INF/layouts/views.xml");
          configurer.setCheckRefresh(true);
          return configurer;
      }
