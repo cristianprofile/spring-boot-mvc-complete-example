@@ -10,15 +10,13 @@ import org.springframework.stereotype.Service;
 
 
 /**
-* <h1>Mail Service Implement!</h1>
-* Bussiness Service example using Spring Mail 
-* <p>
-* <b>Spring Mail</b> Class send mail from custon mailRequest input parameter
-*
-* @author  Cristian Romero Matesanz
-*
-* 
-*/
+ * <h1>Mail Service Implement!</h1>
+ * Bussiness Service example using Spring Mail
+ * <p>
+ * <b>Spring Mail</b> Class send mail from custon mailRequest input parameter
+ *
+ * @author Cristian Romero Matesanz
+ */
 @Service
 public class MailServiceImpl implements MailService {
 

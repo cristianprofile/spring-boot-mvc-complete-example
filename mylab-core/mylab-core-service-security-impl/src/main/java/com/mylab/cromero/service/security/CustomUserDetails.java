@@ -14,62 +14,60 @@ import java.util.stream.Collectors;
 
 public class CustomUserDetails implements UserDetails {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private UserResponse user;
-	
-	private String password;
-	
-	private List<GrantedAuthority> authorities = new LinkedList<GrantedAuthority>();
-	
-	
-	public CustomUserDetails(UserResponse user,List<String> roles, String password) {
-		this.user = user;
-		this.password=password;
-		authorities = roles.parallelStream().map(roleName->new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private UserResponse user;
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-		    return authorities;
-		
-	}
- 
-	@Override
-	public String getPassword() {
-		return this.password;
-	}
+    private String password;
 
-	@Override
-	public String getUsername() {
-		return this.user.getUser();
-	}
+    private List<GrantedAuthority> authorities = new LinkedList<GrantedAuthority>();
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return this.user.isAccountNonExpired();
-	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return this.user.isAccountNonLocked();
-	}
+    public CustomUserDetails(UserResponse user, List<String> roles, String password) {
+        this.user = user;
+        this.password = password;
+        authorities = roles.parallelStream().map(roleName -> new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return this.user.isCredentialsNonExpired();
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
 
-	@Override
-	public boolean isEnabled() {
-		return this.user.isEnabled();
-	}
+        return authorities;
 
-	
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.user.getUser();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.user.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.user.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return this.user.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.user.isEnabled();
+    }
+
+
 }

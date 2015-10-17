@@ -17,12 +17,10 @@ import java.util.Random;
 @Configurable
 public class BaseDataOnDemand {
 
-    private Random rnd = new SecureRandom();
-
-    private List<Base> data;
-
     @Autowired
     BaseRepository baseRepository;
+    private Random rnd = new SecureRandom();
+    private List<Base> data;
 
     public Base getNewTransientBase(int index) {
         Base obj = new Base();
@@ -81,7 +79,7 @@ public class BaseDataOnDemand {
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e
-                        .getConstraintViolations().iterator(); iter.hasNext();) {
+                        .getConstraintViolations().iterator(); iter.hasNext(); ) {
                     final ConstraintViolation<?> cv = iter.next();
                     msg.append("[")
                             .append(cv.getRootBean().getClass().getName())

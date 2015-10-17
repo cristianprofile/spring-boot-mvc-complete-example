@@ -1,6 +1,5 @@
 package com.mylab.cromero.repository;
 
-import com.mylab.cromero.repository.config.ConfigurationRepository;
 import com.mylab.cromero.repository.domain.Especialidad;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,15 +20,14 @@ import java.util.List;
 @Transactional
 public class EspecialidadIntegrationTest {
 
+    @Autowired
+    EspecialidadDataOnDemand dod;
+    @Autowired
+    EspecialidadRepository especialidadRepository;
+
     @Test
     public void testMarkerMethod() {
     }
-
-    @Autowired
-    EspecialidadDataOnDemand dod;
-
-    @Autowired
-    EspecialidadRepository especialidadRepository;
 
     @Test
     public void testCount() {
@@ -87,8 +85,9 @@ public class EspecialidadIntegrationTest {
                 "Data on demand for 'Especialidad' failed to initialize correctly",
                 dod.getRandomEspecialidad());
         long count = especialidadRepository.count();
-        if (count > 20)
+        if (count > 20) {
             count = 20;
+        }
         int firstResult = 0;
         int maxResults = (int) count;
         List<Especialidad> result = especialidadRepository.findAll(
@@ -165,7 +164,7 @@ public class EspecialidadIntegrationTest {
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e
-                    .getConstraintViolations().iterator(); iter.hasNext();) {
+                    .getConstraintViolations().iterator(); iter.hasNext(); ) {
                 final ConstraintViolation<?> cv = iter.next();
                 msg.append("[").append(cv.getRootBean().getClass().getName())
                         .append(".").append(cv.getPropertyPath()).append(": ")

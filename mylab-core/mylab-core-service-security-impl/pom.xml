@@ -1,40 +1,40 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.mylab.cromero.core</groupId>
-    <artifactId>mylab-core</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
-  </parent>
-  <artifactId>mylab-core-service-security-impl</artifactId>
-  <name>security-module-service</name>
-  <description>security module to service detail spring security access</description>
-  
-  
-  
-  <dependencies>
-  <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.mylab.cromero.core</groupId>
+        <artifactId>mylab-core</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
+    </parent>
+    <artifactId>mylab-core-service-security-impl</artifactId>
+    <name>security-module-service</name>
+    <description>security module to service detail spring security access</description>
 
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.mylab.cromero.core</groupId>
-			<artifactId>mylab-core-repository</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.mylab.cromero.core</groupId>
-			<artifactId>mylab-core-service-api</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-		</dependency>
-		
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mylab.cromero.core</groupId>
+            <artifactId>mylab-core-repository</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mylab.cromero.core</groupId>
+            <artifactId>mylab-core-service-api</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 </project>
 

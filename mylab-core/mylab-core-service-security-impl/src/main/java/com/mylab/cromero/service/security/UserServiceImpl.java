@@ -1,8 +1,8 @@
 package com.mylab.cromero.service.security;
 
 import com.mylab.cromero.repository.UserRepository;
-import com.mylab.cromero.repository.dto.UserRequest;
 import com.mylab.cromero.repository.domain.User;
+import com.mylab.cromero.repository.dto.UserRequest;
 import com.mylab.cromero.repository.dto.UserResponse;
 import com.mylab.cromero.service.UserService;
 import com.mylab.cromero.service.mapper.MapperSerializer;
@@ -24,45 +24,43 @@ import java.util.stream.Collectors;
  * spring data jpa
  *
  * @author Cristian Romero Matesanz
- *
- * 
  */
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-	@Override
-	public List<UserResponse> findAllUsers() {
-		this.logger.debug("Begin operation: findUsers ");
+    @Override
+    public List<UserResponse> findAllUsers() {
+        this.logger.debug("Begin operation: findUsers ");
 
-		List<User> findAll = userRepository.findAll();
-		List<UserResponse> listUsers = findAll
-				.stream()
-				.map(MapperSerializer
-						.getUserToUserResponseMapperLambdaFunction())
-				.collect(Collectors.toList());
+        List<User> findAll = userRepository.findAll();
+        List<UserResponse> listUsers = findAll
+                .stream()
+                .map(MapperSerializer
+                        .getUserToUserResponseMapperLambdaFunction())
+                .collect(Collectors.toList());
 
-		this.logger.debug("End operation: findAllUsers {} ", listUsers);
-		return listUsers;
-	}
+        this.logger.debug("End operation: findAllUsers {} ", listUsers);
+        return listUsers;
+    }
 
-	@Override
-	public void saveUser(final UserRequest userRequest) {
-		this.logger.debug("Begin operation: save request:{} ", userRequest);
-		User user = MapperSerializer.getUserRequestToUserMapperLambdaFunction()
-				.apply(userRequest);
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userRepository.save(user);
-		this.logger.debug("End operation: save request:{} ", user);
-	}
+    @Override
+    public void saveUser(final UserRequest userRequest) {
+        this.logger.debug("Begin operation: save request:{} ", userRequest);
+        User user = MapperSerializer.getUserRequestToUserMapperLambdaFunction()
+                .apply(userRequest);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        this.logger.debug("End operation: save request:{} ", user);
+    }
 
 }

@@ -12,22 +12,21 @@ import org.subethamail.wiser.Wiser;
 @EnableAutoConfiguration
 @Import({ConfigurationService.class})
 public class TestServiceConfigIT {
-	
-	
+
+
 	@Value("${spring.mail.host}")
 	private String host;
-	
+
 	@Value("${spring.mail.port}")
 	private int port;
-	
-	
-	
+
+
 	@Bean
 	public Wiser wiser() {
 		Wiser wiser = new Wiser();
 		wiser.setHostname(host);
 		wiser.setPort(port);
-	    return wiser ;
+		return wiser;
 	}
 
 }

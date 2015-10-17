@@ -1,5 +1,8 @@
 package com.mylab.cromero.repository.domain;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +12,6 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 @Entity
 public class Especialidad {
 
@@ -20,6 +20,13 @@ public class Especialidad {
     private String name;
 
     private Boolean active;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+    @Version
+    @Column(name = "version")
+    private Integer version;
 
     @Override
     public String toString() {
@@ -42,15 +49,6 @@ public class Especialidad {
     public void setActive(Boolean active) {
         this.active = active;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-    @Version
-    @Column(name = "version")
-    private Integer version;
 
     public Long getId() {
         return this.id;

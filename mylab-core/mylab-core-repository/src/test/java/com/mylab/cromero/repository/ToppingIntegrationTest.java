@@ -1,6 +1,5 @@
 package com.mylab.cromero.repository;
 
-import com.mylab.cromero.repository.config.ConfigurationRepository;
 import com.mylab.cromero.repository.domain.Topping;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,15 +20,14 @@ import java.util.List;
 @Transactional
 public class ToppingIntegrationTest {
 
+    @Autowired
+    ToppingDataOnDemand dod;
+    @Autowired
+    ToppingRepository toppingRepository;
+
     @Test
     public void testMarkerMethod() {
     }
-
-    @Autowired
-    ToppingDataOnDemand dod;
-
-    @Autowired
-    ToppingRepository toppingRepository;
 
     @Test
     public void testCount() {
@@ -86,8 +84,9 @@ public class ToppingIntegrationTest {
                 "Data on demand for 'Topping' failed to initialize correctly",
                 dod.getRandomTopping());
         long count = toppingRepository.count();
-        if (count > 20)
+        if (count > 20) {
             count = 20;
+        }
         int firstResult = 0;
         int maxResults = (int) count;
         List<Topping> result = toppingRepository.findAll(
@@ -164,7 +163,7 @@ public class ToppingIntegrationTest {
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e
-                    .getConstraintViolations().iterator(); iter.hasNext();) {
+                    .getConstraintViolations().iterator(); iter.hasNext(); ) {
                 final ConstraintViolation<?> cv = iter.next();
                 msg.append("[").append(cv.getRootBean().getClass().getName())
                         .append(".").append(cv.getPropertyPath()).append(": ")

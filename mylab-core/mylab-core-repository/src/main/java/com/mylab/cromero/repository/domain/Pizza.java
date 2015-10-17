@@ -1,7 +1,7 @@
 package com.mylab.cromero.repository.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,9 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Pizza {
@@ -36,6 +35,13 @@ public class Pizza {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Topping> toppings = new HashSet<Topping>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+    @Version
+    @Column(name = "version")
+    private Integer version;
 
     public String getName() {
         return this.name;
@@ -82,15 +88,6 @@ public class Pizza {
         return ReflectionToStringBuilder.toString(this,
                 ToStringStyle.SHORT_PREFIX_STYLE);
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-    @Version
-    @Column(name = "version")
-    private Integer version;
 
     public Long getId() {
         return this.id;

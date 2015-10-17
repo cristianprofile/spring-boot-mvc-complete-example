@@ -25,8 +25,6 @@ import java.util.Arrays;
  * <b>Application</b> Main Application of Spring boot app with custom log of Springn profile run
  *
  * @author Cristian Romero Matesanz
- *
- * 
  */
 @Configuration
 @EnableAutoConfiguration
@@ -34,14 +32,20 @@ import java.util.Arrays;
 @Import({ConfigurationService.class})
 public class Application {
 
-	
-private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private Environment env;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private Environment env;
+
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(Application.class);
+        //do not show Spring boot banner when boot starts!!!!!
+        app.setShowBanner(false);
+        app.run(args);
+    }
 
     /**
-     *
      * @return objectMaper with pretty print config and not null/empty values include in serialization
      */
     @Bean
@@ -53,30 +57,21 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
         return objectMapper;
     }
 
-
-
-	/**
+    /**
      * Initializes pizzas example.
-     * <p/>
+     * <p>
      * Spring profiles can be run with maven profile (example mvn -Pdevelop spring-boot:run  ). See pom.xml for more information (develop and prod profile).
-     * <p/>
+     * <p>
      */
     @PostConstruct
     public void initApplication() throws IOException {
         if (env.getActiveProfiles().length == 0) {
-        	logger.warn("No Spring profile configured, running with default configuration with profile develop");
-        } else {
-        	logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
+            logger.warn("No Spring profile configured, running with default configuration with profile develop");
+        }
+        else {
+            logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
         }
     }
-
-
-	public static void main(String[] args) {
-		 SpringApplication app = new SpringApplication(Application.class);
-         //do not show Spring boot banner when boot starts!!!!!
-         app.setShowBanner(false);
-         app.run(args);
-	}
 
 
 }
