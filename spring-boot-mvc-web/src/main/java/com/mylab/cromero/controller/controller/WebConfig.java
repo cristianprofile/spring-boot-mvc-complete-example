@@ -63,8 +63,8 @@
      @Bean
      public TilesConfigurer setupTilesConfigurer() {
          TilesConfigurer configurer = new TilesConfigurer();
-         configurer.setDefinitions(new String[] {"/WEB-INF/layouts/layouts.xml",
-                                                 "/WEB-INF/layouts/views.xml"});
+         configurer.setDefinitions("classpath:layouts/layouts.xml",
+                 "classpath:layouts/views.xml");
          configurer.setCheckRefresh(true);
          return configurer;
      }
@@ -93,19 +93,6 @@
      }
 
      /**
-      * set custom param of pizzas app to change locale with value "lang"
-      * @return localchangeinterceptor of pizzas app
-      */
-     @Bean
-     public LocaleChangeInterceptor localeChangeInterceptor() {
-         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-         lci.setParamName("lang");
-         return lci;
-     }
-
-
-
-     /**
       * Set custom error pages
       * @return EmbeddedServletContainerCustomizer
       */
@@ -127,9 +114,20 @@
 
       /**
       * Add interceptor to allow pizza app to change language
+       */
+      @Override
+      public void addInterceptors(InterceptorRegistry registry) {
+          registry.addInterceptor(localeChangeInterceptor());
+      }
+
+     /**
+      * set custom param of pizzas app to change locale with value "lang"
+      * @return localchangeinterceptor of pizzas app
       */
-     @Override
-     public void addInterceptors(InterceptorRegistry registry) {
-         registry.addInterceptor(localeChangeInterceptor());
+     @Bean
+     public LocaleChangeInterceptor localeChangeInterceptor() {
+         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+         lci.setParamName("lang");
+         return lci;
      }
  }

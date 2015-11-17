@@ -23,39 +23,36 @@ import java.util.stream.Collectors;
  * spring data jpa
  *
  * @author Cristian Romero Matesanz
- *
- * 
  */
 
 @Service
 @Transactional
 public class PizzaServiceImpl implements PizzaService {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private PizzaRepository pizzaRepository;
+    @Autowired
+    private PizzaRepository pizzaRepository;
 
-	
-	@Override
-	public List<PizzaResponse> findAllPizzas() {
-		this.logger.debug("Begin operation: findAllPizzas ");
-		List<Pizza> findAll = pizzaRepository.findAll();
-		List<PizzaResponse> listBases = findAll.stream().map(LayerMapping.getPizzaToPizzaResponseMapperLambdaFunction())
-										.collect(Collectors.toList());
-		this.logger.debug("End operation: findAllPizzas {} ", listBases);
-		return listBases;
-	}
 
-	@Override
-	public void savePizza(final PizzaRequest pizzaRequest) {
-		this.logger.debug("Begin operation: save request:{} ", pizzaRequest);
-		
-		Pizza pizza = LayerMapping.getPizzaRequestToPizzaMapperLambdaFunction().apply(pizzaRequest);
-		pizzaRepository.save(pizza);
-		this.logger.debug("End operation: save request:{} ", pizzaRequest);
-	}
+    @Override
+    public List<PizzaResponse> findAllPizzas() {
+        this.logger.debug("Begin operation: findAllPizzas ");
+        List<Pizza> findAll = pizzaRepository.findAll();
+        List<PizzaResponse> listBases = findAll.stream().map(LayerMapping.getPizzaToPizzaResponseMapperLambdaFunction())
+                .collect(Collectors.toList());
+        this.logger.debug("End operation: findAllPizzas {} ", listBases);
+        return listBases;
+    }
 
-	
+    @Override
+    public void savePizza(final PizzaRequest pizzaRequest) {
+        this.logger.debug("Begin operation: save request:{} ", pizzaRequest);
+
+        Pizza pizza = LayerMapping.getPizzaRequestToPizzaMapperLambdaFunction().apply(pizzaRequest);
+        pizzaRepository.save(pizza);
+        this.logger.debug("End operation: save request:{} ", pizzaRequest);
+    }
+
 
 }

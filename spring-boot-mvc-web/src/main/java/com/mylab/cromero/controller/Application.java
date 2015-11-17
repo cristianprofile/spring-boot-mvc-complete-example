@@ -1,22 +1,21 @@
  package com.mylab.cromero.controller;
 
-import java.io.IOException;
-import java.util.Arrays;
+ import com.mylab.cromero.service.ConfigurationService;
+ import com.mylab.cromero.service.security.ConfigurationServiceSecurity;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+ import org.springframework.context.annotation.ComponentScan;
+ import org.springframework.context.annotation.Configuration;
+ import org.springframework.context.annotation.Import;
+ import org.springframework.core.env.Environment;
+ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.annotation.PostConstruct;
-
-import com.mylab.cromero.service.security.ConfigurationServiceSecurity;
-import com.mylab.cromero.service.ConfigurationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.core.env.Environment;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+ import javax.annotation.PostConstruct;
+ import java.io.IOException;
+ import java.util.Arrays;
 
  /**
  * <h1>Main Application!</h1> Application main class of Spring boot app.
@@ -40,11 +39,19 @@ public class Application extends WebMvcConfigurerAdapter {
 	
 	@Autowired
 	private Environment env;
-	
-	/**
+
+     public static void main(String[] args) {
+
+         SpringApplication app = new SpringApplication(Application.class);
+         //do not show Spring boot banner when boot starts!!!!!
+         app.setShowBanner(false);
+         app.run(args);
+     }
+
+     /**
      * Initializes pizzas example.
      * <p/>
-     * Spring profiles can be run with maven profile (example mvn -Pdevelop spring-boot:run  ). 
+     * Spring profiles can be run with maven profile (example mvn -Pdevelop spring-boot:run  ).
      * See pom.xml for more information (develop and prod profile).
      * @see pom.xml
      * <p/>
@@ -56,14 +63,5 @@ public class Application extends WebMvcConfigurerAdapter {
         } else {
         	logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
         }
-    }
-	
-
-    public static void main(String[] args) {
-
-          SpringApplication app = new SpringApplication(Application.class);
-          //do not show Spring boot banner when boot starts!!!!!
-          app.setShowBanner(false);
-          app.run(args);
     }
 } 

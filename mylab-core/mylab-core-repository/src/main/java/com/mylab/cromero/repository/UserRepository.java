@@ -8,14 +8,14 @@ import java.util.Optional;
 
 /**
  * Access to base domain entities
- * @author cristian romero
  *
+ * @author cristian romero
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    
-	Optional<User> findByUser(String user);
-    
+
+    Optional<User> findByUser(String user);
+
 
 }

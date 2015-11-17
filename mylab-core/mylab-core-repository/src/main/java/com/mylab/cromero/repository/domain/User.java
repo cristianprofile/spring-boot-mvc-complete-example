@@ -9,10 +9,9 @@ import javax.persistence.Version;
 
 @Entity
 public class User {
-   
 
-	
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
@@ -20,26 +19,26 @@ public class User {
     @Version
     @Column(name = "version")
     private Integer version;
-    
-	
+
+
     private String user;
-    
+
     private String password;
 
-	private String name;
-	
-	private String surname;
-	
-	private Boolean accountNonExpired;
-	
-	private Boolean accountNonLocked;
-	
-	private Boolean credentialsNonExpired;
-	
-	private Boolean enabled;   
-	
-	private String rol;
-    
+    private String name;
+
+    private String surname;
+
+    private Boolean accountNonExpired;
+
+    private Boolean accountNonLocked;
+
+    private Boolean credentialsNonExpired;
+
+    private Boolean enabled;
+
+    private String rol;
+
 
     public Long getId() {
         return this.id;
@@ -66,103 +65,99 @@ public class User {
         this.name = name;
     }
 
-	public String getUser() {
-		return user;
-	}
+    public String getUser() {
+        return user;
+    }
 
-	public void setUser(String user) {
-		this.user = user;
-	}
-	
-	
+    public void setUser(String user) {
+        this.user = user;
+    }
 
-	public String getPassword() {
-		return password;
-	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public Boolean getAccountNonExpired() {
-		return accountNonExpired;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public void setAccountNonExpired(Boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
+    public Boolean getAccountNonExpired() {
+        return accountNonExpired;
+    }
 
-	public Boolean getAccountNonLocked() {
-		return accountNonLocked;
-	}
+    public void setAccountNonExpired(Boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
 
-	public void setAccountNonLocked(Boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
+    }
 
-	public Boolean getCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
 
-	public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
+    public Boolean getCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
 
-	public Boolean getEnabled() {
-		return enabled;
-	}
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
 
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+    public Boolean getEnabled() {
+        return enabled;
+    }
 
-	public String getRol() {
-		return rol;
-	}
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
+    public String getRol() {
+        return rol;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=");
-		builder.append(id);
-		builder.append(", version=");
-		builder.append(version);
-		builder.append(", user=");
-		builder.append(user);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", surname=");
-		builder.append(surname);
-		builder.append(", accountNonExpired=");
-		builder.append(accountNonExpired);
-		builder.append(", accountNonLocked=");
-		builder.append(accountNonLocked);
-		builder.append(", credentialsNonExpired=");
-		builder.append(credentialsNonExpired);
-		builder.append(", enabled=");
-		builder.append(enabled);
-		builder.append(", rol=");
-		builder.append(rol);
-		builder.append("]");
-		return builder.toString();
-	}
-	
-	
-    
-    
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("User [id=");
+        builder.append(id);
+        builder.append(", version=");
+        builder.append(version);
+        builder.append(", user=");
+        builder.append(user);
+        builder.append(", password=");
+        builder.append(password);
+        builder.append(", name=");
+        builder.append(name);
+        builder.append(", surname=");
+        builder.append(surname);
+        builder.append(", accountNonExpired=");
+        builder.append(accountNonExpired);
+        builder.append(", accountNonLocked=");
+        builder.append(accountNonLocked);
+        builder.append(", credentialsNonExpired=");
+        builder.append(credentialsNonExpired);
+        builder.append(", enabled=");
+        builder.append(enabled);
+        builder.append(", rol=");
+        builder.append(rol);
+        builder.append("]");
+        return builder.toString();
+    }
+
 
 }
