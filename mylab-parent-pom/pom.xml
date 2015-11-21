@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mylab.cromero</groupId>
@@ -17,7 +17,7 @@
 		<jaxb.api.version>2.2.11</jaxb.api.version>
 		<openpojo.version>0.5.0</openpojo.version>
 		<powermock.version>1.6.2</powermock.version>
-		<spring.io.version>1.1.4.RELEASE</spring.io.version>
+		<spring.io.version>2.0.0.RELEASE</spring.io.version>
 		<cobertura.maven.plugin>2.7</cobertura.maven.plugin>
 		<downloadSources>true</downloadSources>
 		<downloadJavadocs>true</downloadJavadocs>

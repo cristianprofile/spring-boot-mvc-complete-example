@@ -15,8 +15,8 @@
           </c:if>
           
            <c:if test="${param.invalid != null}"> 
-                <div class="alert alert-success"> 
-                    Sesion invalidad!!!!.
+                <div class="alert alert-success">
+                    Sesion invalid!!!!.
                 </div>  
           </c:if>  
           
