@@ -4,10 +4,10 @@ http:
         
 logging:
         level:
-            org.springframework.web: ERROR
-            org.hibernate: ERROR
-            level.org.hibernate: ERROR
+            org.springframework.web: DEBUG
+            org.hibernate: DEBUG
+            level: DEBUG
             com.mylab: DEBUG
-            
+            org.apache.tiles: DEBUG
 endpoints:
         shutdown.enabled: true
