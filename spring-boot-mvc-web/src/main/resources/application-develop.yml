@@ -11,7 +11,8 @@ spring:
 server:
         port: 9090
         contextPath: /pizza
-        session-timeout: 10000
+        session:
+                timeout: 10000
 management:
         port: 9091
         address: 127.0.0.1
