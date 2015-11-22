@@ -11,7 +11,7 @@ spring:
           host: localhost
           port: 3600
       main:
-           show_banner: false
+           banner-mode: OFF
           
 logging:
     level:

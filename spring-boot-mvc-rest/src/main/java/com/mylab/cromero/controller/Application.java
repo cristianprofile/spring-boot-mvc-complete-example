@@ -23,7 +23,7 @@ import java.util.Arrays;
 /**
  * <h1>Main Application!</h1> Application main class of Spring boot app.
  * <p>
- * <b>Application</b> Main Application of Spring boot app with custom log of Springn profile run
+ * <b>Application</b> Main Application of Spring boot app with custom log of Spring profile run
  *
  * @author Cristian Romero Matesanz
  */
@@ -51,11 +51,10 @@ public class Application {
      */
     @Bean
     public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper()
+        return new ObjectMapper()
                 .enable(SerializationFeature.INDENT_OUTPUT)
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-        return objectMapper;
     }
 
     /**
