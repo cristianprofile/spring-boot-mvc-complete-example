@@ -7,6 +7,7 @@ import com.mylab.cromero.service.ConfigurationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +42,7 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
         //do not show Spring boot banner when boot starts!!!!!
-        app.setShowBanner(false);
+        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
 

@@ -5,6 +5,7 @@
  import org.slf4j.Logger;
  import org.slf4j.LoggerFactory;
  import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.boot.Banner;
  import org.springframework.boot.SpringApplication;
  import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
  import org.springframework.context.annotation.ComponentScan;
@@ -44,7 +45,7 @@ public class Application extends WebMvcConfigurerAdapter {
 
          SpringApplication app = new SpringApplication(Application.class);
          //do not show Spring boot banner when boot starts!!!!!
-         app.setShowBanner(false);
+         app.setBannerMode(Banner.Mode.OFF);
          app.run(args);
      }
 
