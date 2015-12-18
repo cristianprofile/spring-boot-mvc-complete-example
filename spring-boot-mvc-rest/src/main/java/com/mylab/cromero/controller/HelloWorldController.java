@@ -52,8 +52,7 @@ public class HelloWorldController {
 
     @RequestMapping(value = "/{baseId}", method = RequestMethod.GET)
     public BaseResponse getBase(@PathVariable("baseId") long id) {
-        BaseResponse base = baseService.getBase(id);
-        return base;
+        return baseService.getBase(id);
     }
 
     @RequestMapping(value = "/{baseId}", method = RequestMethod.DELETE)

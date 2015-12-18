@@ -51,15 +51,12 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @Transactional
 public class RestTestIT {
 
-    @Autowired
-    BaseRepository baseRepository;
-
-    private MockMvc mockMvc;
-
-    private MediaType contentType = new MediaType(
+    private final MediaType contentType = new MediaType(
             MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
-
+    @Autowired
+    BaseRepository baseRepository;
+    private MockMvc mockMvc;
     @Autowired
     private WebApplicationContext webApplicationContext;
 
@@ -79,6 +76,10 @@ public class RestTestIT {
                 .content(baseJson)).andExpect(status().isCreated());
     }
 
+    private String json(Object o) throws IOException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(o);
+    }
 
     @Test
     public void getBases() throws Exception {
@@ -97,14 +98,6 @@ public class RestTestIT {
                 .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
 
     }
-
-
-    protected String json(Object o) throws IOException {
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json = ow.writeValueAsString(o);
-        return json;
-    }
-
 
     @Test
     public void getBasesAsync() throws Exception {

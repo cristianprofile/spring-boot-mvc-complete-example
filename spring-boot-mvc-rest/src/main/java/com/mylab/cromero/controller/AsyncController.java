@@ -34,7 +34,6 @@ public class AsyncController {
     @RequestMapping(method = RequestMethod.GET)
     public Callable<List<BaseResponse>> listAllBase() {
 
-        // logger.debug("paginación recibida :{}",pageable);
         List<BaseResponse> findAllBases = baseService.findAllBases();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");

@@ -28,12 +28,9 @@ public class RestTestFullIT {
 
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    private final RestTemplate restTemplate = new TestRestTemplate();
     @Autowired
     BaseRepository baseRepository;
-
-    private RestTemplate restTemplate = new TestRestTemplate();
-
     @Value("${local.server.port}")
     private int port;
 
@@ -66,7 +63,6 @@ public class RestTestFullIT {
 
         Base baseAlmacenar = new Base();
 
-        baseAlmacenar = new Base();
         baseAlmacenar.setName("masa pan");
         baseRepository.save(baseAlmacenar);
 

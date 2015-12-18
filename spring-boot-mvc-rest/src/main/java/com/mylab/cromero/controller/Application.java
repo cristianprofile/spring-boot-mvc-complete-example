@@ -7,6 +7,7 @@ import com.mylab.cromero.service.ConfigurationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,7 @@ import java.util.Arrays;
 /**
  * <h1>Main Application!</h1> Application main class of Spring boot app.
  * <p>
- * <b>Application</b> Main Application of Spring boot app with custom log of Springn profile run
+ * <b>Application</b> Main Application of Spring boot app with custom log of Spring profile run
  *
  * @author Cristian Romero Matesanz
  */
@@ -41,7 +42,7 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
         //do not show Spring boot banner when boot starts!!!!!
-        app.setShowBanner(false);
+        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
 
@@ -50,11 +51,10 @@ public class Application {
      */
     @Bean
     public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper()
+        return new ObjectMapper()
                 .enable(SerializationFeature.INDENT_OUTPUT)
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-        return objectMapper;
     }
 
     /**
