@@ -22,7 +22,7 @@ public class ManagementSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
          http
             .requestMatchers()
-                .requestMatchers(request -> "/manage".equals(request.getContextPath()))
+                 .requestMatchers(request -> "/manage".contains(request.getContextPath()))
                 .and()
             .authorizeRequests()
                 .anyRequest().hasRole("ADMIN")
