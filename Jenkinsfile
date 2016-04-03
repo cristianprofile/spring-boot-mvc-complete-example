@@ -1,5 +1,5 @@
 
-de {
+node {
    
    git 'https://github.com/cristianprofile/spring-boot-mvc-complete-example.git'
    
