@@ -26,9 +26,20 @@ public class MailServiceImplTest {
     private Wiser wiser;
 
     @Before
-    public void setup() {
+    public void setup() throws InterruptedException {
 
-        wiser.start();
+        boolean serverUpAndRunning = false;
+        while (!serverUpAndRunning) {
+            try {
+                wiser.start();
+                serverUpAndRunning = true;
+            } catch (RuntimeException e) { // Fix for slow port-closing Jenkins
+                if (e.getMessage().toLowerCase().contains("bindexception")) {
+                    wiser.stop();
+                    Thread.sleep(250L);
+                }
+            }
+        }
     }
 
     @Transactional
