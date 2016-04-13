@@ -44,3 +44,11 @@ recorded, so if you hit the metrics endpoint should see a sensible response.)
 
 More info about Spring Actuator at: [Spring Actuator](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-actuator "Spring Actuator")
 
+----------------------------------------------------------------------------------------------------------
+Jenkins 2 automatic multibranch plugin mode with JenkinsFile file in main directory. More interesting information about new Jenkins 2 Pipeline script configuration at:
+
+-  [DZONE refcard jenkins pipeline](https://dzone.com/refcardz/continuous-delivery-with-jenkins-workflow "DZONE refcard jenkins pipeline")
+-  [Github examples](https://github.com/jenkinsci/pipeline-examples "Github examples")  
+
+![Pipeline plugin](/images/git-flow.png?raw=true "Pipeline plugin")
+
