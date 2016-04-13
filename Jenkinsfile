@@ -1,25 +1,33 @@
 
 node {
    
-   git 'https://github.com/cristianprofile/spring-boot-mvc-complete-example.git'
-   
    stage 'compile parent pom'
-   sh "java -version"
-   sh "mvn -f mylab-parent-pom/pom.xml  clean install"
-   echo 'Compiled parent pom succesfully'
+   dir("mylab-parent-pom") {
+     sh "java -version"
+     sh "mvn clean install"
+     echo 'Compiled parent pom succesfully'
+   }
    
    stage 'run unit test mylab core'
-   sh "mvn -f mylab-core/pom.xml test"
-   echo 'Unit test has passed succesfully'
-   stage 'run package mylab core '
-   sh "mvn -f mylab-core/pom.xml  package"
-   echo 'App has been packaged succesfully'
+   dir("mylab-core") {
+     sh "mvn test"
+     echo 'Unit test has passed succesfully'
+     stage 'run package mylab core '
+     sh "mvn package"
+     echo 'App has been packaged succesfully'
+   }
    
    stage 'run unit test rest layer'
-   sh "mvn -f spring-boot-mvc-rest/pom.xml test"
-   echo 'Unit test has passed succesfully'
-   stage 'run package rest layer'
-   sh "mvn -f spring-boot-mvc-rest/pom.xml  package"
-   echo 'App has been packaged succesfully'  
+     dir("spring-boot-mvc-rest") {
+     sh "mvn test"
+     echo 'Unit test has passed succesfully'
+     stage 'run package rest layer'
+     sh "mvn package"
+     echo 'App has been packaged succesfully'
+     stage 'deploy app to develop server'
+     input message: 'Do you want to deploy your artifact to develop server?', ok: 'OK', submitter: 'admin'
+     echo 'App has been deployed to develop server'
+     //TODO DEPLOY TO SERVER XXXXX
+    }  
    
 }
