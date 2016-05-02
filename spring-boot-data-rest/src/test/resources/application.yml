@@ -1,0 +1,24 @@
+﻿server:
+    port: 9090
+management:
+    port: 9091
+    address: 127.0.0.1
+http:
+    mappers:
+       jsonPrettyPrint: true
+spring:
+      mail:
+          host: localhost
+          port: 3600
+      main:
+           banner-mode: OFF
+      data:
+        rest:
+          base-path: /api
+
+logging:
+    level:
+        org.springframework.web: ERROR
+        org.hibernate: ERROR
+        level.org.hibernate: ERROR
+        com.mylab: DEBUG
