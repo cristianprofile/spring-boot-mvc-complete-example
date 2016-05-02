@@ -18,23 +18,15 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.PagedResources;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.hal.Jackson2HalModule;
-import org.springframework.hateoas.mvc.TypeConstrainedMappingJackson2HttpMessageConverter;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -78,7 +70,6 @@ public class RestTestFullIT {
         String response = restTemplate.postForObject("http://localhost:" + port + basePath + "/bases", base, String.class);
         base.setName("newbase3");
         restTemplate.postForObject("http://localhost:" + port + basePath + "/bases", base, String.class);
-        RestTemplate rt = getRestTemplateWithHalMessageConverter();
         ResponseEntity<PagedResources<BaseResponse>> responseEntity = getRestTemplateWithHalMessageConverter().exchange(
                 "http://localhost:" + port + basePath + "/bases", HttpMethod.GET, null,
                 new ParameterizedTypeReference<PagedResources<BaseResponse>>() {});
@@ -91,6 +82,20 @@ public class RestTestFullIT {
         System.out.println("responseEntity = " + responseEntity);
 
 
+    }
+
+    // this method create a custom rest template to be able to consume HATEAOS rest services
+    public RestTemplate getRestTemplateWithHalMessageConverter() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.registerModule(new Jackson2HalModule());
+
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Arrays.asList(HAL_JSON));
+        converter.setObjectMapper(mapper);
+
+        RestTemplate template = new RestTemplate(Collections.singletonList(converter));
+        return template;
     }
 
     @Test
@@ -112,21 +117,6 @@ public class RestTestFullIT {
 
 
 
-    }
-
-
-    // this method create a custom rest template to be able to consume HATEAOS rest services
-    public RestTemplate getRestTemplateWithHalMessageConverter() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        mapper.registerModule(new Jackson2HalModule());
-
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(Arrays.asList(HAL_JSON));
-        converter.setObjectMapper(mapper);
-
-        RestTemplate template = new RestTemplate(Collections.<HttpMessageConverter<?>> singletonList(converter));
-        return template;
     }
 
 
