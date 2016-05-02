@@ -76,12 +76,7 @@ public class RestTestFullIT {
         assertEquals(responseEntity.getBody().getMetadata().getTotalElements(), 2);
         assertTrue(responseEntity.getBody().getContent().stream().anyMatch(a->a.getName().equals("newbase")));
         assertTrue(responseEntity.getBody().getContent().stream().anyMatch(a->a.getName().equals("newbase3")));
-
-
-
-        System.out.println("responseEntity = " + responseEntity);
-
-
+        assertTrue(responseEntity.getBody().getContent().stream().noneMatch(a -> a.getName().equals("newbase4")));
     }
 
     // this method create a custom rest template to be able to consume HATEAOS rest services
@@ -103,7 +98,7 @@ public class RestTestFullIT {
 
         Base baseAlmacenar = new Base();
 
-        baseAlmacenar.setName("masa pan");
+        baseAlmacenar.setName("big");
         baseRepository.save(baseAlmacenar);
 
         ResponseEntity<PagedResources<BaseResponse>> responseEntity = getRestTemplateWithHalMessageConverter().exchange(
@@ -111,8 +106,8 @@ public class RestTestFullIT {
                 new ParameterizedTypeReference<PagedResources<BaseResponse>>() {});
 
         assertEquals(responseEntity.getBody().getMetadata().getTotalElements(), 1);
-        assertTrue(responseEntity.getBody().getContent().stream().anyMatch(a->a.getName().equals("masa pan")));
-
+        assertTrue(responseEntity.getBody().getContent().stream().anyMatch(a -> a.getName().equals("big")));
+        assertTrue(responseEntity.getBody().getContent().stream().noneMatch(a -> a.getName().equals("newbase4")));
 
 
 

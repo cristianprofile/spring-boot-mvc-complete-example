@@ -54,9 +54,12 @@ public class RestTestIT {
     private final MediaType contentType = new MediaType(
             MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+
     @Autowired
-    BaseRepository baseRepository;
+    private BaseRepository baseRepository;
+
     private MockMvc mockMvc;
+
     @Autowired
     private WebApplicationContext webApplicationContext;
 
