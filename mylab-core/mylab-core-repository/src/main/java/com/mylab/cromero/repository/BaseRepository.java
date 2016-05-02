@@ -2,6 +2,7 @@ package com.mylab.cromero.repository;
 
 import com.mylab.cromero.repository.domain.Base;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,9 +21,9 @@ public interface BaseRepository extends JpaRepository<Base, Long> {
      * @param name value of base entity name
      * @return base entity
      */
-    List<Base> findByName(String name);
+    List<Base> findByName(@Param(value = "name") String name);
 
-    Optional<Base> findById(Long id);
+    Optional<Base> findById(@Param(value = "id") Long id);
 
 
 }

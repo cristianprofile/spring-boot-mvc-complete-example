@@ -9,26 +9,25 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
@@ -51,17 +50,18 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @Transactional
 public class RestTestIT {
 
-    private final MediaType contentType = new MediaType(
-            MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
-
     @Autowired
-    private BaseRepository baseRepository;
+    BaseRepository baseRepository;
+
+    private MediaType contentType = new MediaType("application", "hal+json");
 
     private MockMvc mockMvc;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
+
+    @Value("${spring.data.rest.base-path}")
+    private String basePath;
 
 
     @Before
@@ -69,13 +69,22 @@ public class RestTestIT {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
     }
 
+
+    @Test
+    public void testHome() throws Exception {
+
+        this.mockMvc.perform(get(basePath)).andExpect(status().isOk())
+                .andExpect(content().string(containsString("bases")));
+    }
+
+
     @Test
     public void createBases() throws Exception {
 
         final BaseRequest baseRequest = new BaseRequest();
         baseRequest.setName("new base");
         String baseJson = json(baseRequest);
-        this.mockMvc.perform(post("/base").contentType(contentType)
+        this.mockMvc.perform(post(basePath + "/bases").contentType(contentType)
                 .content(baseJson)).andExpect(status().isCreated());
     }
 
@@ -94,35 +103,12 @@ public class RestTestIT {
         baseAlmacenar.setName("masa pan");
         baseRepository.save(baseAlmacenar);
 
-        mockMvc.perform(get("/base/")).andExpect(status().isOk())
+        mockMvc.perform(get(basePath + "/bases").contentType(contentType))
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
-                .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
-
-    }
-
-    @Test
-    public void getBasesAsync() throws Exception {
-        Base baseAlmacenar = new Base();
-        baseAlmacenar.setName("margarita");
-        baseRepository.save(baseAlmacenar);
-
-        baseAlmacenar = new Base();
-        baseAlmacenar.setName("masa pan");
-        baseRepository.save(baseAlmacenar);
-
-        MvcResult mvcResult = mockMvc.perform(get("/baseasinc/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-                .andExpect(request().asyncStarted())
-                .andReturn();
-
-        mvcResult.getAsyncResult();
-
-        mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
-                .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
+                .andExpect(jsonPath("$._embedded.bases", hasSize(2)))
+                .andExpect(jsonPath("$._embedded.bases[0].name", equalToIgnoringCase("margarita")))
+                .andExpect(jsonPath("$._embedded.bases[1].name", equalToIgnoringCase("masa pan")));
 
     }
 
