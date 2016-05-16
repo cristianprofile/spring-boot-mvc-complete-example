@@ -1,6 +1,9 @@
 
 node {
    
+   
+    git 'https://github.com/cristianprofile/spring-boot-mvc-complete-example.git'
+   
    stage 'compile parent pom'
    dir("mylab-parent-pom") {
      sh "java -version"
