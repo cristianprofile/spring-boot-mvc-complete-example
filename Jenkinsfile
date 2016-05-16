@@ -2,7 +2,7 @@
 node {
    
    
-    git 'https://github.com/cristianprofile/spring-boot-mvc-complete-example.git'
+   checkout scm
    
    stage 'compile parent pom'
    dir("mylab-parent-pom") {
