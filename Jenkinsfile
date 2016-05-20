@@ -2,7 +2,7 @@
 node { 
    
    
-    withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]) {
+    withEnv(["PATH+MAVEN=/bin"]) {
    
    sh 'eval $(docker-machine env default);docker pull maven:3.3.3-jdk-8'
    
