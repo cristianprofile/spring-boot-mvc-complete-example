@@ -2,7 +2,7 @@
 node { 
    
    
-   sh 'eval $(docker-machine env default);docker pull maven:3.3.3-jdk-8;docker-machine ls'
+   sh 'eval $(docker-machine env default);docker-machine ls'
    
    docker.image('maven:3.3.3-jdk-8').inside {
 
