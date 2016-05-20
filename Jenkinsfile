@@ -1,6 +1,9 @@
 
 node { 
    
+   
+   sh " bash --login /Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh"
+   
    docker.image('maven:3.3.3-jdk-8').inside {
 
    
