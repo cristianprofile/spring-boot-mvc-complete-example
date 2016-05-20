@@ -1,26 +1,26 @@
 
 node { 
    
-    stage 'checkout scm'
+   stage 'checkout scm'
     checkout scm
    
    stage 'compile parent pom'
-   dir("mylab-parent-pom") {
+    dir("mylab-parent-pom") {
      sh "java -version"
      sh "mvn clean install"
      echo 'Compiled parent pom succesfully'
-   }
+    }
    
    stage 'run unit test mylab core'
-   dir("mylab-core") {
+    dir("mylab-core") {
      sh "mvn test"
      echo 'Unit test has passed succesfully'
      stage 'run package mylab core '
      sh "mvn package"
      echo 'App has been packaged succesfully'
-   }
+    }
    
-   stage 'run unit test rest layer'
+    stage 'run unit test rest layer'
      dir("spring-boot-mvc-rest") {
      sh "mvn test"
      echo 'Unit test has passed succesfully'
