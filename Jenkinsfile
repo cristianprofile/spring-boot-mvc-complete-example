@@ -1,8 +1,8 @@
 
-node {
+node { 
    
-   
-   checkout scm
+    stage 'checkout scm'
+    checkout scm
    
    stage 'compile parent pom'
    dir("mylab-parent-pom") {
