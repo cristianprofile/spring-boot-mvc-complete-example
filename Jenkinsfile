@@ -2,7 +2,10 @@
 node { 
    
    
+   sh "docker-machine ls"
+   
    docker.image('maven:3.3.3-jdk-8').inside {
+
    
    stage 'checkout scm'
     checkout scm
