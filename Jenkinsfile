@@ -1,6 +1,9 @@
 
 node { 
    
+   docker.image('maven:3.3.3-jdk-8').inside {
+
+   
    stage 'checkout scm'
     checkout scm
    
@@ -32,5 +35,7 @@ node {
      echo 'App has been deployed to develop server'
      //TODO DEPLOY TO SERVER XXXXX
     }  
+    
+    }
    
 }
