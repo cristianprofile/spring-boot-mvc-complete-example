@@ -2,9 +2,7 @@
 node { 
    
    
-    withEnv(["PATH+MAVEN=/bin"]) {
-   
-   sh 'eval $(docker-machine env default);docker pull maven:3.3.3-jdk-8'
+   sh 'eval $(docker-machine env default);docker pull maven:3.3.3-jdk-8;docker-machine ls'
    
    docker.image('maven:3.3.3-jdk-8').inside {
 
@@ -42,6 +40,6 @@ node {
     }  
     
     }
-    }
+    
    
 }
