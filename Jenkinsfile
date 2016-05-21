@@ -2,9 +2,7 @@
 node { 
    
    
-   sh 'eval $(docker-machine env default);docker-machine ls'
-   
-    echo 'starting machine dafault daemon'
+   sh 'docker-machine ls'
    
    docker.image('maven:3.3.3-jdk-8').inside {
 
