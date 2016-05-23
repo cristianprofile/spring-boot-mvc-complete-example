@@ -12,6 +12,7 @@ node {
    
    
   maven.inside('--privileged=true') {
+     echo 'show java version'
      sh "java -version"
    
    }
