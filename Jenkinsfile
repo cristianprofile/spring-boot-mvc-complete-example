@@ -10,7 +10,7 @@ node {
   // make sure we have the latest available from Docker Hub
    
    
-  maven.inside('--privileged=true -v /m2repo:/m2repo') {
+  maven.inside() {
      echo 'show java version'
      checkout scm
      sh 'mvn -Dmaven.repo.local=/m2repo -f app -B -DskipTests clean package'
