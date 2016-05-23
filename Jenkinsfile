@@ -2,7 +2,7 @@
 node { 
    
    
-   docker.image('jamesdbloom/docker-java8-maven').withRun('-u root').inside {
+   docker.image('maven:3.3.3-jdk-8').withRun('-u root').inside {
    sh "java -version"
    
 
