@@ -13,6 +13,8 @@ node {
    
   maven.inside('--privileged=true') {
      echo 'show java version'
+     checkout scm
+     sh "mvn test"
      sh "java -version"
    
    }
