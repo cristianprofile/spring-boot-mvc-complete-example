@@ -17,14 +17,14 @@ node {
      			sh "mvn -f mylab-core/pom.xml -s settings.xml test"
      			echo 'Unit test has passed succesfully'
      			stage 'run package mylab core '
-     			sh "mvn -f mylab-core/pom.xml -s settings.xml package"
+     			sh "mvn -f mylab-core/pom.xml -s settings.xml install"
      			echo 'App has been packaged succesfully'
    
    		   stage 'run unit test rest layer'
      			sh "mvn -f spring-boot-mvc-rest/pom.xml -s settings.xml test"
      			echo 'Unit test has passed succesfully'
      			stage 'run package rest layer'
-     			sh "mvn -f spring-boot-mvc-rest/pom.xml -s settings.xml  package"
+     			sh "mvn -f spring-boot-mvc-rest/pom.xml -s settings.xml  install"
      			echo 'App has been packaged succesfully'
      	    
      	   stage 'deploy app to develop server'
