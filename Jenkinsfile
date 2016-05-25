@@ -9,7 +9,7 @@ node {
        	  checkout scm
        	  writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
        	  sh "mvn -version"
-       	    stage 'compile parent pom'
+       	   stage 'compile parent pom'
         	    sh "mvn -f mylab-parent-pom/pom.xml -s settings.xml  clean install"
        			echo 'Compiled parent pom succesfully'
    
@@ -28,9 +28,9 @@ node {
      			echo 'App has been packaged succesfully'
      	    
      	   stage 'deploy app to develop server'
-     	    input message: 'Do you want to deploy your artifact to develop server?', ok: 'OK', submitter: 'admin'
-     	    echo 'App has been deployed to develop server'
-     		//TODO DEPLOY TO SERVER XXXXX
+     	    	input message: 'Do you want to deploy your artifact to develop server?', ok: 'OK', submitter: 'admin'
+     	    	echo 'App has been deployed to develop server'
+     			//TODO DEPLOY TO SERVER XXXXX
       
        }
        
