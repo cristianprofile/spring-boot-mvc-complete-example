@@ -4,7 +4,6 @@ node {
        	  checkout scm
        	  sh "pwd"
        	  sh "mvn -version"
-          sh "mvn clean install"
        	    stage 'compile parent pom'
        	  	  dir("mylab-parent-pom") {
         		sh "pwd"
