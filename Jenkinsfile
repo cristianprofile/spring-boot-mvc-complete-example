@@ -1,10 +1,12 @@
 node {    
        docker.image('maven:3.3.3-jdk-8').withRun('-u root') {
        	  checkout scm
+       	  sh "mvn -version"
+          sh "mvn clean install"
        	    stage 'compile parent pom'
        	  	  dir("mylab-parent-pom") {
         		sh "java -version"
-        		sh "mvn clean install"
+        	
        			echo 'Compiled parent pom succesfully'
        		   }
    
