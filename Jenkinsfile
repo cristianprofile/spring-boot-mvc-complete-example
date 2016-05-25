@@ -7,8 +7,9 @@ node {
           sh "mvn clean install"
        	    stage 'compile parent pom'
        	  	  dir("mylab-parent-pom") {
-        		sh "java -version"
-        	
+        		sh "pwd"
+        		sh "ls"
+        	    sh "mvn clean install"
        			echo 'Compiled parent pom succesfully'
        		   }
    
