@@ -1,34 +1,31 @@
 node {    
-       docker.image('maven:3.3.3-jdk-8').inside('-u root') {
+
+
+
+       def image = docker.image('maven:3.3.3-jdk-8')
+       image.pull() // make sure we have the latest available from Docker Hub
+       image.inside('-u root') {
           sh "pwd"
        	  checkout scm
        	  sh "pwd"
        	  sh "mvn -version"
        	    stage 'compile parent pom'
-       	  	  dir("mylab-parent-pom") {
-        		sh "pwd"
-        		sh "ls"
-        	    sh "mvn clean install"
+        	    sh "mvn -f mylab-parent-pom/pom.xml  clean install"
        			echo 'Compiled parent pom succesfully'
-       		   }
    
    		   stage 'run unit test mylab core'
-   			dir("mylab-core") {
-     			sh "mvn test"
+     			sh "mvn -f mylab-core/pom.xml test"
      			echo 'Unit test has passed succesfully'
      			stage 'run package mylab core '
-     			sh "mvn package"
+     			sh "mvn -f mylab-core/pom.xml  package"
      			echo 'App has been packaged succesfully'
-   				}
    
    		   stage 'run unit test rest layer'
-     		dir("spring-boot-mvc-rest") {
-     			sh "mvn test"
+     			sh "mvn -f spring-boot-mvc-rest/pom.xml test"
      			echo 'Unit test has passed succesfully'
      			stage 'run package rest layer'
-     			sh "mvn package"
+     			sh "mvn -f spring-boot-mvc-rest/pom.xml  package"
      			echo 'App has been packaged succesfully'
-     	    }
      	    
      	   stage 'deploy app to develop server'
      	    input message: 'Do you want to deploy your artifact to develop server?', ok: 'OK', submitter: 'admin'
