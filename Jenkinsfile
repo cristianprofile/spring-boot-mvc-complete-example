@@ -1,5 +1,5 @@
 node {    
-       docker.image('maven:3.3.3-jdk-8').withRun('-u root') {
+       docker.image('maven:3.3.3-jdk-8').inside('-u root') {
        	  checkout scm
        	  sh "mvn -version"
           sh "mvn clean install"
