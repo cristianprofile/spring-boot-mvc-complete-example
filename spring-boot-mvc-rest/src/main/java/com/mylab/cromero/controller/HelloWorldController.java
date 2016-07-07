@@ -36,9 +36,10 @@ public class HelloWorldController {
     @Autowired
     private BaseService baseService;
 
+
     // example of calling with pageable
     // http://localhost:8080/SpringMVC/base?sort=firstname&sort=lastname,asc&size=444&page=22
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public List<BaseResponse> listAllBase(
             @PageableDefault(size = 50, page = 2) Pageable pageable) {
 
@@ -50,7 +51,7 @@ public class HelloWorldController {
 
     }
 
-    @RequestMapping(value = "/{baseId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{baseId}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public BaseResponse getBase(@PathVariable("baseId") long id) {
         return baseService.getBase(id);
     }
@@ -61,7 +62,7 @@ public class HelloWorldController {
         baseService.deleteBase(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.CREATED)
     public void insertBase(@RequestBody BaseRequest newBase) {
 
@@ -71,7 +72,7 @@ public class HelloWorldController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public void updateBase(@RequestBody BaseRequest base) {
 
