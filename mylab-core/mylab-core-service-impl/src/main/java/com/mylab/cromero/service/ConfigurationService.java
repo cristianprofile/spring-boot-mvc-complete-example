@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(ConfigurationRepository.class)
-@ComponentScan({"com.mylab.cromero.service"})
+@ComponentScan(basePackageClasses = ConfigurationService.class)
 public class ConfigurationService {
 
 }
