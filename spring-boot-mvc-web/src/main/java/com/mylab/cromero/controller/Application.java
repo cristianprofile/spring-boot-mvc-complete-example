@@ -1,5 +1,6 @@
  package com.mylab.cromero.controller;
 
+ import com.mylab.cromero.controller.controller.WebController;
  import com.mylab.cromero.service.ConfigurationService;
  import com.mylab.cromero.service.security.ConfigurationServiceSecurity;
  import org.slf4j.Logger;
@@ -31,7 +32,7 @@
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"com.mylab.cromero.controller"})
+@ComponentScan(basePackageClasses = WebController.class)
 @Import({ConfigurationServiceSecurity.class, ConfigurationService.class})
 public class Application extends WebMvcConfigurerAdapter {
 	

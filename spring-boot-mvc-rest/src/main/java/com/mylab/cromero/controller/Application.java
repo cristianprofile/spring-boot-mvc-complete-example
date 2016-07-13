@@ -29,7 +29,7 @@ import java.util.Arrays;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"com.mylab.cromero.controller"})
+@ComponentScan(basePackageClasses = Application.class)
 @Import({ConfigurationService.class})
 public class Application {
 

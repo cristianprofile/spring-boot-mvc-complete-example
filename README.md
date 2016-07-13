@@ -74,5 +74,9 @@ Jenkins 2 automatic multibranch plugin mode with JenkinsFile file in main direct
 -  [DZONE refcard jenkins pipeline](https://dzone.com/refcardz/continuous-delivery-with-jenkins-workflow "DZONE refcard jenkins pipeline")
 -  [Github examples](https://github.com/jenkinsci/pipeline-examples "Github examples")  
 
+Docker integration in feature  branch called: docker_container_jenkins
+
+-  [Docker container feature branch](https://github.com/cristianprofile/spring-boot-mvc-complete-example/blob/feature/docker_container_jenkins/Jenkinsfile "Run IC in a Docker container")  
+
 ![Pipeline plugin](/images/git-flow.png?raw=true "Pipeline plugin")
 

@@ -1,0 +1,1 @@
+include 'mylab-core-repository','mylab-core-service-impl','mylab-core-service-api','mylab-core-service-security-impl'
