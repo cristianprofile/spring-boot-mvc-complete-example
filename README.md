@@ -4,11 +4,16 @@ Spring Maven Java 1.8
 [![Coverage Status](https://coveralls.io/repos/cristianprofile/spring-boot-mvc-complete-example/badge.svg)](https://coveralls.io/r/cristianprofile/spring-boot-mvc-complete-example)  [![Build Status](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example.svg?branch=develop)](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cristianprofile/spring-boot-mvc-complete-example?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+
+UPDATED APP WITH GRADLE SUPPORT
+
+To be able to build the application run "gradle build" command.
+
 NEW SPRING BOOT MVC APP CREATED, ENJOY IT (web module, rest module and spring data rest example)
 
 **Important!!!!! First of all you have to install with "mvn install" modules "mylab-parent-pom" and after "mvn install" of module "mylab-core".**
 
-run spring-boot-mvc-web-example module with maven  "mvn spring-boot:run" and access to http://localhost:9090/pizza
+run spring-boot-mvc-web-example module with maven  "mvn spring-boot:run" (if you want to use Gradle run "gradle bootRun" into spring-boot-mvc-web-example ) and access to http://localhost:9090/pizza
 and user: "admin@ole.com" and password "admin@ole.com".You can create other users with ROLE_USER at add user left menu
 option.
 
@@ -21,7 +26,8 @@ option.
 
 ------------------------------------------------------------------------------------------------------
 
-If you want to access to Rest Service with Spring boot module "spring-boot-mvc" first run mvn spring-boot:run:
+If you want to access to Rest Service with Spring boot module "spring-boot-mvc" first run mvn spring-boot:run (if you want to use Gradle run "java jar build/libs/spring-boot-mvc-rest-1.0.0-SNAPSHOT.jar"
+ into spring-boot-mvc-rest folder ):
 
 - http://localhost:9090/base (get list of all bases)
 - http://localhost:9090/base/1 (get base info with id=1)
@@ -48,7 +54,8 @@ More info about Spring Actuator at: [Spring Actuator](https://github.com/spring-
 
 Spring Data REST builds on top of Spring Data repositories, analyzes your application’s domain model and exposes hypermedia-driven HTTP resources for aggregates contained in the model.
 
-If you want to access to Rest Service with Spring boot module "spring-boot-data-rest" first run mvn spring-boot:run:
+If you want to access to Rest Service with Spring boot module "spring-boot-data-rest" first run mvn spring-boot:run (if you want to use Gradle run "java jar build/libs/spring-boot-data-rest-1.0.0-SNAPSHOT.jar "
+ into spring-boot-data-rest):
 
 - http://localhost:9090/api/bases to get all bases (get list of all bases)
 - http://localhost:9090/api/bases (post create new base sending json info. Example "name":"rolling pizza" )
