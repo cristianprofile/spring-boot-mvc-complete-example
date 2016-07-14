@@ -5,35 +5,34 @@ buildscript {
     }
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.6.RELEASE")
         classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.0.3'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.6.RELEASE")
     }
 }
 
 
+allprojects {
+    group = 'com.mylab.cromero'
+    version = '1.0.0-SNAPSHOT'
+
+
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'ca.cutterslade.analyze'
+}
 
 subprojects {
 
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     repositories {
         mavenCentral()
+        jcenter()
     }
 
 
 
-    apply plugin: 'java'
-    apply plugin: 'ca.cutterslade.analyze'
-    apply plugin: 'spring-boot'
-    apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'war'
-
-
-
-    group = 'com.mylab.cromero'
-    version = '1.0.0-SNAPSHOT'
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
 
 
     dependencyManagement {
@@ -41,7 +40,6 @@ subprojects {
             mavenBom "io.spring.platform:platform-bom:2.0.6.RELEASE"
         }
     }
-
     analyzeTestClassesDependencies
             {
                 justWarn = true
@@ -53,6 +51,13 @@ subprojects {
 
 
 
+
+    jar {
+        manifest {
+            attributes 'Implementation-Title': 'Gradle Java 8 POC Project',
+                    'Implementation-Version': version
+        }
+    }
 
     dependencies {
 
@@ -116,6 +121,10 @@ project(':mylab-core:mylab-core-repository') {
 
     project(':spring-boot-mvc-rest') {
 
+
+        apply plugin: 'spring-boot'
+        apply plugin: 'war'
+
         dependencies {
 
             compile project(':mylab-core:mylab-core-service-impl')
@@ -129,10 +138,16 @@ project(':mylab-core:mylab-core-repository') {
 
 
         }
+
+
     }
 
 
     project(':spring-boot-data-rest') {
+
+
+        apply plugin: 'spring-boot'
+        apply plugin: 'war'
 
         dependencies {
 
@@ -151,7 +166,12 @@ project(':mylab-core:mylab-core-repository') {
 
     project(':spring-boot-mvc-web') {
 
+
+        apply plugin: 'spring-boot'
+        apply plugin: 'war'
+
         dependencies {
+
 
             compile project(':mylab-core:mylab-core-service-impl')
             compile project(':mylab-core:mylab-core-service-impl')
@@ -169,6 +189,8 @@ project(':mylab-core:mylab-core-repository') {
 
         }
 
+
     }
+
 
 }
