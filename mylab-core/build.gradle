@@ -21,7 +21,7 @@ subprojects {
 
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'java'
-    apply plugin: "jacoco"
+//    apply plugin: "jacoco"
 
 
 
@@ -42,7 +42,6 @@ subprojects {
 
     dependencies {
 
-        testCompile 'junit:junit'
         testCompile "org.springframework.boot:spring-boot-starter-test"
 
     }
@@ -65,10 +64,8 @@ project(':mylab-core-repository') {
     dependencies {
 
         compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-        compile 'org.apache.commons:commons-lang3'git
+        compile 'org.apache.commons:commons-lang3'
         compile 'javax.validation:validation-api'
-        compile 'org.springframework:spring-core'
-        testCompile 'org.hibernate:hibernate-validator-annotation-processor'
         testCompile 'org.hibernate:hibernate-validator'
         testCompile 'javax.el:javax.el-api'
         testCompile 'org.hsqldb:hsqldb'
@@ -84,7 +81,6 @@ project(':mylab-core-repository') {
             compile project(':mylab-core-service-api')
             compile 'org.hamcrest:hamcrest-library'
             testCompile 'org.hsqldb:hsqldb'
-            testCompile 'org.hibernate:hibernate-validator-annotation-processor'
             testCompile 'org.hibernate:hibernate-validator'
             testCompile 'javax.el:javax.el-api'
 
