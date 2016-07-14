@@ -18,7 +18,6 @@
 
     <dependencies>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -29,6 +28,7 @@
             <artifactId>mylab-core-service-impl</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>com.mylab.cromero.core</groupId>
             <artifactId>mylab-core-service-security-impl</artifactId>
