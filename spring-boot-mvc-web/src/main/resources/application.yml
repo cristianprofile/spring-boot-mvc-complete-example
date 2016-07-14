@@ -11,3 +11,16 @@ logging:
             org.apache.tiles: DEBUG
 endpoints:
         shutdown.enabled: true
+
+server:
+        port: 9090
+        contextPath: /pizza
+        session:
+                timeout: 10000
+management:
+        port: 9091
+        address: 127.0.0.1
+        context-path: /manage
+        security:
+              enabled: true
+              role: ADMIN
