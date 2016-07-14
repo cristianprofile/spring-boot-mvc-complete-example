@@ -1,0 +1,1 @@
+include ':mylab-core:mylab-core-repository', ':mylab-core:mylab-core-service-impl', ':mylab-core:mylab-core-service-api', ':mylab-core:mylab-core-service-security-impl', 'spring-boot-mvc-rest', 'spring-boot-data-rest', 'spring-boot-mvc-web'
