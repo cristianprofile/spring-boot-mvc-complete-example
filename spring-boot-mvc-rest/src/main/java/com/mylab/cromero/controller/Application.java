@@ -29,7 +29,7 @@ import java.util.Arrays;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackageClasses = Application.class)
+@ComponentScan(basePackageClasses = HelloWorldController.class)
 @Import({ConfigurationService.class})
 public class Application {
 
