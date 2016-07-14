@@ -34,7 +34,7 @@ public class BaseIntegrationTest {
     @Test
     public void testCount() {
         Assert.assertNotNull(
-                "Data on demand for 'Base' failed to initialize correctly",
+                "Data on demand for 'Base' faailed to initialize correctly",
                 dod.getRandomBase());
         long count = baseRepository.count();
         Assert.assertTrue(
