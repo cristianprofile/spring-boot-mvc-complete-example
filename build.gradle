@@ -1,0 +1,187 @@
+
+//get spring platform dependencies
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+        classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.0.3'
+    }
+}
+
+
+
+subprojects {
+
+
+    repositories {
+        mavenCentral()
+    }
+
+
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'ca.cutterslade.analyze'
+
+
+
+    group = 'com.mylab.cromero'
+    version = '1.0.0-SNAPSHOT'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+
+    dependencyManagement {
+        imports {
+            mavenBom "io.spring.platform:platform-bom:2.0.6.RELEASE"
+        }
+    }
+analyzeTestClassesDependencies
+{
+      justWarn = true
+}
+
+  analyzeClassesDependencies {
+      justWarn = true
+}
+
+  
+
+
+    jar {
+        manifest {
+            attributes 'Implementation-Title': 'Gradle Java 8 POC Project',
+                    'Implementation-Version': version
+        }
+    }
+
+  dependencies {
+
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+
+    }
+
+
+}
+
+// S U B P R O J E C T S
+
+project(':mylab-core:mylab-core-repository') {
+
+    dependencies {
+
+        compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+        compile 'org.apache.commons:commons-lang3'
+        compile 'javax.validation:validation-api'
+        
+        testCompile 'org.hibernate:hibernate-validator'
+        testCompile 'javax.el:javax.el-api'
+        testCompile 'org.hsqldb:hsqldb'
+
+    }
+
+
+
+    project(':mylab-core:mylab-core-service-impl') {
+
+        dependencies {
+            compile project(':mylab-core:mylab-core-repository')
+            compile project(':mylab-core:mylab-core-service-api')
+            
+            compile 'org.hamcrest:hamcrest-library'
+            
+            testCompile 'org.hsqldb:hsqldb'
+            testCompile 'org.hibernate:hibernate-validator'
+            testCompile 'javax.el:javax.el-api'
+
+        }
+
+        project(':mylab-core:mylab-core-service-security-impl') {
+            dependencies {
+                compile project(':mylab-core:mylab-core-repository')
+                compile project(':mylab-core:mylab-core-service-api')
+                compile 'org.springframework.security:spring-security-core'
+            }
+        }
+
+    }
+
+    project(':mylab-core:mylab-core-service-api') {
+
+        dependencies {
+                
+
+        }
+    }
+
+
+    project(':spring-boot-mvc-rest') {
+
+        dependencies {
+        
+        compile project(':mylab-core:mylab-core-service-impl')
+        
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'org.springframework.boot:spring-boot-starter-actuator'
+        compile 'org.hsqldb:hsqldb'
+        
+        testCompile 'com.jayway.jsonpath:json-path'
+    	testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+
+        }
+    }
+    
+    
+        project(':spring-boot-data-rest') {
+
+        dependencies {
+        
+        compile project(':mylab-core:mylab-core-repository')
+        compile project(':mylab-core:mylab-core-service-api')
+        
+        compile 'org.springframework.boot:spring-boot-starter-data-rest'
+        compile 'org.springframework.data:spring-data-rest-hal-browser' 
+        compile 'org.springframework.boot:spring-boot-starter-actuator'
+        compile 'org.hsqldb:hsqldb'
+        
+        testCompile 'com.jayway.jsonpath:json-path'
+
+        }
+    }
+    
+         project(':spring-boot-mvc-web') {
+
+        dependencies {
+        
+        compile project(':mylab-core:mylab-core-service-impl')
+        compile project(':mylab-core:mylab-core-service-security-impl')
+        
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'org.springframework.boot:spring-boot-starter-actuator'
+        compile 'org.springframework.boot:spring-boot-starter-security'
+        
+        
+
+
+        }
+        
+        
+         
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+}
