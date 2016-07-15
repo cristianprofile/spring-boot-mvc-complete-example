@@ -13,7 +13,6 @@ buildscript {
     }
 }
 
-
 allprojects {
     group = 'com.mylab.cromero'
     version = '1.0.0-SNAPSHOT'
@@ -22,7 +21,79 @@ allprojects {
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'java'
     apply plugin: 'ca.cutterslade.analyze'
+    apply plugin: 'jacoco'
+    apply plugin: 'idea'
+
+/*CREATE NEW INTEGRATION TEST SOURCESET
+(thanks to Petri Kainulainen post support url: https://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/ )
+    **************************************************************
+    ***************************************************************/
+
+    /*   Add new source and resource directories to our Gradle build. Created a new source set, the Java plugin added two new dependency configurations to our build:
+
+       - The integrationTestCompile configuration is used to declare the dependencies that are required when our integration tests are compiled.
+       - The integrationTestRuntime configuration is used to declare the dependencies that are required to run our integration tests. This configuration contains all dependencies that are added to the integrationTestCompile configuration.
+    */
+
+    sourceSets {
+        integrationTest {
+            java {
+                compileClasspath += main.output + test.output
+                runtimeClasspath += main.output + test.output
+                srcDir file('src/integration-test/java')
+            }
+            resources.srcDir file('src/integration-test/resources')
+        }
+    }
+
+//    contain the dependencies of our unit tests in our Integration Test
+
+    configurations {
+        integrationTestCompile.extendsFrom testCompile
+        integrationTestRuntime.extendsFrom testRuntime
+    }
+
+/*    Creat the task that runs our integration tests:
+
+    - Create a new task called integrationTest and set its type to Test.
+    - Configure the location of the compiled test classes.
+    - Configure the classpath that is used when our integration tests are run.*/
+
+    task integrationTest(type: Test) {
+        testClassesDir = sourceSets.integrationTest.output.classesDir
+        classpath = sourceSets.integrationTest.runtimeClasspath
+    }
+
+
+//    check task will  depend on our new integrationTest task
+
+    check.dependsOn integrationTest
+
+//    Our integrationTest task must run after java's plugin test task'
+    integrationTest.mustRunAfter test
+
+//    We define diferent html report destination for unit and integration test
+    tasks.withType(Test) {
+        reports.html.destination = file("${reporting.baseDir}/${name}")
+
+    }
+
+//    Add integration test folder to intellij Ide
+
+    idea {
+        module {
+            testSourceDirs += file('src/integration-test/java')
+            testSourceDirs += file('src/iintegration-test/resources')
+        }
+    }
+
+/*    END CREATE NEW INTEGRATION TEST SOURCESET    *******************************
+    **************************************************************
+    ***************************************************************/
+
+
 }
+
 subprojects {
 
     sourceCompatibility = 1.8
@@ -37,14 +108,6 @@ subprojects {
         imports {
             //import maven bom to use Spring Platform --> versions of dependecies will be managed by Spring
             mavenBom "io.spring.platform:platform-bom:2.0.6.RELEASE"
-        }
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            // fail eagerly on version conflict (includes transitive dependencies)
-            // e.g. multiple different versions of the same dependency (group and name are equal)
-            failOnVersionConflict()
         }
     }
 
