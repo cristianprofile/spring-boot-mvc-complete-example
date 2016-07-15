@@ -1,12 +1,15 @@
-//get spring platform dependencies
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
+        // get spring platform dependencies plugin
         classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
-        classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.0.3'
+        // get spring boot gradle  to be able to  run war with task "gradle bootRun"
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.6.RELEASE")
+        // get gradle dependency analyze This plugin attempts to replicate the functionality of the maven dependency plugin's analyze
+        // goals which fail the build if dependencies are declared but not used or used but not declared.
+        classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.0.3'
     }
 }
 
@@ -20,7 +23,6 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'ca.cutterslade.analyze'
 }
-
 subprojects {
 
     sourceCompatibility = 1.8
@@ -31,20 +33,27 @@ subprojects {
         jcenter()
     }
 
-
-
-
-
     dependencyManagement {
         imports {
+            //import maven bom to use Spring Platform --> versions of dependecies will be managed by Spring
             mavenBom "io.spring.platform:platform-bom:2.0.6.RELEASE"
         }
     }
-    analyzeTestClassesDependencies
-            {
-                justWarn = true
-            }
 
+    configurations.all {
+        resolutionStrategy {
+            // fail eagerly on version conflict (includes transitive dependencies)
+            // e.g. multiple different versions of the same dependency (group and name are equal)
+            failOnVersionConflict()
+        }
+    }
+
+    //configure task properties of gradle-dependency-analyze
+    analyzeTestClassesDependencies {
+        justWarn = true
+    }
+
+    //configure task properties of gradle-dependency-analyze
     analyzeClassesDependencies {
         justWarn = true
     }
@@ -54,13 +63,13 @@ subprojects {
 
     jar {
         manifest {
-            attributes 'Implementation-Title': 'Gradle Java 8 POC Project',
+            attributes 'Implementation-Title': 'Spring boot multimodules POC with Java 8',
                     'Implementation-Version': version
         }
     }
 
     dependencies {
-
+        //every module needs this dependency
         testCompile "org.springframework.boot:spring-boot-starter-test"
 
     }
