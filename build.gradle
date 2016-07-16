@@ -62,6 +62,9 @@ allprojects {
     task integrationTest(type: Test) {
         testClassesDir = sourceSets.integrationTest.output.classesDir
         classpath = sourceSets.integrationTest.runtimeClasspath
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
     }
 
 
@@ -83,7 +86,9 @@ allprojects {
     idea {
         module {
             testSourceDirs += file('src/integration-test/java')
-            testSourceDirs += file('src/iintegration-test/resources')
+            testSourceDirs += file('src/integration-test/resources')
+            scopes.TEST.plus += configurations.integrationTestCompile
+            scopes.TEST.plus += configurations.integrationTestCompile
         }
     }
 
