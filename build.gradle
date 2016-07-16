@@ -87,8 +87,6 @@ allprojects {
         module {
             testSourceDirs += file('src/integration-test/java')
             testSourceDirs += file('src/integration-test/resources')
-            scopes.TEST.plus += configurations.integrationTestCompile
-            scopes.TEST.plus += configurations.integrationTestRuntime
         }
     }
 
