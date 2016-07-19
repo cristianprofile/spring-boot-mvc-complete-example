@@ -62,18 +62,10 @@ allprojects {
     task integrationTest(type: Test) {
         testClassesDir = sourceSets.integrationTest.output.classesDir
         classpath = sourceSets.integrationTest.runtimeClasspath
-        testLogging {
-            events "passed", "skipped", "failed"
-        }
     }
 
 
-//    check task will  depend on our new integrationTest task
 
-    check.dependsOn integrationTest
-
-//    Our integrationTest task must run after java's plugin test task'
-    integrationTest.mustRunAfter test
 
 //    We define diferent html report destination for unit and integration test
     tasks.withType(Test) {
@@ -93,6 +85,11 @@ allprojects {
 /*    END CREATE NEW INTEGRATION TEST SOURCESET    *******************************
     **************************************************************
     ***************************************************************/
+
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '2.3'
+    }
 
 
 }
