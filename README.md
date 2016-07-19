@@ -10,11 +10,13 @@ gradle wrapper (run Gradle wrapper)
 
 After this operation you can run every Gradle command of this guide with 
 
-./gradlew xxxxxtask
+./gradlew xxxxxtask (Unix, Linux)
+gradlew.bat XXXtask  (Windows)
 
 Example
 
-./gradlew clean compile
+./gradlew clean compile (Unix, Linux)
+gradlew.bat clean compile (Windows)
 
 ```
 
