@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,19 +39,18 @@ public class HelloWorldController {
 
     // example of calling with pageable
     // http://localhost:8080/SpringMVC/base?sort=firstname&sort=lastname,asc&size=444&page=22
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+
+    @RequestMapping(method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<BaseResponse> listAllBase(
             @PageableDefault(size = 50, page = 2) Pageable pageable) {
 
         // logger.debug("paginación recibida :{}",pageable);
         List<BaseResponse> findAllBases = baseService.findAllBases();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
         return findAllBases;
 
     }
 
-    @RequestMapping(value = "/{baseId}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/{baseId}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse getBase(@PathVariable("baseId") long id) {
         return baseService.getBase(id);
     }
@@ -62,7 +61,7 @@ public class HelloWorldController {
         baseService.deleteBase(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void insertBase(@RequestBody BaseRequest newBase) {
 
@@ -72,7 +71,7 @@ public class HelloWorldController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=UTF-8")
+    @RequestMapping(method = RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public void updateBase(@RequestBody BaseRequest base) {
 

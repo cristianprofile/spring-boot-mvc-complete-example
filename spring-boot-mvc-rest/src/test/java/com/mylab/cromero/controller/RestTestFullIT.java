@@ -61,7 +61,7 @@ public class RestTestFullIT {
 
     @Test
     public void getBases() throws Exception {
-        //TODO TEST WITH REPOSITORY ACCESS BLOCK TEST EXECUTION
+
         logger.debug("PORT:" + port);
 
         Base baseAlmacenar = new Base();

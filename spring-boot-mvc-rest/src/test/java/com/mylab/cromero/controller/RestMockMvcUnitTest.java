@@ -2,7 +2,6 @@ package com.mylab.cromero.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.mylab.cromero.repository.BaseRepository;
 import com.mylab.cromero.repository.domain.Base;
 import com.mylab.cromero.repository.dto.BaseRequest;
 import com.mylab.cromero.repository.dto.BaseResponse;
@@ -19,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(MockitoJUnitRunner.class)
 public class RestMockMvcUnitTest {
 
-    private final MediaType contentType = new MediaType(
-            MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+
 
 
     private MockMvc mockMvc;
@@ -66,7 +62,7 @@ public class RestMockMvcUnitTest {
         final BaseRequest baseRequest = new BaseRequest();
         baseRequest.setName("new base");
         String baseJson = json(baseRequest);
-        this.mockMvc.perform(post("/base").contentType(contentType)
+        this.mockMvc.perform(post("/base").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(baseJson)).andExpect(status().isCreated());
     }
 
@@ -84,7 +80,7 @@ public class RestMockMvcUnitTest {
                 findAllBases);
 
         mockMvc.perform(get("/base/")).andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(1)));
 
         verify(this.baseService, times(1)).findAllBases();
