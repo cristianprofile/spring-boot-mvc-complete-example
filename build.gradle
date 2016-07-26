@@ -246,7 +246,6 @@ project(':mylab-core:mylab-core-repository') {
 
 
             compile project(':mylab-core:mylab-core-service-impl')
-            compile project(':mylab-core:mylab-core-service-impl')
             compile project(':mylab-core:mylab-core-service-security-impl')
             compile 'org.springframework.boot:spring-boot-starter-web'
             compile 'org.springframework.boot:spring-boot-starter-actuator'
