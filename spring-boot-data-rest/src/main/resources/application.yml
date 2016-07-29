@@ -7,9 +7,6 @@ http:
     mappers: 
        jsonPrettyPrint: true
 spring:
-      mail: 
-          host: localhost
-          port: 3600
       main:
            banner-mode: OFF
       data:
