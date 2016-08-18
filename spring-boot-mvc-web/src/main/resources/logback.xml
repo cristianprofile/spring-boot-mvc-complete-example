@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
 	<!-- Methode 2 -->
 	<appender name="JSON" class="ch.qos.logback.core.FileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -15,6 +16,7 @@
             <customFields>{"appname":"Spring-boot-mvc","version":"1.0"}</customFields>
         </encoder>
     </appender>
+
     <!-- Methode 3 -->
     <appender name="TCP" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
       <destination>logstash:5044</destination>
