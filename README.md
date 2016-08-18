@@ -109,3 +109,27 @@ Docker integration in feature  branch called: docker_container_jenkins
 
 ![Pipeline plugin](/images/git-flow.png?raw=true "Pipeline plugin")
 
+
+## ELK SUPPORT IN WEB APP MODULE(Elasticsearch/Kibana/Logstash)
+
+First of all you need and ELK installed in you machine. The easiest way is use docker image (https://hub.docker.com/r/nshou/elasticsearch-kibana/) :
+
+-  Start your container with Kibana and ElasticSearch.
+-  Edit spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf with your elasticsearch port
+-  Download losgstash and run logstash command from web app initial folder "./logstash -vf spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf --debug"
+-  Run Spring boot web app: gradle bootRun or mvn spring-boot:run. Now your app will create 2 logs files in tmp folder:  spring-boot-mvc.log and spring-boot-mvc.log.json
+-  Logstash is monitoring .json file and create new document in elasticsearch
+-  Go to you kibana url and you will be able to filter log info
+
+![Logback Configuration](/images/logback-configuration.png?raw=true "Logback Configuration")
+![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
+![Kibana Screen Example](/images/kibana-info.png?raw=true "Logback Configuration")
+
+
+
+
+
+
+
+
+
