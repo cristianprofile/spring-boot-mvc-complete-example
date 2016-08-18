@@ -125,6 +125,7 @@ First of all you need and ELK installed in you machine. The easiest way is to us
 ![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
 ![Kibana Screen Example](/images/kibana-info.png?raw=true "Logback Configuration")
 
+Aditional info ELK and Spring boot: -  [Aditional info ELK and Spring boot](https://blog.codecentric.de/en/2014/10/log-management-spring-boot-applications-logstash-elastichsearch-kibana/ "Aditional info ELK and Spring boot")   
 
 
 
