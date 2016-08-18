@@ -5,7 +5,7 @@ import com.mylab.cromero.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,12 +31,10 @@ public class AsyncController {
     private BaseService baseService;
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET,produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Callable<List<BaseResponse>> listAllBase() {
 
         List<BaseResponse> findAllBases = baseService.findAllBases();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
         return () -> findAllBases;
     }
 

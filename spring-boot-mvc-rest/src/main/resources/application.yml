@@ -8,9 +8,6 @@ http:
 spring:
       main:
            banner-mode: OFF
-      mail:
-                host: localhost
-                port: 3600
 
 logging:
     level:

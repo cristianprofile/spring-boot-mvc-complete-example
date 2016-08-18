@@ -3,6 +3,25 @@
 [![Coverage Status](https://coveralls.io/repos/cristianprofile/spring-boot-mvc-complete-example/badge.svg)](https://coveralls.io/r/cristianprofile/spring-boot-mvc-complete-example)  [![Build Status](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example.svg?branch=develop)](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cristianprofile/spring-boot-mvc-complete-example?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+If you don`t have  gradle or maven in your computer you can use gradlew to be able to run the project
+
+```
+gradle wrapper (run Gradle wrapper)
+
+After this operation you can run every Gradle command of this guide with 
+
+./gradlew xxxxxtask (Unix, Linux)
+gradlew.bat XXXtask  (Windows)
+
+Example
+
+./gradlew clean compile (Unix, Linux)
+gradlew.bat clean compile (Windows)
+
+```
+
+
+You can build this project with Maven or Gradle. Here you have several snippets about how to use them: 
 
 ```
 mvn clean install (install jar to your local m2 )
@@ -12,7 +31,7 @@ gradle bootRun (run web app modules)
 ```
 
 
-**Important!!!!! First of all you have to install with "mvn install" modules "mylab-parent-pom" and after "mvn install" of module "mylab-core".**
+**Important!!!!!If you use Maven First of all you have to install with "mvn install" modules "mylab-parent-pom" and after "mvn install" of module "mylab-core".**
 
 
 ## Spring Boot mvc web with tiles app
@@ -89,4 +108,28 @@ Docker integration in feature  branch called: docker_container_jenkins
 -  [Docker container feature branch](https://github.com/cristianprofile/spring-boot-mvc-complete-example/blob/feature/docker_container_jenkins/Jenkinsfile "Run IC in a Docker container")  
 
 ![Pipeline plugin](/images/git-flow.png?raw=true "Pipeline plugin")
+
+
+## ELK SUPPORT IN WEB APP MODULE(Elasticsearch/Kibana/Logstash)
+
+First of all you need and ELK installed in you machine. The easiest way is use docker image (https://hub.docker.com/r/nshou/elasticsearch-kibana/) :
+
+-  Start your container with Kibana and ElasticSearch.
+-  Edit spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf with your elasticsearch port
+-  Download losgstash and run logstash command from web app initial folder "./logstash -vf spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf --debug"
+-  Run Spring boot web app: gradle bootRun or mvn spring-boot:run. Now your app will create 2 logs files in tmp folder:  spring-boot-mvc.log and spring-boot-mvc.log.json
+-  Logstash is monitoring .json file and create new document in elasticsearch
+-  Go to you kibana url and you will be able to filter log info
+
+![Logback Configuration](/images/logback-configuration.png?raw=true "Logback Configuration")
+![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
+![Kibana Screen Example](/images/kibana-info.png?raw=true "Logback Configuration")
+
+
+
+
+
+
+
+
 

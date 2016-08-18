@@ -19,6 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.hasSize;
@@ -50,6 +51,9 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @Transactional
 public class RestTestIT {
 
+    private final MediaType contentType = new MediaType(
+            MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
     @Autowired
     private BaseRepository baseRepository;
@@ -71,7 +75,7 @@ public class RestTestIT {
         final BaseRequest baseRequest = new BaseRequest();
         baseRequest.setName("new base");
         String baseJson = json(baseRequest);
-        this.mockMvc.perform(post("/base").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+        this.mockMvc.perform(post("/base").contentType(contentType)
                 .content(baseJson)).andExpect(status().isCreated());
     }
 
@@ -91,7 +95,7 @@ public class RestTestIT {
         baseRepository.save(baseAlmacenar);
 
         mockMvc.perform(get("/base/")).andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
                 .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
@@ -108,14 +112,14 @@ public class RestTestIT {
         baseAlmacenar.setName("masa pan");
         baseRepository.save(baseAlmacenar);
 
-        MvcResult mvcResult = mockMvc.perform(get("/baseasinc/"))
+        MvcResult mvcResult = mockMvc.perform(get("/baseasinc/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andExpect(request().asyncStarted())
                 .andReturn();
 
         mvcResult.getAsyncResult();
 
         mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
                 .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
