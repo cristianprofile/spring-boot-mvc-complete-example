@@ -112,7 +112,7 @@ Docker integration in feature  branch called: docker_container_jenkins
 
 ## ELK SUPPORT IN WEB APP MODULE(Elasticsearch/Kibana/Logstash)
 
-First of all you need and ELK installed in you machine. The easiest way is use docker image (https://hub.docker.com/r/nshou/elasticsearch-kibana/) :
+First of all you need and ELK installed in you machine. The easiest way is to use docker image (https://hub.docker.com/r/nshou/elasticsearch-kibana/) :
 
 -  Start your container with Kibana and ElasticSearch.
 -  Edit spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf with your elasticsearch port
