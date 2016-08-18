@@ -3,12 +3,7 @@ http:
             jsonPrettyPrint: true
         
 logging:
-        level:
-            org.springframework.web: DEBUG
-            org.hibernate: DEBUG
-            level: DEBUG
-            com.mylab: DEBUG
-            org.apache.tiles: DEBUG
+        file: /tmp/spring-boot-mvc.log
 endpoints:
         shutdown.enabled: true
 

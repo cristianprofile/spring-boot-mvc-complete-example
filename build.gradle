@@ -6,7 +6,7 @@ buildscript {
         // get spring platform dependencies plugin
         classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
         // get spring boot gradle  to be able to  run war with task "gradle bootRun"
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.6.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.7.RELEASE")
         // get gradle dependency analyze This plugin attempts to replicate the functionality of the maven dependency plugin's analyze
         // goals which fail the build if dependencies are declared but not used or used but not declared.
         classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.0.3'
@@ -203,6 +203,7 @@ project(':mylab-core:mylab-core-repository') {
 
             compile 'org.springframework.boot:spring-boot-starter-web'
             compile 'org.springframework.boot:spring-boot-starter-actuator'
+            compile("org.springframework.boot:spring-boot-starter-remote-shell")
             compile 'org.hsqldb:hsqldb'
 
             testCompile 'com.jayway.jsonpath:json-path'
@@ -229,6 +230,7 @@ project(':mylab-core:mylab-core-repository') {
             compile 'org.springframework.boot:spring-boot-starter-data-rest'
             compile 'org.springframework.data:spring-data-rest-hal-browser'
             compile 'org.springframework.boot:spring-boot-starter-actuator'
+            compile("org.springframework.boot:spring-boot-starter-remote-shell")
             compile 'org.hsqldb:hsqldb'
 
             testCompile 'com.jayway.jsonpath:json-path'
@@ -247,15 +249,22 @@ project(':mylab-core:mylab-core-repository') {
 
             compile project(':mylab-core:mylab-core-service-impl')
             compile project(':mylab-core:mylab-core-service-security-impl')
+
             compile 'org.springframework.boot:spring-boot-starter-web'
             compile 'org.springframework.boot:spring-boot-starter-actuator'
             compile 'org.springframework.boot:spring-boot-starter-security'
-            compile 'org.hsqldb:hsqldb'
+            compile("org.springframework.boot:spring-boot-starter-remote-shell")
+            runtime 'org.hsqldb:hsqldb'
             compile 'org.apache.tiles:tiles-jsp'
             compile 'org.springframework.security:spring-security-taglibs'
             compile("javax.servlet:jstl:1.2")
+            //needed to be able to run logback
+            compile 'net.logstash.logback:logstash-logback-encoder:4.7'
+            compile("ch.qos.logback:logback-classic:1.1.6")
+            compile("ch.qos.logback:logback-core:1.1.6")
             providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
             providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
 
 
         }
