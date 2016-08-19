@@ -123,10 +123,12 @@ First of all you need and ELK installed in you machine. The easiest way is to us
 
 ![Logback Configuration](/images/logback-configuration.png?raw=true "Logback Configuration")
 ![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
-![Kibana Screen Example](/images/kibana-info.png?raw=true "Logback Configuration")
+![Kibana Screen Example](/images/kibana-info.png?raw=true "Kibana Screen Example")
+![Kibana Screen Example 2 filter](/images/kibana-filter.png?raw=true "Kibana Screen Example 2 filter")
+
 
 Aditional info ELK and Spring boot: -  [Aditional info ELK and Spring boot](https://blog.codecentric.de/en/2014/10/log-management-spring-boot-applications-logstash-elastichsearch-kibana/ "Aditional info ELK and Spring boot")   
-
+Kibana Lucene Query language Sintax: [Kibana Lucene Query language Sintax](https://www.elastic.co/guide/en/beats/packetbeat/current/_kibana_queries_and_filters.html "Kibana Lucene Query language Sintax")   
 
 
 
