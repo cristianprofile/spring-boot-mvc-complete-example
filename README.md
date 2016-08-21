@@ -121,6 +121,8 @@ First of all you need and ELK installed in you machine. The easiest way is to us
 -  Logstash is monitoring .json file and create new document in elasticsearch
 -  Go to you kibana url and you will be able to filter log info
 
+
+![ELK DEMO](/images/elk.gif?raw=true "ELK DEMO")
 ![Logback Configuration](/images/logback-configuration.png?raw=true "Logback Configuration")
 ![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
 ![Kibana Screen Example](/images/kibana-info.png?raw=true "Kibana Screen Example")
