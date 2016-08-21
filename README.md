@@ -122,9 +122,10 @@ First of all you need and ELK installed in you machine. The easiest way is to us
 -  Go to you kibana url and you will be able to filter log info
 
 
+Link to youtube video demo:
 [![ELK DEMO](http://img.youtube.com/vi/A64aO6_d8rw/maxresdefault.jpg)](https://youtu.be/A64aO6_d8rw)
 
-![ELK DEMO](/images/elk.gif?raw=true "ELK DEMO")
+ScreenShots Images
 ![Logback Configuration](/images/logback-configuration.png?raw=true "Logback Configuration")
 ![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
 ![Kibana Screen Example](/images/kibana-info.png?raw=true "Kibana Screen Example")
