@@ -123,9 +123,11 @@ First of all you need and ELK installed in you machine. The easiest way is to us
 
 
 Link to youtube video demo:
-[![ELK DEMO](http://img.youtube.com/vi/A64aO6_d8rw/maxresdefault.jpg)](https://youtu.be/A64aO6_d8rw)
 
-ScreenShots Images
+[![ELK DEMO](/images/elkyoutube.png?raw=true)](https://youtu.be/A64aO6_d8rw)
+
+ScreenShots Images:
+
 ![Logback Configuration](/images/logback-configuration.png?raw=true "Logback Configuration")
 ![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
 ![Kibana Screen Example](/images/kibana-info.png?raw=true "Kibana Screen Example")
