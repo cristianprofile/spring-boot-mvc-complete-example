@@ -118,8 +118,19 @@ First of all you need and ELK installed in you machine. The easiest way is to us
 -  Edit spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf with your elasticsearch port
 -  Download losgstash and run logstash command from web app initial folder "./logstash -vf spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf --debug"
 -  Run Spring boot web app: gradle bootRun or mvn spring-boot:run. Now your app will create 2 logs files in tmp folder:  spring-boot-mvc.log and spring-boot-mvc.log.json
--  Logstash is monitoring .json file and create new document in elasticsearch
--  Go to you kibana url and you will be able to filter log info
+-  Logstash is monitoring .json file and create new document in elasticsearch for each new line
+-  Go to you kibana url:  It should be running at http://localhost:32771/.
+
+First, you need to point Kibana to Elasticsearch index(s) of your choice. Logstash creates indices with the name pattern of logstash-YYYY.MM.DD. In Kibana Settings → Indices configure the indices:
+
+1. Index contains time-based events (select this option)
+2. Use event times to create index names (select this option)
+3. Index pattern interval: Daily
+4. Index name or pattern: [logstash-]YYYY.MM.DD
+5. Click on "Create Index"
+6. Now click on "Discover" tab.
+
+In my opinion, "Discover" tab is really named incorrectly in Kibana - it should be labeled as "Search" instead of "Discover" because it allows you to perform new searches and also to save/manage them. Log events should be showing up now in the main window. If they're not, then double check the time period filter in to right corner of the screen. Default table will have 2 columns by default: Time and _source. In order to make the listing more useful, we can configure the displayed columns. From the menu on the left select level, class and logmessage.
 
 
 Link to youtube video demo:
