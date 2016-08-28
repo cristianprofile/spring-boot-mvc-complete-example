@@ -124,7 +124,7 @@ Spring boot app screen-shots:
 
 ![Spring boot info](/images/git_info_boot.png?raw=true "Spring boot info")
 ![Maven created git.properties](/images/git-info-maven.png?raw=true "Maven created git.properties")
-![Gradle created git.properties](/images/git-info-gradle?raw=true "Gradle Screen Example")
+![Gradle created git.properties](/images/git-info-gradle.png?raw=true "Gradle Screen Example")
 
 
 
