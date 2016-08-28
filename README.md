@@ -96,6 +96,42 @@ If you want to access to Rest Service with Spring boot module "spring-boot-data-
 
 More info about Spring Data Rest at: [Spring Data Rest](http://projects.spring.io/spring-data-rest/ "Spring Data Rest") 
 
+## Git commit info in Spring boot and jar maven/gradle package
+
+Maven and Gradle allow to generate a git.properties file containing information about the state of your git source code repository when the project was built.
+
+For Maven users the spring-boot-starter-parent POM includes a pre-configured plugin to generate a git.properties file. Simply add the following declaration to your POM:
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <groupId>pl.project13.maven</groupId>
+            <artifactId>git-commit-id-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
+Gradle users can achieve the same result using the gradle-git-properties plugin
+
+```
+plugins {
+    id "com.gorylenko.gradle-git-properties" version "1.4.17"
+}
+```
+
+Spring boot app screen-shots:
+
+![Spring boot info](/images/git_info_boot.png?raw=true "Spring boot info")
+![Maven created git.properties](/images/git-info-maven.png?raw=true "Maven created git.properties")
+![Gradle created git.properties](/images/git-info-gradle?raw=true "Gradle Screen Example")
+
+
+
+
+
+
+
 ## Jenkins 2 support with jenkins file
 
 Jenkins 2 automatic multibranch plugin mode with JenkinsFile file in main directory. More interesting information about new Jenkins 2 Pipeline script configuration at:
@@ -112,20 +148,41 @@ Docker integration in feature  branch called: docker_container_jenkins
 
 ## ELK SUPPORT IN WEB APP MODULE(Elasticsearch/Kibana/Logstash)
 
-First of all you need and ELK installed in you machine. The easiest way is use docker image (https://hub.docker.com/r/nshou/elasticsearch-kibana/) :
+First of all you need and ELK installed in you machine. The easiest way is to use docker image (https://hub.docker.com/r/nshou/elasticsearch-kibana/) :
 
 -  Start your container with Kibana and ElasticSearch.
 -  Edit spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf with your elasticsearch port
 -  Download losgstash and run logstash command from web app initial folder "./logstash -vf spring-boot-mvc-web/src/main/resources/logstash/logstash-spring-boot-json.conf --debug"
 -  Run Spring boot web app: gradle bootRun or mvn spring-boot:run. Now your app will create 2 logs files in tmp folder:  spring-boot-mvc.log and spring-boot-mvc.log.json
--  Logstash is monitoring .json file and create new document in elasticsearch
--  Go to you kibana url and you will be able to filter log info
+-  Logstash is monitoring .json file and create new document in elasticsearch for each new line
+-  Go to you kibana url:  It should be running at http://localhost:32771/.
+
+First, you need to point Kibana to Elasticsearch index(s) of your choice. Logstash creates indices with the name pattern of logstash-YYYY.MM.DD. In Kibana Settings → Indices configure the indices:
+
+1. Index contains time-based events (select this option)
+2. Use event times to create index names (select this option)
+3. Index pattern interval: Daily
+4. Index name or pattern: [logstash-]YYYY.MM.DD
+5. Click on "Create Index"
+6. Now click on "Discover" tab.
+
+In my opinion, "Discover" tab is really named incorrectly in Kibana - it should be labeled as "Search" instead of "Discover" because it allows you to perform new searches and also to save/manage them. Log events should be showing up now in the main window. If they're not, then double check the time period filter in to right corner of the screen. Default table will have 2 columns by default: Time and _source. In order to make the listing more useful, we can configure the displayed columns. From the menu on the left select level, class and logmessage.
+
+
+Link to youtube video demo:
+
+[![ELK DEMO](/images/elkyoutube.png?raw=true)](https://youtu.be/A64aO6_d8rw)
+
+ScreenShots Images:
 
 ![Logback Configuration](/images/logback-configuration.png?raw=true "Logback Configuration")
 ![Logstash Configuration](/images/logstash-configuration.png?raw=true "Logstash Configuration")
-![Kibana Screen Example](/images/kibana-info.png?raw=true "Logback Configuration")
+![Kibana Screen Example](/images/kibana-info.png?raw=true "Kibana Screen Example")
+![Kibana Screen Example 2 filter](/images/kibana-filter.png?raw=true "Kibana Screen Example 2 filter")
 
 
+Aditional info ELK and Spring boot: -  [Aditional info ELK and Spring boot](https://blog.codecentric.de/en/2014/10/log-management-spring-boot-applications-logstash-elastichsearch-kibana/ "Aditional info ELK and Spring boot")   
+Kibana Lucene Query language Sintax: [Kibana Lucene Query language Sintax](https://www.elastic.co/guide/en/beats/packetbeat/current/_kibana_queries_and_filters.html "Kibana Lucene Query language Sintax")   
 
 
 
