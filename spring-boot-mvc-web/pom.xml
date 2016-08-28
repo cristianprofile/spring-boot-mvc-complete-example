@@ -123,14 +123,8 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-remote-shell</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.webjars</groupId>-->
-        <!--<artifactId>jquery</artifactId>-->
-        <!--<version>${org.webjars.jquery.version}</version>-->
-        <!--</dependency>-->
 
 
     </dependencies>
@@ -145,6 +139,21 @@
                     <arguments>
                         <argument>--spring.profiles.active=dev</argument>
                     </arguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
                 </configuration>
             </plugin>
 

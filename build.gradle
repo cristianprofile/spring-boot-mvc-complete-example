@@ -13,6 +13,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.gorylenko.gradle-git-properties" version "1.4.17"
+}
+
 allprojects {
     group = 'com.mylab.cromero'
     version = '1.0.0-SNAPSHOT'
@@ -23,6 +27,14 @@ allprojects {
     apply plugin: 'ca.cutterslade.analyze'
     apply plugin: 'jacoco'
     apply plugin: 'idea'
+    apply plugin: "com.gorylenko.gradle-git-properties"
+
+
+    gitProperties {
+        dateFormat = "yyyy-MM-dd'T'HH:mmZ"
+        dateFormatTimeZone = "Europe/Madrid"
+    }
+
 
 /*CREATE NEW INTEGRATION TEST SOURCESET
 (thanks to Petri Kainulainen post support url: https://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/ )
@@ -88,7 +100,7 @@ allprojects {
 
 
     task wrapper(type: Wrapper) {
-        gradleVersion = '2.3'
+        gradleVersion = '3.0'
     }
 
 
@@ -205,6 +217,11 @@ project(':mylab-core:mylab-core-repository') {
             compile 'org.springframework.boot:spring-boot-starter-actuator'
             compile("org.springframework.boot:spring-boot-starter-remote-shell")
             compile 'org.hsqldb:hsqldb'
+            compile("org.springframework.boot:spring-boot-devtools")
+            //needed to be able to run logback
+            compile 'net.logstash.logback:logstash-logback-encoder:4.7'
+            compile("ch.qos.logback:logback-classic:1.1.6")
+            compile("ch.qos.logback:logback-core:1.1.6")
 
             testCompile 'com.jayway.jsonpath:json-path'
             testCompile 'org.springframework.boot:spring-boot-starter-test'
@@ -218,7 +235,6 @@ project(':mylab-core:mylab-core-repository') {
 
     project(':spring-boot-data-rest') {
 
-
         apply plugin: 'spring-boot'
         apply plugin: 'war'
 
@@ -228,10 +244,15 @@ project(':mylab-core:mylab-core-repository') {
             compile project(':mylab-core:mylab-core-service-api')
 
             compile 'org.springframework.boot:spring-boot-starter-data-rest'
+            compile("org.springframework.boot:spring-boot-devtools")
             compile 'org.springframework.data:spring-data-rest-hal-browser'
             compile 'org.springframework.boot:spring-boot-starter-actuator'
             compile("org.springframework.boot:spring-boot-starter-remote-shell")
             compile 'org.hsqldb:hsqldb'
+            //needed to be able to run logback
+            compile 'net.logstash.logback:logstash-logback-encoder:4.7'
+            compile("ch.qos.logback:logback-classic:1.1.6")
+            compile("ch.qos.logback:logback-core:1.1.6")
 
             testCompile 'com.jayway.jsonpath:json-path'
 
@@ -253,6 +274,7 @@ project(':mylab-core:mylab-core-repository') {
             compile 'org.springframework.boot:spring-boot-starter-web'
             compile 'org.springframework.boot:spring-boot-starter-actuator'
             compile 'org.springframework.boot:spring-boot-starter-security'
+            compile("org.springframework.boot:spring-boot-devtools")
             compile("org.springframework.boot:spring-boot-starter-remote-shell")
             runtime 'org.hsqldb:hsqldb'
             compile 'org.apache.tiles:tiles-jsp'

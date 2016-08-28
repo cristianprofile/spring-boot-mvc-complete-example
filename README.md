@@ -96,6 +96,42 @@ If you want to access to Rest Service with Spring boot module "spring-boot-data-
 
 More info about Spring Data Rest at: [Spring Data Rest](http://projects.spring.io/spring-data-rest/ "Spring Data Rest") 
 
+## Git commit info in Spring boot and jar maven/gradle package
+
+Maven and Gradle allow to generate a git.properties file containing information about the state of your git source code repository when the project was built.
+
+For Maven users the spring-boot-starter-parent POM includes a pre-configured plugin to generate a git.properties file. Simply add the following declaration to your POM:
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <groupId>pl.project13.maven</groupId>
+            <artifactId>git-commit-id-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
+Gradle users can achieve the same result using the gradle-git-properties plugin
+
+```
+plugins {
+    id "com.gorylenko.gradle-git-properties" version "1.4.17"
+}
+```
+
+Spring boot app screen-shots:
+
+![Spring boot info](/images/git_info_boot.png?raw=true "Spring boot info")
+![Maven created git.properties](/images/git-info-maven.png?raw=true "Maven created git.properties")
+![Gradle created git.properties](/images/git-info-gradle?raw=true "Gradle Screen Example")
+
+
+
+
+
+
+
 ## Jenkins 2 support with jenkins file
 
 Jenkins 2 automatic multibranch plugin mode with JenkinsFile file in main directory. More interesting information about new Jenkins 2 Pipeline script configuration at:
