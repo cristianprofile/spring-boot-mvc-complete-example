@@ -112,13 +112,15 @@ For Maven users the spring-boot-starter-parent POM includes a pre-configured plu
     </plugins>
 </build>
 ```
-Gradle users can achieve the same result using the gradle-git-properties plugin
+Gradle users can archieve the same result using the gradle-git-properties plugin
 
 ```
 plugins {
     id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 ```
+You can read more info about Spring boot how to config here: [Spring boot oficial documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-git-info "Spring boot oficial documentation")  
+
 
 Spring boot app screen-shots:
 
