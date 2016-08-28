@@ -14,6 +14,7 @@ buildscript {
 }
 
 plugins {
+    //git commit plugin to be able to create git.properties file and info for Spring boot actuator endpoint
     id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 
@@ -29,7 +30,7 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: "com.gorylenko.gradle-git-properties"
 
-
+    //config git.properties time-zone and date format
     gitProperties {
         dateFormat = "yyyy-MM-dd'T'HH:mmZ"
         dateFormatTimeZone = "Europe/Madrid"
