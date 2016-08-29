@@ -187,7 +187,7 @@ Aditional info ELK and Spring boot: -  [Aditional info ELK and Spring boot](http
 Kibana Lucene Query language Sintax: [Kibana Lucene Query language Sintax](https://www.elastic.co/guide/en/beats/packetbeat/current/_kibana_queries_and_filters.html "Kibana Lucene Query language Sintax")   
 
 
-## Config logback spring
+## Config logback with Spring boot web app modules
 
 Logs in Spring boot web modules has been configured with logback. Spring boot has support with spring boot profiles to be able to set variable in logback-spring.xml:
 
