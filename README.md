@@ -187,6 +187,24 @@ Aditional info ELK and Spring boot: -  [Aditional info ELK and Spring boot](http
 Kibana Lucene Query language Sintax: [Kibana Lucene Query language Sintax](https://www.elastic.co/guide/en/beats/packetbeat/current/_kibana_queries_and_filters.html "Kibana Lucene Query language Sintax")   
 
 
+## Config logback spring
+
+Logs in Spring boot web modules has been configured with logback. Spring boot has support with spring boot profiles to be able to set variable in logback-spring.xml:
+
+```
+<springProfile name="develop">
+        <logger name="com.mylab.cromero" level="DEBUG"/>
+    </springProfile>
+```
+If you want to log debug logs in our example app package you must use this commands with maven/gradle to activate develop profile:
+
+```
+gradle -Dspring.profiles.active=develop bootRun
+mvn -Dspring.profiles.active=develop spring-boot:run
+```
+
+
+Aditional Spring Boot documentation: -  [Aditional Spring Boot documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html "Aditional Spring Boot documentation")   
 
 
 

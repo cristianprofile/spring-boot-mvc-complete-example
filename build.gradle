@@ -37,6 +37,8 @@ allprojects {
     }
 
 
+
+
 /*CREATE NEW INTEGRATION TEST SOURCESET
 (thanks to Petri Kainulainen post support url: https://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/ )
     **************************************************************
@@ -151,6 +153,8 @@ subprojects {
     }
 
 
+
+
 }
 
 // S U B P R O J E C T S
@@ -230,6 +234,10 @@ project(':mylab-core:mylab-core-repository') {
 
         }
 
+        bootRun {
+            systemProperties System.properties
+        }
+
 
     }
 
@@ -257,6 +265,10 @@ project(':mylab-core:mylab-core-repository') {
 
             testCompile 'com.jayway.jsonpath:json-path'
 
+        }
+
+        bootRun {
+            systemProperties System.properties
         }
     }
 
@@ -290,6 +302,10 @@ project(':mylab-core:mylab-core-repository') {
 
 
 
+        }
+
+        bootRun {
+            systemProperties System.properties
         }
 
 
