@@ -234,6 +234,7 @@ project(':mylab-core:mylab-core-repository') {
 
         }
 
+        //needed to set spring profile when gradle bootRun is called
         bootRun {
             systemProperties System.properties
         }
