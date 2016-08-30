@@ -167,6 +167,8 @@ private String title;
 ```
 
 An Example controller named "MessageController" has been created to be able to test this Spring feature (Spring boot mvc rest module)
+[Message controller info](/spring-boot-mvc-rest/src/main/java/com/mylab/cromero/controller/MessageController.java#L32)
+
 
 ![MessageController](/images/message_controller.png?raw=true "MessageController")
 
