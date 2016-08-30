@@ -174,13 +174,14 @@ An Example controller named "MessageController" has been created to be able to t
 
 Screen-shots url view controller test:
 
-
+Summary controller test: (http://localhost:9090/message/summary) 
 ![Summary controller test](/images/spring_mvc_views_summary.png?raw=true "Summary controller test")
 
+Internal controller test:(http://localhost:9090/message/internal)
 ![Internal controller test](/images/spring_mvc_internal.png?raw=true "Internal controller test")
 
+Full controller test: (http://localhost:9090/message/full)
 ![Full controller test](/images/spring_mvc_views_full.png?raw=true "Full controller test")
-
 
 [Another Spring example](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring "Another Spring example") 
 
