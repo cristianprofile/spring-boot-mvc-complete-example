@@ -129,7 +129,60 @@ Spring boot app screen-shots:
 ![Gradle created git.properties](/images/git-info-gradle.png?raw=true "Gradle Screen Example")
 
 
+## Testing Spring mvc rest model views
 
+It can sometimes be useful to filter contextually objects serialized to the HTTP response body.
+In order to provide such capabilities, Spring MVC now has builtin support for Jackson’s Serialization Views (as of Spring Framework 4.2, JSON Views are supported on @MessageMapping handler methods as well).
+
+
+
+Model view Summary/Internal
+```
+package com.mylab.cromero.controller.view;
+
+public class View {
+
+public static class Summary {}
+
+public static class Internal extends Summary {}
+}
+```
+
+
+
+Json View model 
+```
+package com.mylab.cromero.controller.view;
+
+public class Message {
+
+@JsonView(View.Summary.class)
+private Long id;
+
+@JsonView(View.Summary.class)
+private String name;
+
+@JsonView(View.Internal.class)
+private String title;
+```
+
+An Example controller named "MessageController" has been created to be able to test this Spring feature (Spring boot mvc rest module)
+
+![MessageController](/images/message_controller.png?raw=true "MessageController")
+
+
+
+Screen-shots url view controller test:
+
+
+![Summary controller test](/images/spring_mvc_views_summary.png?raw=true "Summary controller test")
+
+![Internal controller test](/images/spring_mvc_internal.png?raw=true "Internal controller test")
+
+![Full controller test](/images/spring_mvc_views_full.png?raw=true "Full controller test")
+
+
+[Another Spring example](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring "Another Spring example") 
 
 
 
