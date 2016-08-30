@@ -164,6 +164,8 @@ private String name;
 
 @JsonView(View.Internal.class)
 private String title;
+
+private String body;
 ```
 
 An Example controller named "MessageController" has been created to be able to test this Spring feature (Spring boot mvc rest module)
