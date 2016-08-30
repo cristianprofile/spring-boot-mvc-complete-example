@@ -14,6 +14,7 @@ buildscript {
 }
 
 plugins {
+    //git commit plugin to be able to create git.properties file and info for Spring boot actuator endpoint
     id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 
@@ -29,11 +30,13 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: "com.gorylenko.gradle-git-properties"
 
-
+    //config git.properties time-zone and date format
     gitProperties {
         dateFormat = "yyyy-MM-dd'T'HH:mmZ"
         dateFormatTimeZone = "Europe/Madrid"
     }
+
+
 
 
 /*CREATE NEW INTEGRATION TEST SOURCESET
@@ -150,6 +153,8 @@ subprojects {
     }
 
 
+
+
 }
 
 // S U B P R O J E C T S
@@ -229,6 +234,11 @@ project(':mylab-core:mylab-core-repository') {
 
         }
 
+        //needed to set spring profile when gradle bootRun is called
+        bootRun {
+            systemProperties System.properties
+        }
+
 
     }
 
@@ -256,6 +266,10 @@ project(':mylab-core:mylab-core-repository') {
 
             testCompile 'com.jayway.jsonpath:json-path'
 
+        }
+
+        bootRun {
+            systemProperties System.properties
         }
     }
 
@@ -289,6 +303,10 @@ project(':mylab-core:mylab-core-repository') {
 
 
 
+        }
+
+        bootRun {
+            systemProperties System.properties
         }
 
 

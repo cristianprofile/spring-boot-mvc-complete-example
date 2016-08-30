@@ -112,22 +112,77 @@ For Maven users the spring-boot-starter-parent POM includes a pre-configured plu
     </plugins>
 </build>
 ```
-Gradle users can achieve the same result using the gradle-git-properties plugin
+Gradle users can archieve the same result using the gradle-git-properties plugin
 
 ```
 plugins {
     id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 ```
+You can read more info about Spring boot how to config here: [Spring boot oficial documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-git-info "Spring boot oficial documentation")  
+
 
 Spring boot app screen-shots:
 
 ![Spring boot info](/images/git_info_boot.png?raw=true "Spring boot info")
 ![Maven created git.properties](/images/git-info-maven.png?raw=true "Maven created git.properties")
-![Gradle created git.properties](/images/git-info-gradle?raw=true "Gradle Screen Example")
+![Gradle created git.properties](/images/git-info-gradle.png?raw=true "Gradle Screen Example")
+
+
+## Testing Spring mvc rest model views
+
+It can sometimes be useful to filter contextually objects serialized to the HTTP response body.
+In order to provide such capabilities, Spring MVC now has builtin support for Jackson’s Serialization Views (as of Spring Framework 4.2, JSON Views are supported on @MessageMapping handler methods as well).
 
 
 
+Model view Summary/Internal
+```
+package com.mylab.cromero.controller.view;
+
+public class View {
+
+public static class Summary {}
+
+public static class Internal extends Summary {}
+}
+```
+
+
+
+Json View model 
+```
+package com.mylab.cromero.controller.view;
+
+public class Message {
+
+@JsonView(View.Summary.class)
+private Long id;
+
+@JsonView(View.Summary.class)
+private String name;
+
+@JsonView(View.Internal.class)
+private String title;
+```
+
+An Example controller named "MessageController" has been created to be able to test this Spring feature (Spring boot mvc rest module)
+
+![MessageController](/images/message_controller.png?raw=true "MessageController")
+
+
+
+Screen-shots url view controller test:
+
+
+![Summary controller test](/images/spring_mvc_views_summary.png?raw=true "Summary controller test")
+
+![Internal controller test](/images/spring_mvc_internal.png?raw=true "Internal controller test")
+
+![Full controller test](/images/spring_mvc_views_full.png?raw=true "Full controller test")
+
+
+[Another Spring example](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring "Another Spring example") 
 
 
 
@@ -185,6 +240,24 @@ Aditional info ELK and Spring boot: -  [Aditional info ELK and Spring boot](http
 Kibana Lucene Query language Sintax: [Kibana Lucene Query language Sintax](https://www.elastic.co/guide/en/beats/packetbeat/current/_kibana_queries_and_filters.html "Kibana Lucene Query language Sintax")   
 
 
+## Config logback with Spring boot web app modules
+
+Logs in Spring boot web modules has been configured with logback. Spring boot has support with spring boot profiles to be able to set variable in logback-spring.xml:
+
+```
+<springProfile name="develop">
+        <logger name="com.mylab.cromero" level="DEBUG"/>
+    </springProfile>
+```
+If you want to log debug logs in our example app package you must use this commands with maven/gradle to activate develop profile:
+
+```
+gradle -Dspring.profiles.active=develop bootRun
+mvn -Dspring.profiles.active=develop spring-boot:run
+```
+
+
+Aditional Spring Boot documentation: -  [Aditional Spring Boot documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html "Aditional Spring Boot documentation")   
 
 
 

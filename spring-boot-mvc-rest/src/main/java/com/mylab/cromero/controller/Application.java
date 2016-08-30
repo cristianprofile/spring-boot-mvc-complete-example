@@ -1,6 +1,7 @@
 package com.mylab.cromero.controller;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mylab.cromero.service.ConfigurationService;
@@ -44,6 +45,7 @@ public class Application {
         //do not show Spring boot banner when boot starts!!!!!
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
+
     }
 
     /**
@@ -51,10 +53,12 @@ public class Application {
      */
     @Bean
     public ObjectMapper objectMapper() {
+
         return new ObjectMapper()
                 .enable(SerializationFeature.INDENT_OUTPUT)
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+                .setSerializationInclusion(JsonInclude.Include.NON_EMPTY).
+                        disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
     }
 
     /**
@@ -72,6 +76,8 @@ public class Application {
             logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
         }
     }
+
+
 
 
 }

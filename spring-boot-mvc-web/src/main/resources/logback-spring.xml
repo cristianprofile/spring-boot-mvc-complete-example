@@ -35,7 +35,16 @@
 		<!--appender-ref ref="TCP" /-->
 	</root>
 
+    <!--If you want to log debug trace you must use:
+
+   gradle -Dspring.profiles.active=develop bootRun
+   mvn -Dspring.profiles.active=develop spring-boot:run      -->
+
+    <springProfile name="develop">
+        <logger name="com.mylab.cromero" level="DEBUG"/>
+    </springProfile>
+
 	<logger name="org.springframework" level="INFO"/>
-    <logger name="com.mylab.cromero" level="DEBUG"/>
+
 
 </configuration>
