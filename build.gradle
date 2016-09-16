@@ -186,6 +186,11 @@ project(':mylab-core:mylab-core-repository') {
             testCompile 'org.hsqldb:hsqldb'
             testCompile 'org.hibernate:hibernate-validator'
             testCompile 'javax.el:javax.el-api'
+            testCompile 'org.powermock:powermock-api-mockito:1.6.5'
+            testCompile 'org.powermock:powermock-module-junit4:1.6.5'
+
+
+
 
         }
 
