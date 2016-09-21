@@ -1,4 +1,4 @@
-package com.mylab.cromero.service;
+package com.mylab.cromero.service.powermock;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ public class StaticClassTest {
     private FinalClass finalClass;
 
     @InjectMocks
-    private ClassWithStaticAutowired claseConStatic;
+    private ClassWithFinalAutowired claseConStatic;
 
     @Test
     public void testInjectFinalClass() {

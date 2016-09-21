@@ -1,11 +1,11 @@
-package com.mylab.cromero.service;
+package com.mylab.cromero.service.powermock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by cristianromeromatesanz on 16/09/16. (Test final class witn powermock)
  */
-public class  ClassWithStaticAutowired implements IClassWithStaticAutowired {
+public class ClassWithFinalAutowired implements IClassWithFinalAutowired {
 
     @Autowired
     private FinalClass finalClass;
