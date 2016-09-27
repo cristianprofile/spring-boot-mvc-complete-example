@@ -1,11 +1,10 @@
 package com.mylab.cromero.controller.controller;
 
-import com.mylab.cromero.repository.dto.PizzaResponse;
-import com.mylab.cromero.repository.dto.UserRequest;
 import com.mylab.cromero.controller.form.PizzaForm;
 import com.mylab.cromero.controller.form.UserForm;
-import com.mylab.cromero.service.BaseService;
 import com.mylab.cromero.repository.dto.PizzaRequest;
+import com.mylab.cromero.repository.dto.PizzaResponse;
+import com.mylab.cromero.repository.dto.UserRequest;
 import com.mylab.cromero.repository.dto.UserResponse;
 import com.mylab.cromero.service.PizzaService;
 import com.mylab.cromero.service.UserService;
@@ -40,9 +39,6 @@ public class WebController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private BaseService baseService;
-	
 	@Autowired
 	private UserService userService;
 	

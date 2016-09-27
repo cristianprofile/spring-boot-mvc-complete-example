@@ -53,8 +53,6 @@ public class RestTestIT {
     @Autowired
     BaseRepository baseRepository;
 
-    private MediaType contentType = new MediaType("application", "hal+json");
-
     private MockMvc mockMvc;
 
     @Autowired
@@ -62,6 +60,8 @@ public class RestTestIT {
 
     @Value("${spring.data.rest.base-path}")
     private String basePath;
+
+    public static final MediaType APPLICATION_JSON_UTF8 = new MediaType("application", "hal+json", Charset.forName("utf8"));
 
 
     @Before
@@ -84,7 +84,7 @@ public class RestTestIT {
         final BaseRequest baseRequest = new BaseRequest();
         baseRequest.setName("new base");
         String baseJson = json(baseRequest);
-        this.mockMvc.perform(post(basePath + "/bases").contentType(contentType)
+        this.mockMvc.perform(post(basePath + "/bases").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(baseJson)).andExpect(status().isCreated());
     }
 
@@ -103,9 +103,11 @@ public class RestTestIT {
         baseAlmacenar.setName("masa pan");
         baseRepository.save(baseAlmacenar);
 
-        mockMvc.perform(get(basePath + "/bases").contentType(contentType))
+
+
+        mockMvc.perform(get(basePath + "/bases").contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$._embedded.bases", hasSize(2)))
                 .andExpect(jsonPath("$._embedded.bases[0].name", equalToIgnoringCase("margarita")))
                 .andExpect(jsonPath("$._embedded.bases[1].name", equalToIgnoringCase("masa pan")));

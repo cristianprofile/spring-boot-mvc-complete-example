@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
@@ -30,6 +29,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private UserDetailsService userDetailsServiceImpl;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	
 	
@@ -75,17 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		
-		auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
 	}
-	
-	
-	/**
-	 * Bcrypt password encoding configuration, more info at http://www.baeldung.com/spring-security-registration-password-encoding-bcrypt
-	 * @return
-	 */
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-	    return new BCryptPasswordEncoder();
-	}
+
 	
 }
