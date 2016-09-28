@@ -16,9 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -45,14 +46,13 @@ public class WebController {
 	@Autowired
 	private PizzaService pizzaService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public String home() {
 		logger.info("home controller access");
 		return "home";
 	}
 
-	
-	@RequestMapping("/info")
+	@GetMapping("/info")
 	public String info() {
 		logger.info("home controller access");
 		return "info";
@@ -66,7 +66,7 @@ public class WebController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/pizzas")
+	@GetMapping("/pizzas")
 	public String pizzas(Model model) {
 
 		logger.info("pizzas controller access");
@@ -82,7 +82,7 @@ public class WebController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/users")
+	@GetMapping("/users")
 	public String users(Model model) {
 		
 		logger.info("users controller access");
@@ -92,9 +92,9 @@ public class WebController {
 	}
 
 
-	
-	
-	@RequestMapping("/addUser")
+
+
+	@GetMapping("/addUser")
 	public String addUser(Model model) {
 		
 		logger.info("users controller access");
@@ -103,10 +103,9 @@ public class WebController {
 		return "addUser";
 	}
 
-	
-	
-	
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+
+
+	@PostMapping("/addUser")
 	public String addUser(@ModelAttribute("user") @Valid UserForm user,
 			BindingResult result, ModelMap model) {
 		this.logger.debug("add user controller ");
@@ -135,7 +134,8 @@ public class WebController {
 	
 	
 	
-	@RequestMapping("/addPizza")
+
+	@GetMapping("/addPizza")
 	public String addPizza(Model model) {
 		
 		logger.info("add pizza get access");
@@ -143,9 +143,8 @@ public class WebController {
 		model.addAttribute("pizza", pizzaForm);
 		return "addPizza";
 	}
-	
-	
-	@RequestMapping(value = "/addPizza", method = RequestMethod.POST)
+
+	@PostMapping("/addPizza")
 	public String addPizza(@ModelAttribute("pizza") @Valid PizzaForm pizza,
 			BindingResult result, ModelMap model) {
 		this.logger.debug("add pizza controller ");
@@ -163,26 +162,24 @@ public class WebController {
 		model.addAttribute("pizzas", findAllPizzas);
 		return "pizzas";
 	}
-	
-	
-	
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+
+
+	@GetMapping("/login")
 	public String login(Locale locale, Model model) {
 		logger.info("login controller access");
 		return "login";
 	}
 
 	 // Login form with error
-    @RequestMapping(value = "/login", params = "error")
+	@GetMapping(value = "/login", params = "error")
     public String loginError(HttpServletRequest req, Model model) {
     	logger.info("login-error: " + req);
         model.addAttribute("loginError", true);
         return "login";
     }
-    
-    
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+
+	@PostMapping("/logout")
 	public String logout(Locale locale, Model model) {
 		logger.info("logout controller access");
 		return "login";

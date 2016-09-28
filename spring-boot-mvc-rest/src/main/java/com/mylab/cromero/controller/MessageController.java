@@ -6,8 +6,8 @@ import com.mylab.cromero.controller.view.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class MessageController {
 
 
     @JsonView(View.Summary.class)
-    @RequestMapping(value="/summary",method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value="/summary", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Message> listAllMessageSummary() {
 
 
@@ -38,7 +38,7 @@ public class MessageController {
     }
 
     @JsonView(View.Internal.class)
-    @RequestMapping(value="/internal",method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value="/internal", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Message> listAllMessageInternal() {
 
 
@@ -47,7 +47,7 @@ public class MessageController {
 
     }
 
-    @RequestMapping(value="/full",method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value="/full", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Message> listAll() {
 
 
