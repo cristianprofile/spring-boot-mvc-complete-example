@@ -120,7 +120,7 @@ plugins {
 }
 ```
 
-New in Spring 1.4: Git commit id plugin show complete git commit id plugin in "/info" endpoint of Actuator. In yml properties file add:
+** New in Spring 1.4: ** Git commit id plugin show complete git commit id plugin in "/info" endpoint of Actuator. In yml properties file add:
 
 ```
 management:
