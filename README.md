@@ -119,6 +119,21 @@ plugins {
     id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 ```
+
+New in Spring 1.4: Git commit id plugin show complete git commit id plugin in "/info" endpoint of Actuator. In yml properties file add:
+
+```
+management:
+    port: 9091
+    info:
+        git:
+          enabled: true
+          mode: full
+```
+
+![Git commit id plugin full actuator info](/images/actuator-git-commit-id-full-info.png?raw=true "Git commit id plugin full actuator info")
+
+
 You can read more info about Spring boot how to config here: [Spring boot oficial documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-git-info "Spring boot oficial documentation")  
 
 
