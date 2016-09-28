@@ -7,7 +7,6 @@ import com.mylab.cromero.repository.dto.PizzaResponse;
 import com.mylab.cromero.service.mapper.LayerMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +30,13 @@ public class PizzaServiceImpl implements PizzaService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
+    // Spring 4.3 use default constructor to set this bean, @Autowired is not a must now
     private PizzaRepository pizzaRepository;
+
+
+    public PizzaServiceImpl(PizzaRepository pizzaRepository) {
+        this.pizzaRepository = pizzaRepository;
+    }
 
 
     @Override
