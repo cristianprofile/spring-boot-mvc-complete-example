@@ -40,8 +40,7 @@
    gradle -Dspring.profiles.active=develop bootRun
    mvn -Dspring.profiles.active=develop spring-boot:run      -->
 
-
-        <logger name="com.mylab.cromero" level="DEBUG"/>
+    <logger name="com.mylab.cromero" level="DEBUG"/>
 
 	<logger name="org.springframework" level="INFO"/>
 

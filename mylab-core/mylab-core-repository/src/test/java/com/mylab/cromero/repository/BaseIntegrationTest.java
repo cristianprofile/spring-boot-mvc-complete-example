@@ -14,6 +14,9 @@ import java.util.Iterator;
 import java.util.List;
 
 
+//http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications-detecting-config_
+// When testing Spring Boot applications this is often not required. Spring Boot’s @*Test annotations will search for your primary configuration automatically whenever you don’t explicitly define one.
+//the search algorithm works up from the package that contains the test until it finds a @SpringBootApplication or @SpringBootConfiguration annotated class. As long as you’ve structured your code in a sensible way your main configuration is usually found.
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

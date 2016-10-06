@@ -11,6 +11,13 @@
     <description>service implementation</description>
     <dependencies>
 
+        <dependency>
+            <groupId>org.mockftpserver</groupId>
+            <artifactId>MockFtpServer</artifactId>
+            <version>2.6</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>org.powermock</groupId>
@@ -56,8 +63,16 @@
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
-            <version>2.2.4</version>
+            <scope>test</scope>
+
         </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>javax.el</groupId>-->
+            <!--<artifactId>el-api</artifactId>-->
+            <!--<version>2.2</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
