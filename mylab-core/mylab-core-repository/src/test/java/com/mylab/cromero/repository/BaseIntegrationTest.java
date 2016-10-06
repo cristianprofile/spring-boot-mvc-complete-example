@@ -5,9 +5,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -15,11 +14,9 @@ import java.util.Iterator;
 import java.util.List;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
 
-//Use integration test config class with ConfigurationRepository class to autoscan every class needed to test our app
-@SpringApplicationConfiguration(classes = {TestRepositoryConfigIT.class})
-@Transactional
+@RunWith(SpringRunner.class)
+@DataJpaTest
 public class BaseIntegrationTest {
 
     @Autowired
