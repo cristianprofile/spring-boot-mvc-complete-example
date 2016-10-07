@@ -6,7 +6,6 @@ import com.mylab.cromero.repository.exception.BaseNotFoundException;
 import com.mylab.cromero.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -36,8 +35,14 @@ public class HelloWorldController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     private BaseService baseService;
+
+
+
+
+    public HelloWorldController(BaseService baseService) {
+        this.baseService = baseService;
+    }
 
 
     // example of calling with pageable

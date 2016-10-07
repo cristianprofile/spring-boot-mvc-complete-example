@@ -5,19 +5,17 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.mylab.cromero.repository.BaseRepository;
 import com.mylab.cromero.repository.domain.Base;
 import com.mylab.cromero.repository.dto.BaseRequest;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
 
 import static org.hamcrest.Matchers.equalToIgnoringCase;
@@ -29,43 +27,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 
-//   The @SpringApplicationConfiguration annotation is similar to the @ContextConfiguration annotation in that it
-//   is used to specify which application context(s) that should be used 
-//   in the test. Additionally, it will trigger logic for reading Spring Boot 
-//   specific configurations, properties, and so on.
-
-//   @WebAppConfiguration must be present in order to tell Spring that a 
-//   WebApplicationContext should be loaded for the test. 
-//   It also provides an attribute for specifying the path to the root of 
-//   the web application.
-//   full example at http://spring.io/guides/tutorials/bookmarks/
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
-
-@Transactional
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.MOCK)
+@AutoConfigureMockMvc
 public class RestTestIT {
 
 
     @Autowired
     private BaseRepository baseRepository;
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-
-
-    @Before
-    public void setUp() {
-        this.mockMvc = webAppContextSetup(webApplicationContext).build();
-    }
 
     @Test
+    @Transactional
     public void createBases() throws Exception {
 
         final BaseRequest baseRequest = new BaseRequest();
@@ -81,6 +59,7 @@ public class RestTestIT {
     }
 
     @Test
+    @Transactional
     public void getBases() throws Exception {
         Base baseAlmacenar = new Base();
         baseAlmacenar.setName("margarita");
@@ -99,6 +78,7 @@ public class RestTestIT {
     }
 
     @Test
+   @Transactional
     public void getBasesAsync() throws Exception {
         Base baseAlmacenar = new Base();
         baseAlmacenar.setName("margarita");
