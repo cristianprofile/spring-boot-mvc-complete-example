@@ -24,13 +24,15 @@ import static org.hamcrest.Matchers.hasSize;
 
 
 @RunWith(SpringRunner.class)
+//Spring boot test is searching  @SpringBootConfiguration or @SpringBootApplication
+//In this case it will automaticaly find TestServiceConfigIt
 @SpringBootTest
+@Transactional
 public class BaseServiceImplTestIT {
 
     @Autowired
     private BaseService baseService;
 
-    @Transactional
     @Test(expected = BaseNotFoundException.class)
     public void testDeleteBaseNotExist() {
 
@@ -40,7 +42,6 @@ public class BaseServiceImplTestIT {
 
     }
 
-    @Transactional
     @Test
     public void testDeleteBaseOk() {
 
@@ -52,7 +53,6 @@ public class BaseServiceImplTestIT {
         MatcherAssert.assertThat(baseService.findAllBases(), empty());
     }
 
-    @Transactional
     @Test
     public void testFindAllSortedOk() {
 
@@ -126,7 +126,6 @@ public class BaseServiceImplTestIT {
     }
 
 
-    @Transactional
     @Test
     public void testFindAllOptional() {
         BaseRequest base = new BaseRequest();

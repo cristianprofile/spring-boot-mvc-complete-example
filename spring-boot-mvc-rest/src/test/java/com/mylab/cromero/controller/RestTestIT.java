@@ -31,6 +31,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.MOCK)
+//Spring boot test is searching  @SpringBootConfiguration or @SpringBootApplication
+//In this case it will automaticaly find Application boot main class
 @AutoConfigureMockMvc
 public class RestTestIT {
 

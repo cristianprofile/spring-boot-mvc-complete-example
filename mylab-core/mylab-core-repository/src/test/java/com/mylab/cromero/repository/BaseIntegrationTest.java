@@ -19,6 +19,8 @@ import java.util.List;
 //the search algorithm works up from the package that contains the test until it finds a @SpringBootApplication or @SpringBootConfiguration annotated class. As long as you’ve structured your code in a sensible way your main configuration is usually found.
 
 @RunWith(SpringRunner.class)
+//@DataJpaTest is searching  @SpringBootConfiguration or @SpringBootApplication
+//In this case it will automaticaly find TestRepositoryConfigIt
 @DataJpaTest
 public class BaseIntegrationTest {
 

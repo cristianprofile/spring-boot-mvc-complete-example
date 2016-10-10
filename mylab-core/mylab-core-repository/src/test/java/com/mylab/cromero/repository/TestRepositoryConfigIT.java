@@ -1,7 +1,8 @@
 package com.mylab.cromero.repository;
 
+import com.mylab.cromero.repository.config.ConfigurationRepository;
 import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
 /**
  * Created by cristianromeromatesanz on 11/10/15.
@@ -14,7 +15,7 @@ Application should only ever include one @SpringApplicationConfiguration and mos
 */
 
 @SpringBootConfiguration
-@ComponentScan
+@Import({ConfigurationRepository.class})
 //use to test our class with Spring boot  autoconfig
 public class TestRepositoryConfigIT {
 }

@@ -19,6 +19,8 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringRunner.class)
+//Spring boot test is searching  @SpringBootConfiguration or @SpringBootApplication
+//In this case it will automaticaly find Application boot main class
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 
 public class RestTestFullIT {
