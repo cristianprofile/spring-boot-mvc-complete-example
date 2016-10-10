@@ -5,9 +5,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -15,11 +14,14 @@ import java.util.Iterator;
 import java.util.List;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
+//http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications-detecting-config_
+// When testing Spring Boot applications this is often not required. Spring Boot’s @*Test annotations will search for your primary configuration automatically whenever you don’t explicitly define one.
+//the search algorithm works up from the package that contains the test until it finds a @SpringBootApplication or @SpringBootConfiguration annotated class. As long as you’ve structured your code in a sensible way your main configuration is usually found.
 
-//Use integration test config class with ConfigurationRepository class to autoscan every class needed to test our app
-@SpringApplicationConfiguration(classes = {TestRepositoryConfigIT.class})
-@Transactional
+@RunWith(SpringRunner.class)
+//@DataJpaTest is searching  @SpringBootConfiguration or @SpringBootApplication
+//In this case it will automaticaly find TestRepositoryConfigIt
+@DataJpaTest
 public class BaseIntegrationTest {
 
     @Autowired

@@ -7,8 +7,8 @@ import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
@@ -23,15 +23,16 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {TestServiceConfigIT.class})
+@RunWith(SpringRunner.class)
+//Spring boot test is searching  @SpringBootConfiguration or @SpringBootApplication
+//In this case it will automaticaly find TestServiceConfigIt
+@SpringBootTest
 @Transactional
 public class BaseServiceImplTestIT {
 
     @Autowired
     private BaseService baseService;
 
-    @Transactional
     @Test(expected = BaseNotFoundException.class)
     public void testDeleteBaseNotExist() {
 
@@ -41,7 +42,6 @@ public class BaseServiceImplTestIT {
 
     }
 
-    @Transactional
     @Test
     public void testDeleteBaseOk() {
 
@@ -53,7 +53,6 @@ public class BaseServiceImplTestIT {
         MatcherAssert.assertThat(baseService.findAllBases(), empty());
     }
 
-    @Transactional
     @Test
     public void testFindAllSortedOk() {
 
@@ -127,7 +126,6 @@ public class BaseServiceImplTestIT {
     }
 
 
-    @Transactional
     @Test
     public void testFindAllOptional() {
         BaseRequest base = new BaseRequest();

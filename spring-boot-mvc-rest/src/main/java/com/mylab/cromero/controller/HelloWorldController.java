@@ -6,13 +6,15 @@ import com.mylab.cromero.repository.exception.BaseNotFoundException;
 import com.mylab.cromero.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,14 +35,20 @@ public class HelloWorldController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     private BaseService baseService;
+
+
+
+
+    public HelloWorldController(BaseService baseService) {
+        this.baseService = baseService;
+    }
 
 
     // example of calling with pageable
     // http://localhost:8080/SpringMVC/base?sort=firstname&sort=lastname,asc&size=444&page=22
 
-    @RequestMapping(method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<BaseResponse> listAllBase(
             @PageableDefault(size = 50, page = 2) Pageable pageable) {
 
@@ -50,18 +58,23 @@ public class HelloWorldController {
 
     }
 
-    @RequestMapping(value = "/{baseId}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+
+    @GetMapping(value = "/{baseId}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse getBase(@PathVariable("baseId") long id) {
         return baseService.getBase(id);
     }
 
-    @RequestMapping(value = "/{baseId}", method = RequestMethod.DELETE)
+
+
+    @DeleteMapping(value = "/{baseId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBase(@PathVariable("baseId") long id) {
         baseService.deleteBase(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+
+
+    @PostMapping(produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void insertBase(@RequestBody BaseRequest newBase) {
 
