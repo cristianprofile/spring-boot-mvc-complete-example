@@ -1,4 +1,4 @@
-## Spring Boot Maven Java 1.8  (Spring MVC jsp and tiles, Spring Data Rest, Jenkins 2 ready to use with full support to Maven and Gradle)
+## Spring Boot Maven/Gradle Java 1.8  (Spring MVC jsp and tiles, Spring Data Rest, Jenkins 2 ready to use with full support to Maven and Gradle)
 
 [![Coverage Status](https://coveralls.io/repos/cristianprofile/spring-boot-mvc-complete-example/badge.svg)](https://coveralls.io/r/cristianprofile/spring-boot-mvc-complete-example)  [![Build Status](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example.svg?branch=develop)](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cristianprofile/spring-boot-mvc-complete-example?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -119,6 +119,22 @@ plugins {
     id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 ```
+
+***New in Spring 1.4:***
+Git commit id plugin show complete git commit id plugin in "/info" endpoint of Actuator. In yml properties file add:
+
+```
+management:
+    port: 9091
+    info:
+        git:
+          enabled: true
+          mode: full
+```
+
+![Git commit id plugin full actuator info](/images/actuator-git-commit-id-full-info.png?raw=true "Git commit id plugin full actuator info")
+
+
 You can read more info about Spring boot how to config here: [Spring boot oficial documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-build.html#howto-git-info "Spring boot oficial documentation")  
 
 
@@ -164,9 +180,13 @@ private String name;
 
 @JsonView(View.Internal.class)
 private String title;
+
+private String body;
 ```
 
 An Example controller named "MessageController" has been created to be able to test this Spring feature (Spring boot mvc rest module)
+[Message controller info](/spring-boot-mvc-rest/src/main/java/com/mylab/cromero/controller/MessageController.java#L32)
+
 
 ![MessageController](/images/message_controller.png?raw=true "MessageController")
 
@@ -174,15 +194,19 @@ An Example controller named "MessageController" has been created to be able to t
 
 Screen-shots url view controller test:
 
+Summary controller test: (http://localhost:9090/message/summary)
 
 ![Summary controller test](/images/spring_mvc_views_summary.png?raw=true "Summary controller test")
 
+Internal controller test:(http://localhost:9090/message/internal)
+
 ![Internal controller test](/images/spring_mvc_internal.png?raw=true "Internal controller test")
+
+Full controller test: (http://localhost:9090/message/full)
 
 ![Full controller test](/images/spring_mvc_views_full.png?raw=true "Full controller test")
 
-
-[Another Spring example](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring "Another Spring example") 
+[Aditional Spring oficial example](https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring "Aditional Spring oficial example") 
 
 
 

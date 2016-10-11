@@ -8,7 +8,6 @@ import com.mylab.cromero.repository.exception.BaseNotFoundException;
 import com.mylab.cromero.service.mapper.LayerMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,8 +38,15 @@ public class BaseServiceImpl implements BaseService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
+    // Spring 4.3 use default constructor to set this bean, @Autowired is not a must now
     private BaseRepository baseRepository;
+
+
+    public BaseServiceImpl(BaseRepository baseRepository) {
+        this.baseRepository = baseRepository;
+    }
+
+
 
     @Override
     public void deleteBase(final BaseRequest base) throws BaseNotFoundException {

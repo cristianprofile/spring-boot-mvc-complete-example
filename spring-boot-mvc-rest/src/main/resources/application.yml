@@ -2,12 +2,19 @@
     port: 9090
 management:
     port: 9091
+    info:
+        git:
+          enabled: true
+          mode: full
 http:
     mappers: 
        jsonPrettyPrint: true
 spring:
       main:
            banner-mode: OFF
+      jackson:
+             serialization:
+             INDENT_OUTPUT: true
 
 logging:
         file: /tmp/spring-boot-mvc-rest.log

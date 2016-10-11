@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
@@ -28,7 +28,7 @@ import java.util.Arrays;
  *
  * @author Cristian Romero Matesanz
  */
-@Configuration
+@SpringBootConfiguration
 @EnableAutoConfiguration
 @ComponentScan(basePackageClasses = HelloWorldController.class)
 @Import({ConfigurationService.class})
