@@ -2,7 +2,6 @@ package com.mylab.cromero.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.mylab.cromero.repository.domain.Base;
 import com.mylab.cromero.repository.dto.BaseRequest;
 import com.mylab.cromero.repository.dto.BaseResponse;
 import com.mylab.cromero.service.BaseService;
@@ -64,14 +63,23 @@ public class RestMockMvcUnitTest {
                 .content(baseJson)).andExpect(status().isCreated());
     }
 
+    private String json(Object o) throws IOException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(o);
+    }
+
     @Test
     public void getBases() throws Exception {
-        Base baseAlmacenar = new Base();
-        baseAlmacenar.setName("margarita");
         List<BaseResponse> findAllBases = new ArrayList<BaseResponse>();
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setId(5l);
-        baseResponse.setName("pepito");
+        baseResponse.setName("basic");
+        findAllBases.add(baseResponse);
+
+        baseResponse = new BaseResponse();
+        baseResponse.setId(5l);
+        baseResponse.setName("probase");
+
         findAllBases.add(baseResponse);
 
         when(this.baseService.findAllBases()).thenReturn(
@@ -79,40 +87,29 @@ public class RestMockMvcUnitTest {
 
         mockMvc.perform(get("/base/")).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(jsonPath("$", hasSize(2))).
+                andExpect(jsonPath("$.[0].name", equalToIgnoringCase("basic")))
+                .andExpect(jsonPath("$.[1].name", equalToIgnoringCase("probase")));
 
         verify(this.baseService, times(1)).findAllBases();
-
-
-
 
 
     }
 
     @Test
     public void getBases2() throws Exception {
-        Base baseAlmacenar = new Base();
-        baseAlmacenar.setName("margarita");
-        List<BaseResponse> findAllBases = new ArrayList<BaseResponse>();
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setId(5l);
-        baseResponse.setName("pepito");
-        findAllBases.add(baseResponse);
+        baseResponse.setName("basic");
 
         when(this.baseService.getBase(3l)).thenReturn(
                 baseResponse);
 
         mockMvc.perform(get("/base/{var}", 3)).andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", equalToIgnoringCase("pepito")));
+                .andExpect(jsonPath("$.name", equalToIgnoringCase("basic")));
 
         verify(this.baseService, times(1)).getBase(3l);
 
-    }
-
-
-    private String json(Object o) throws IOException {
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(o);
     }
 
 
