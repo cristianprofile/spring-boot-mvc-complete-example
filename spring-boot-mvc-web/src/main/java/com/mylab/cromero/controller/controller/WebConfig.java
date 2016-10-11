@@ -1,8 +1,8 @@
  package com.mylab.cromero.controller.controller;
 
  import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
- import org.springframework.boot.context.embedded.ErrorPage;
- import org.springframework.boot.context.embedded.FilterRegistrationBean;
+ import org.springframework.boot.web.servlet.ErrorPage;
+ import org.springframework.boot.web.servlet.FilterRegistrationBean;
  import org.springframework.context.MessageSource;
  import org.springframework.context.annotation.Bean;
  import org.springframework.context.annotation.Configuration;
