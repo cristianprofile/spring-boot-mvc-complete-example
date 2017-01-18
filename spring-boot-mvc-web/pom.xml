@@ -13,7 +13,6 @@
 
     <properties>
         <org.webjars.jquery.version>2.1.4</org.webjars.jquery.version>
-        <spring.boot.maven.plugin.version>1.4.1.RELEASE</spring.boot.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -108,7 +107,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.maven.plugin.version}</version>
                 <configuration>
                     <arguments>
                         <argument>--spring.profiles.active=dev</argument>
@@ -196,7 +194,6 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
-                        <version>${spring.boot.maven.plugin.version}</version>
                         <configuration>
                             <arguments>
                                 <argument>--spring.profiles.active=prod</argument>
