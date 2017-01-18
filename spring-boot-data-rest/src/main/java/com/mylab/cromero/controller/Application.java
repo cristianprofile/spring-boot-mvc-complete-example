@@ -1,19 +1,12 @@
 package com.mylab.cromero.controller;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mylab.cromero.repository.config.ConfigurationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
@@ -44,16 +37,6 @@ public class Application {
         app.run(args);
     }
 
-    /**
-     * @return objectMaper with pretty print config and not null/empty values include in serialization
-     */
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper()
-                .enable(SerializationFeature.INDENT_OUTPUT)
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-    }
 
     /**
      * Initializes pizzas example.

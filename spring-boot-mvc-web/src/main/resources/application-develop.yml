@@ -16,4 +16,4 @@ management:
         context-path: /manage
         security: 
               enabled: true
-              role: ADMIN
+              roles: ADMIN
