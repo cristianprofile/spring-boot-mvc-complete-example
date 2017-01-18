@@ -7,7 +7,7 @@ buildscript {
         classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
         // get spring boot gradle  to be able to  run war with task "gradle bootRun"
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
-        // get gradle dependency analyze This plugin attempts to replicate the functionality of the maven dependency plugin's analyze
+        // get gradle dependency analyzdsefsdgsfdsfsfe This plugin attempts to replicate the functionality of the maven dependency plugin's analyze
         // goals which fail the build if dependencies are declared but not used or used but not declared.
         classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.0.3'
     }
@@ -122,7 +122,7 @@ subprojects {
     dependencyManagement {
         imports {
             //import maven bom to use Spring Platform --> versions of dependecies will be managed by Spring
-            mavenBom "io.spring.platform:platform-bom:Athens-RELEASE"
+            mavenBom "io.spring.platform:platform-bom:Athens-SR2"
         }
     }
 
