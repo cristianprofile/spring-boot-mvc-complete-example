@@ -16,9 +16,9 @@ import java.util.List;
  */
 public interface UserService {
 
-    public List<UserResponse> findAllUsers();
+     List<UserResponse> findAllUsers();
 
-    public void saveUser(UserRequest userRequest);
+     void saveUser(UserRequest userRequest);
 
 
 }

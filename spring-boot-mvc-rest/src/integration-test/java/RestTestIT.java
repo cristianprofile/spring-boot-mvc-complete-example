@@ -5,21 +5,17 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.mylab.cromero.repository.BaseRepository;
 import com.mylab.cromero.repository.domain.Base;
 import com.mylab.cromero.repository.dto.BaseRequest;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.context.WebApplicationContext;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
-import java.nio.charset.Charset;
 
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.hasSize;
@@ -30,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 
 //   The @SpringApplicationConfiguration annotation is similar to the @ContextConfiguration annotation in that it
@@ -44,38 +39,29 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 //   the web application.
 //   full example at http://spring.io/guides/tutorials/bookmarks/
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
-
-@Transactional
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.MOCK)
+//Spring boot test is searching  @SpringBootConfiguration or @SpringBootApplication
+//In this case it will automaticaly find Application boot main class
+@AutoConfigureMockMvc
 public class RestTestIT {
 
-    private final MediaType contentType = new MediaType(
-            MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
     @Autowired
     private BaseRepository baseRepository;
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-
-
-    @Before
-    public void setUp() {
-        this.mockMvc = webAppContextSetup(webApplicationContext).build();
-    }
 
     @Test
+    @org.springframework.transaction.annotation.Transactional
     public void createBases() throws Exception {
 
         final BaseRequest baseRequest = new BaseRequest();
         baseRequest.setName("new base");
         String baseJson = json(baseRequest);
-        this.mockMvc.perform(post("/base").contentType(contentType)
+        this.mockMvc.perform(post("/base").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(baseJson)).andExpect(status().isCreated());
     }
 
@@ -85,6 +71,7 @@ public class RestTestIT {
     }
 
     @Test
+    @org.springframework.transaction.annotation.Transactional
     public void getBases() throws Exception {
         Base baseAlmacenar = new Base();
         baseAlmacenar.setName("margarita");
@@ -95,7 +82,7 @@ public class RestTestIT {
         baseRepository.save(baseAlmacenar);
 
         mockMvc.perform(get("/base/")).andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
                 .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
@@ -103,6 +90,7 @@ public class RestTestIT {
     }
 
     @Test
+    @org.springframework.transaction.annotation.Transactional
     public void getBasesAsync() throws Exception {
         Base baseAlmacenar = new Base();
         baseAlmacenar.setName("margarita");
@@ -112,14 +100,14 @@ public class RestTestIT {
         baseAlmacenar.setName("masa pan");
         baseRepository.save(baseAlmacenar);
 
-        MvcResult mvcResult = mockMvc.perform(get("/baseasinc/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        MvcResult mvcResult = mockMvc.perform(get("/baseasinc/"))
                 .andExpect(request().asyncStarted())
                 .andReturn();
 
         mvcResult.getAsyncResult();
 
         mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
                 .andExpect(jsonPath("$[1].name", equalToIgnoringCase("masa pan")));
