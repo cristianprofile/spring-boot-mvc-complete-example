@@ -132,31 +132,30 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("User [id=");
-        builder.append(id);
-        builder.append(", version=");
-        builder.append(version);
-        builder.append(", user=");
-        builder.append(user);
-        builder.append(", password=");
-        builder.append(password);
-        builder.append(", name=");
-        builder.append(name);
-        builder.append(", surname=");
-        builder.append(surname);
-        builder.append(", accountNonExpired=");
-        builder.append(accountNonExpired);
-        builder.append(", accountNonLocked=");
-        builder.append(accountNonLocked);
-        builder.append(", credentialsNonExpired=");
-        builder.append(credentialsNonExpired);
-        builder.append(", enabled=");
-        builder.append(enabled);
-        builder.append(", rol=");
-        builder.append(rol);
-        builder.append("]");
-        return builder.toString();
+        String builder = "User [id=" +
+                id +
+                ", version=" +
+                version +
+                ", user=" +
+                user +
+                ", password=" +
+                password +
+                ", name=" +
+                name +
+                ", surname=" +
+                surname +
+                ", accountNonExpired=" +
+                accountNonExpired +
+                ", accountNonLocked=" +
+                accountNonLocked +
+                ", credentialsNonExpired=" +
+                credentialsNonExpired +
+                ", enabled=" +
+                enabled +
+                ", rol=" +
+                rol +
+                "]";
+        return builder;
     }
 
 

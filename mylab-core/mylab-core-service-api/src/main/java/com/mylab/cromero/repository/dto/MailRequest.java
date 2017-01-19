@@ -12,7 +12,9 @@ package com.mylab.cromero.repository.dto;
 public class MailRequest {
 
     private String to;
+
     private String subject;
+
     private String body;
 
     public String getTo() {
@@ -41,15 +43,14 @@ public class MailRequest {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("MailRequest [to=");
-        builder.append(to);
-        builder.append(", subject=");
-        builder.append(subject);
-        builder.append(", body=");
-        builder.append(body);
-        builder.append("]");
-        return builder.toString();
+        String builder = "MailRequest [to=" +
+                to +
+                ", subject=" +
+                subject +
+                ", body=" +
+                body +
+                "]";
+        return builder;
     }
 
 }

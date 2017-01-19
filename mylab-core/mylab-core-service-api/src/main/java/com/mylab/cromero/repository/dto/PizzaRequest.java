@@ -33,13 +33,12 @@ public class PizzaRequest {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("PizzaRequest [name=");
-        builder.append(name);
-        builder.append(", price=");
-        builder.append(price);
-        builder.append("]");
-        return builder.toString();
+        String builder = "PizzaRequest [name=" +
+                name +
+                ", price=" +
+                price +
+                "]";
+        return builder;
     }
 
 

@@ -31,13 +31,12 @@ public class ErrorResponse {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("ErrorResponse [message=");
-        builder.append(message);
-        builder.append(", code=");
-        builder.append(code);
-        builder.append("]");
-        return builder.toString();
+        String builder = "ErrorResponse [message=" +
+                message +
+                ", code=" +
+                code +
+                "]";
+        return builder;
     }
 
 
