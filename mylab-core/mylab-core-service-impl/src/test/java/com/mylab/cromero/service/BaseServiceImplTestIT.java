@@ -140,9 +140,7 @@ public class BaseServiceImplTestIT {
 
     private List<String> mapOfString(List<BaseResponse> findAllBasesSorted) {
         List<String> collectRequest = findAllBasesSorted.stream()
-                .map(baseResponse -> {
-                    return baseResponse.getName();
-                }).collect(Collectors.toList());
+                .map(BaseResponse::getName).collect(Collectors.toList());
         return collectRequest;
     }
 

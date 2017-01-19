@@ -92,9 +92,7 @@ public class BaseServiceImplTest {
         List<BaseResponse> findAllBasesSorted = baseService
                 .findAllBasesSorted();
 
-        List<String> collectPizzas = findAllBasesSorted.stream().map(baseResponse -> {
-            return baseResponse.getName();
-        }).collect(Collectors.toList());
+        List<String> collectPizzas = findAllBasesSorted.stream().map(BaseResponse::getName).collect(Collectors.toList());
 
         assertThat(findAllBasesSorted, hasSize(3));
         assertThat(collectPizzas, contains("atun", "margarita", "piña"));
