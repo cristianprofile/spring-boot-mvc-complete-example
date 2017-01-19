@@ -36,13 +36,12 @@ public class BaseResponse {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("BaseResponse [name=");
-        builder.append(name);
-        builder.append(", id=");
-        builder.append(id);
-        builder.append("]");
-        return builder.toString();
+        String builder = "BaseResponse [name=" +
+                name +
+                ", id=" +
+                id +
+                "]";
+        return builder;
     }
 
 

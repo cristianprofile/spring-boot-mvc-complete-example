@@ -29,7 +29,7 @@ public class CustomUserDetails implements UserDetails {
     public CustomUserDetails(UserResponse user, List<String> roles, String password) {
         this.user = user;
         this.password = password;
-        authorities = roles.parallelStream().map(roleName -> new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
+        authorities = roles.parallelStream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     @Override

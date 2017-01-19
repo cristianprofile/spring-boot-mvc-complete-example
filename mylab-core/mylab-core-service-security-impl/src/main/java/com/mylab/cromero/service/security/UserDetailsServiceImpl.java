@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             user.setSurname("Romero Matesanz");
             user.setUser("admin@ole.com");
             this.logger.debug("User found correct :{} ", user);
-            List<String> roles = Arrays.asList("ROLE_ADMIN");
+            List<String> roles = Collections.singletonList("ROLE_ADMIN");
             return new CustomUserDetails(user, roles, passwordEncoder.encode("admin@ole.com"));
 
         }
@@ -54,7 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             if (findByUser.isPresent()) {
                 this.logger.debug("User found at repository :{} ", findByUser.get());
                 UserResponse userResponse = MapperSerializer.getUserToUserResponseMapperLambdaFunction().apply(findByUser.get());
-                List<String> roles = Arrays.asList(findByUser.get().getRol());
+                List<String> roles = Collections.singletonList(findByUser.get().getRol());
                 return new CustomUserDetails(userResponse, roles, findByUser.get().getPassword());
             }
             else {

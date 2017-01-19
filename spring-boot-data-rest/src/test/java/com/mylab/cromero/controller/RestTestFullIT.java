@@ -24,7 +24,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
@@ -87,7 +86,7 @@ public class RestTestFullIT {
         mapper.registerModule(new Jackson2HalModule());
 
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(Arrays.asList(HAL_JSON));
+        converter.setSupportedMediaTypes(Collections.singletonList(HAL_JSON));
         converter.setObjectMapper(mapper);
 
         RestTemplate template = new RestTemplate(Collections.singletonList(converter));
