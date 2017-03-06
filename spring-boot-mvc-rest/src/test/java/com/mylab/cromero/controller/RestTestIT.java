@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,7 +48,6 @@ public class RestTestIT {
 
 
     @Test
-    @Transactional
     public void createBases() throws Exception {
 
         final BaseRequest baseRequest = new BaseRequest();
@@ -65,7 +63,6 @@ public class RestTestIT {
     }
 
     @Test
-    @Transactional
     public void getBases() throws Exception {
 
         List<BaseResponse> baseResponses = new ArrayList<BaseResponse>();
@@ -91,7 +88,6 @@ public class RestTestIT {
     }
 
     @Test
-    @Transactional
     public void getBasesAsync() throws Exception {
 
         List<BaseResponse> baseResponses = new ArrayList<BaseResponse>();
