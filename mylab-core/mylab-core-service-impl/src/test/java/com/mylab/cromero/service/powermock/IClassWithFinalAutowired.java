@@ -5,5 +5,5 @@ package com.mylab.cromero.service.powermock;
  */
 public interface IClassWithFinalAutowired {
 
-    public String method1(String parametro1);
+     String method1(String parametro1);
 }

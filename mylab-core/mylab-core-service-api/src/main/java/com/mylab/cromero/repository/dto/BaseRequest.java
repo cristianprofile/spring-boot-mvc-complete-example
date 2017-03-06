@@ -34,13 +34,12 @@ public class BaseRequest {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("BaseRequest [name=");
-        builder.append(name);
-        builder.append(", id=");
-        builder.append(id);
-        builder.append("]");
-        return builder.toString();
+        String builder = "BaseRequest [name=" +
+                name +
+                ", id=" +
+                id +
+                "]";
+        return builder;
     }
 
 

@@ -105,23 +105,22 @@ public class UserRequest {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("UserRequest [user=");
-        builder.append(user);
-        builder.append(", name=");
-        builder.append(name);
-        builder.append(", surname=");
-        builder.append(surname);
-        builder.append(", accountNonExpired=");
-        builder.append(accountNonExpired);
-        builder.append(", accountNonLocked=");
-        builder.append(accountNonLocked);
-        builder.append(", credentialsNonExpired=");
-        builder.append(credentialsNonExpired);
-        builder.append(", enabled=");
-        builder.append(enabled);
-        builder.append("]");
-        return builder.toString();
+        String builder = "UserRequest [user=" +
+                user +
+                ", name=" +
+                name +
+                ", surname=" +
+                surname +
+                ", accountNonExpired=" +
+                accountNonExpired +
+                ", accountNonLocked=" +
+                accountNonLocked +
+                ", credentialsNonExpired=" +
+                credentialsNonExpired +
+                ", enabled=" +
+                enabled +
+                "]";
+        return builder;
     }
 
 

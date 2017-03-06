@@ -1,8 +1,8 @@
 package com.mylab.cromero.controller.form;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 
 public class PizzaForm {
      
@@ -22,11 +22,10 @@ public class PizzaForm {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("PizzaForm [name=");
-		builder.append(name);
-		builder.append("]");
-		return builder.toString();
+        String builder = "PizzaForm [name=" +
+                name +
+                "]";
+        return builder;
 	}
  	
 	
