@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/cristianprofile/spring-boot-mvc-complete-example/badge.svg)](https://coveralls.io/r/cristianprofile/spring-boot-mvc-complete-example)  [![Build Status](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example.svg?branch=develop)](https://travis-ci.org/cristianprofile/spring-boot-mvc-complete-example)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cristianprofile/spring-boot-mvc-complete-example?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-If you don`t have  gradle or maven in your computer you can use gradlew to be able to run the project
+If you don`t have  gradle or maven on your computer you can use gradlew to be able to run the project
 
 ```
 gradle wrapper (run Gradle wrapper)
