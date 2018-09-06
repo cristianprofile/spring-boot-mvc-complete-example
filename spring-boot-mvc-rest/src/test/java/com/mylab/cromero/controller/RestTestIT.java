@@ -79,7 +79,7 @@ public class RestTestIT {
 
         given(baseService.findAllBases()).willReturn(baseResponses);
 
-        mockMvc.perform(get("/base/")).andExpect(status().isOk())
+        mockMvc.perform(get("/base/?size=2&page=0")).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", equalToIgnoringCase("margarita")))
