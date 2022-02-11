@@ -4,7 +4,7 @@ buildscript {
     }
     dependencies {
         // get spring platform dependencies plugin
-        classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
         // get spring boot gradle  to be able to  run war with task "gradle bootRun"
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
         // get gradle dependency analyzdsefsdgsfdsfsfe This plugin attempts to replicate the functionality of the maven dependency plugin's analyze
