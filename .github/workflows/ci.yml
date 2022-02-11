@@ -19,9 +19,10 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
       - name: Cache Maven packages
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2
         with:
           path: ~/.m2
+          key: ${{ runner.os }}
       - name: Build with Maven
         working-directory: mylab-parent-pom
         run: mvn --batch-mode --update-snapshots install
