@@ -16,8 +16,7 @@ jobs:
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
-          distribution: 'Temurin'
+          java-version: temurin@1.8
       - name: Build with Maven
         working-directory: mylab-parent-pom
         run: mvn --batch-mode --update-snapshots install
@@ -31,8 +30,7 @@ jobs:
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
-          distribution: 'Temurin'
+          java-version: temurin@1.8
       - name: Build with Maven
         working-directory: mylab-core
         run: mvn --batch-mode --update-snapshots install
