@@ -9,7 +9,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
         // get gradle dependency analyzdsefsdgsfdsfsfe This plugin attempts to replicate the functionality of the maven dependency plugin's analyze
         // goals which fail the build if dependencies are declared but not used or used but not declared.
-        classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.0.3'
+        classpath 'ca.cutterslade.gradle:gradle-dependency-analyze:1.4.2'
     }
 }
 
