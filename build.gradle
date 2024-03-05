@@ -229,7 +229,7 @@ project(':mylab-core:mylab-core-repository') {
             //needed to be able to run logback
             compile 'net.logstash.logback:logstash-logback-encoder:4.7'
             compile("ch.qos.logback:logback-classic:1.1.6")
-            compile("ch.qos.logback:logback-core:1.1.6")
+            compile("ch.qos.logback:logback-core:1.5.3")
 
             testCompile 'com.jayway.jsonpath:json-path'
             testCompile 'org.springframework.boot:spring-boot-starter-test'
@@ -265,7 +265,7 @@ project(':mylab-core:mylab-core-repository') {
             //needed to be able to run logback
             compile 'net.logstash.logback:logstash-logback-encoder:4.7'
             compile("ch.qos.logback:logback-classic:1.1.6")
-            compile("ch.qos.logback:logback-core:1.1.6")
+            compile("ch.qos.logback:logback-core:1.5.3")
 
             testCompile 'com.jayway.jsonpath:json-path'
 
@@ -300,7 +300,7 @@ project(':mylab-core:mylab-core-repository') {
             //needed to be able to run logback
             compile 'net.logstash.logback:logstash-logback-encoder:4.7'
             compile("ch.qos.logback:logback-classic:1.1.6")
-            compile("ch.qos.logback:logback-core:1.1.6")
+            compile("ch.qos.logback:logback-core:1.5.3")
             providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
             providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
