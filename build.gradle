@@ -227,7 +227,7 @@ project(':mylab-core:mylab-core-repository') {
             compile 'org.hsqldb:hsqldb'
             compile("org.springframework.boot:spring-boot-devtools")
             //needed to be able to run logback
-            compile 'net.logstash.logback:logstash-logback-encoder:4.7'
+            compile 'net.logstash.logback:logstash-logback-encoder:4.11'
             compile("ch.qos.logback:logback-classic:1.1.6")
             compile("ch.qos.logback:logback-core:1.1.6")
 
@@ -263,7 +263,7 @@ project(':mylab-core:mylab-core-repository') {
             compile("org.springframework.boot:spring-boot-starter-remote-shell")
             compile 'org.hsqldb:hsqldb'
             //needed to be able to run logback
-            compile 'net.logstash.logback:logstash-logback-encoder:4.7'
+            compile 'net.logstash.logback:logstash-logback-encoder:4.11'
             compile("ch.qos.logback:logback-classic:1.1.6")
             compile("ch.qos.logback:logback-core:1.1.6")
 
@@ -298,7 +298,7 @@ project(':mylab-core:mylab-core-repository') {
             compile 'org.springframework.security:spring-security-taglibs'
             compile("javax.servlet:jstl:1.2")
             //needed to be able to run logback
-            compile 'net.logstash.logback:logstash-logback-encoder:4.7'
+            compile 'net.logstash.logback:logstash-logback-encoder:4.11'
             compile("ch.qos.logback:logback-classic:1.1.6")
             compile("ch.qos.logback:logback-core:1.1.6")
             providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
